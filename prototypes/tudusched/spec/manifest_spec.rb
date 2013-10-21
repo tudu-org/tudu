@@ -6,6 +6,6 @@ describe Tudusched::Manifest do
   end
 
   it "should return a Manifest object" do
-    @manifest.should be_an_instance_of Tudusched.Manifest
+    @manifest.should be_an_instance_of Tudusched::Manifest
   end
 end
