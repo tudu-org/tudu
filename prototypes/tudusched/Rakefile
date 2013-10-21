@@ -1,0 +1,11 @@
+task :irb do |t|
+  # add `pwd`/lib to the load path
+  $:.unshift(File.dirname(__FILE__) + '/lib')
+
+  # require tudusched and irb so we can drob into an irb repl 
+  require 'tudusched'
+  require 'irb'
+
+  ARGV.clear
+  IRB.start
+end

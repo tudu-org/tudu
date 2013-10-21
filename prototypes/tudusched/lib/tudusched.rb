@@ -1,3 +1,5 @@
+require 'tudusched/scheduler'
+
 module Tudusched
   class << self
     def info
