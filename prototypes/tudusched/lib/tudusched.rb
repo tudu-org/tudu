@@ -14,7 +14,10 @@ module Tudusched
     end
 
     def get_google_client
-      client = Google::APIClient.new
+      client = Google::APIClient.new(
+        :application_name => 'tudusched',
+        :application_version => '1.0.0'
+        )
 
       client.authorization.client_id = '1076895517677.apps.googleusercontent.com'
       client.authorization.client_secret = 'GMQpEKkIGxF2lSVF1AqUOKNf'
@@ -28,6 +31,8 @@ module Tudusched
       print "Result: "
 
       client.authorization.code = gets.chomp
+      #client.authorization.access_token = client.authorization.code
+      client.authorization.fetch_access_token!
 
       client
     end
@@ -62,10 +67,19 @@ module Tudusched
       print "Using input file #{options[:input]}\n"
       print "Using output file #{options[:output]}\n"
 
-      m = load_manifest_file options[:input]
+      if options[:input]
+        m = load_manifest_file options[:input]
+      end
 
       if options[:google]
         client = get_google_client
+        calendar = client.discovered_api('calendar', 'v3')
+        if not options[:input]
+          events = client.execute(:api_method => calendar.events.list,
+                                   :parameters => {'calendarId' => 'primary'})
+
+          p events
+        end
       end
 
       if options[:free_entries]
@@ -73,9 +87,10 @@ module Tudusched
         return
       end
 
-      m.schedule_tasks
-
-      IO.write(options[:output], m.to_h.to_json)
+      if options[:output]
+        m.schedule_tasks
+        IO.write(options[:output], m.to_h.to_json)
+      end
     end
   end
 end
