@@ -46,6 +46,7 @@ module Tudusched
 
       schedule.each do |e|
         if e.start_time == cur_time
+          cur_time = e.end_time
           next
         end
 

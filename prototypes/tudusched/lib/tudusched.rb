@@ -35,12 +35,23 @@ module Tudusched
           "the name of the file to write the output manifest to") do |output|
           options[:output] = output
         end
+
+        opts.on("-d", "--free-entries",
+          "print the free entries we generate from the given schedule") do
+          options[:free_entries] = true
+        end
       end.parse!
 
       print "Using input file #{options[:input]}\n"
       print "Using output file #{options[:output]}\n"
 
       m = load_manifest_file options[:input]
+
+      if options[:free_entries]
+        IO.write(options[:output], m.free_entries.map{|e| e.to_h}.to_json)
+        return
+      end
+
       m.schedule_tasks
 
       IO.write(options[:output], m.to_h.to_json)
