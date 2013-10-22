@@ -5,4 +5,4 @@ Signal.trap("INT") { exit 1 }
 
 require 'tudusched'
 
-reqire 'bundler/cli'
+Tudusched.cli

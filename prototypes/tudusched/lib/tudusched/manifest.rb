@@ -21,7 +21,7 @@ module Tudusched
     end
 
     def resort_schedule
-      @schedule = @schedule.sort_by{|e|
+      @schedule = @schuedule.sort_by{|e|
         e.start_time
       }
     end
