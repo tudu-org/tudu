@@ -24,7 +24,7 @@ module Tudusched
 
       redirect_uri = client.authorization.authorization_uri
 
-      print "Please navigate your browser to <#{redirect_uri}> and paste your result in the terminal\n"
+      print "Please navigate your browser to #{redirect_uri} and paste your result in the terminal\n"
       print "Result: "
 
       client.authorization.code = gets.chomp
