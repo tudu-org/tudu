@@ -7,6 +7,20 @@ module Tudusched
   class Manifest
     attr_reader :start_time, :end_time, :schedule, :tasks
 
+    def to_h
+      out = {}
+      out[:start_time] = start_time
+      out[:end_time] = end_time
+      out[:schedule] = schedule.map{|e|
+        e.to_h
+      }
+      out[:tasks] = tasks.map{|e|
+        e.to_h
+      }
+
+      out
+    end
+
     def initialize args={}
       @start_time = DateTime.parse(args['start'])
       @end_time = DateTime.parse(args['end'])
@@ -21,7 +35,7 @@ module Tudusched
     end
 
     def resort_schedule
-      @schedule = @schuedule.sort_by{|e|
+      @schedule = @schedule.sort_by{|e|
         e.start_time
       }
     end

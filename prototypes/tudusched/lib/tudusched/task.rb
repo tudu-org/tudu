@@ -6,6 +6,17 @@ module Tudusched
   class Task
     attr_reader :name, :time, :importance, :due
 
+    def to_h
+      out = {}
+
+      out[:name] = name
+      out[:time] = time
+      out[:importance] = importance
+      out[:due] = due
+
+      out
+    end
+
     def add_priority_fn &block
       @priority_fns ||= []
       @priority_fns << block

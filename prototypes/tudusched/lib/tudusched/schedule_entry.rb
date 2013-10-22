@@ -4,6 +4,16 @@ module Tudusched
   class ScheduleEntry
     attr_reader :name, :start_time, :end_time
 
+    def to_h
+      out = {}
+
+      out[:name] = name
+      out[:start_time] = start_time
+      out[:end_time] = end_time
+
+      out
+    end
+
     def initialize args={}
       @name = args[:name]
       @start_time = args[:start_time]

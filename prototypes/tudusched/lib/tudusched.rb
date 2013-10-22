@@ -39,6 +39,11 @@ module Tudusched
 
       print "Using input file #{options[:input]}\n"
       print "Using output file #{options[:output]}\n"
+
+      m = load_manifest_file options[:input]
+      m.schedule_tasks
+
+      IO.write(options[:output], m.to_h.to_json)
     end
   end
 end
