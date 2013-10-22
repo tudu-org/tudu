@@ -11,12 +11,18 @@ module Tudusched
       @start_time = DateTime.parse(args['start'])
       @end_time = DateTime.parse(args['end'])
       @schedule = args['schedule'].map{|e|
-        Tudusched::ScheduleEntry.new e
+        Tudusched::ScheduleEntry.initialize_from_hash e
       }.sort_by{|e|
         e.start_time
       }
       @tasks = args['tasks'].map{|e|
         Tudusched::Task.new e
+      }
+    end
+
+    def resort_schedule
+      @schedule = @schedule.sort_by{|e|
+        e.start_time
       }
     end
 
@@ -49,18 +55,41 @@ module Tudusched
       # of doing this recursively we just call schedule_task
       # over and over while there are tasks to be scheduled
 
-      tasks = tasks.sort_by{|e|
-        e.priority
-      }
+      free_entries.each do |free_entry|
+        @tasks = @tasks.sort_by{|e|
+          e.priority free_entry.start_time
+        }.reverse
+
+        picked_task = nil
+        @tasks.each do |task|
+          if task.time <= free_entry.length
+            @schedule << task.to_schedule_entry(free_entry.start_time)
+            resort_schedule
+            picked_task = task
+            break
+          end
+        end
+
+        if picked_task
+          @tasks.delete picked_task
+          return true
+        end
+      end
+
+      # if we get to this point it means we failed
+      # to schedule a task, so we should return
+      # false to denote that we've failed
+      return false
     end
 
     def schedule_tasks
       while not tasks.empty?
         if not schedule_task
-          # if it returns false that means a task failed
-          # to be scheduled. We'll have to do something about it.
+          return false
         end
       end
+
+      return true
     end
   end
 end

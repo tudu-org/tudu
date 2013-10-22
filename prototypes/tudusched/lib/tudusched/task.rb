@@ -1,5 +1,7 @@
 require 'date'
 
+require 'tudusched/schedule_entry'
+
 module Tudusched
   class Task
     attr_reader :name, :time, :importance, :due
@@ -12,7 +14,7 @@ module Tudusched
     def initialize args={}
       @name = args['name']
       @time = args['time']
-      @priority = args['importance']
+      @importance = args['importance']
       @due = DateTime.parse(args['due'])
 
       add_priority_fn do |cur_time|
@@ -52,6 +54,12 @@ module Tudusched
       @priority_fns.reduce(0){|memo, e|
         memo + e.call(cur_time)
       }
+    end
+
+    def to_schedule_entry start_time
+      length_in_days = @time / 60.0 / 60.0 / 24
+      Tudusched::ScheduleEntry.new(:name => name,
+        :start_time => start_time, :end_time => (start_time + length_in_days))
     end
   end
 end

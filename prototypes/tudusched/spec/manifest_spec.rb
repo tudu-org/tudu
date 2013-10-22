@@ -40,4 +40,12 @@ describe Tudusched::Manifest do
       e.end_time.should be_an_instance_of DateTime
     end
   end
+
+  it "should have an array of ScheduleEntrys after scheduling the manifest" do
+    @manifest.schedule_tasks
+
+    @manifest.tasks.each do |e|
+      e.should be_an_instance_of Tudusched::ScheduleEntry
+    end
+  end
 end
