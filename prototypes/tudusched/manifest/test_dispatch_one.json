@@ -57,13 +57,13 @@
     {
       "name": "writing assignment",
       "time": 25200,
-      "priority": 3,
+      "importance": 3,
       "due": "2013-10-05T14:00:00"
     },
     {
       "name": "math homework",
       "time": 3600,
-      "priority": 2,
+      "importance": 2,
       "due": "2013-09-30T10:00:00"
     }
   ]
