@@ -22,7 +22,7 @@ module Tudusched
       client.authorization.client_secret = 'GMQpEKkIGxF2lSVF1AqUOKNf'
       client.authorization.redirect_uri = 'urn:ietf:wg:oauth:2.0:oob'
 
-      client.authorization.scope = 'https://www.googleapis.com/auth/calendar.readonly'
+      client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
 
       redirect_uri = client.authorization.authorization_uri
 
@@ -88,9 +88,16 @@ module Tudusched
         return
       end
 
-      if options[:output]
+      if options[:output] or options[:google]
         m.schedule_tasks
+      end
+
+      if options[:output]
         IO.write(options[:output], m.to_h.to_json)
+      end
+
+      if options[:google]
+        m.write_scheduled_tasks_to_google_calendar client
       end
     end
   end

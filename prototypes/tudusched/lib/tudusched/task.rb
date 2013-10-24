@@ -64,7 +64,8 @@ module Tudusched
 
     def to_schedule_entry start_time
       Tudusched::ScheduleEntry.new(:name => name,
-        :start_time => start_time, :end_time => (start_time + @time))
+        :start_time => start_time, :end_time => (start_time + @time),
+        :scheduled => true)
     end
   end
 end

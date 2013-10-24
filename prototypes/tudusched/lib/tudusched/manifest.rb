@@ -1,4 +1,5 @@
 require 'date'
+require 'json'
 
 require 'tudusched/task'
 require 'tudusched/schedule_entry'
@@ -19,6 +20,12 @@ module Tudusched
       }
 
       out
+    end
+
+    def scheduled_tasks
+      schedule.select{|e|
+        e.scheduled
+      }
     end
 
     def remove_irrelevant_schedule_entries
@@ -99,7 +106,31 @@ module Tudusched
       end
     end
 
-    def write_scheduled_tasks_to_google_calendar calendar="tudu"
+    def write_scheduled_tasks_to_google_calendar client, calendar_name="tudu"
+      calendar = client.discovered_api('calendar', 'v3')
+      events = scheduled_tasks
+
+      # first we need to find the calendar id of the tudu calendar
+      cal_list = client.execute(:api_method => calendar.calendar_list.list)
+      c = cal_list.data.items.find{|e|
+        e.summary == calendar_name
+      }
+
+      if not c
+        puts "The " + calendar_name + " doesn't exist for this user! Exiting."
+        return
+      end
+
+      calendar_id = c.id
+
+      # finally iterate through the events adding them to the calendar
+      events.each do |e|
+        res = client.execute(:api_method => calendar.events.insert,
+                       :parameters => {'calendarId' => calendar_id},
+                       :body => e.to_gcal_entry,
+                       :headers => {'Content-Type' => 'application/json'})
+        p res
+      end
     end
 
     def schedule_task
