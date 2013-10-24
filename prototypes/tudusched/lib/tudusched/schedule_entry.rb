@@ -27,7 +27,7 @@ module Tudusched
     end
 
     def length
-      (@end_time - @start_time) * 24 * 60 * 60
+      @end_time - @start_time
     end
   end
 end

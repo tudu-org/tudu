@@ -36,11 +36,6 @@ module Tudusched
       add_priority_fn do |cur_time|
         # function for "time-til due-"
         time_til_due = due - cur_time
-        # time_til_due is in days, so we'll
-        # convert it to seconds first just so
-        # we can use the function from 
-        # the clojure implementation
-        time_til_due = time_til_due * 24 * 60 * 60
         if time_til_due == 0
           # if this is the case then this should have
           # a very high priority.  How high? well for
@@ -68,9 +63,8 @@ module Tudusched
     end
 
     def to_schedule_entry start_time
-      length_in_days = @time / 60.0 / 60.0 / 24
       Tudusched::ScheduleEntry.new(:name => name,
-        :start_time => start_time, :end_time => (start_time + length_in_days))
+        :start_time => start_time, :end_time => (start_time + @time))
     end
   end
 end
