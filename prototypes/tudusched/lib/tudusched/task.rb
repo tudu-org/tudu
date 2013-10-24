@@ -1,4 +1,4 @@
-require 'date'
+require 'time'
 
 require 'tudusched/schedule_entry'
 
@@ -26,7 +26,7 @@ module Tudusched
       @name = args['name']
       @time = args['time']
       @importance = args['importance']
-      @due = DateTime.parse(args['due'])
+      @due = Time.parse(args['due'])
 
       add_priority_fn do |cur_time|
         # funciton for "importance"

@@ -1,4 +1,4 @@
-require 'date'
+require 'time'
 
 module Tudusched
   class ScheduleEntry
@@ -22,8 +22,8 @@ module Tudusched
 
     def self.initialize_from_hash args={}
       ScheduleEntry.new(:name => args['name'],
-        :start_time => DateTime.parse(args['start']),
-        :end_time => DateTime.parse(args['end']))
+        :start_time => Time.parse(args['start']),
+        :end_time => Time.parse(args['end']))
     end
 
     def length

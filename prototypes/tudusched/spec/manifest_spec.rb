@@ -1,4 +1,4 @@
-require 'date'
+require 'time'
 
 require 'spec_helper'
 
@@ -27,17 +27,17 @@ describe Tudusched::Manifest do
     end
   end
 
-  it "should have a start object that is a DateTime" do
-    @manifest.start_time.should be_an_instance_of DateTime
-    @manifest.end_time.should be_an_instance_of DateTime
+  it "should have a start object that is a Time" do
+    @manifest.start_time.should be_an_instance_of Time
+    @manifest.end_time.should be_an_instance_of Time
 
     @manifest.tasks.each do |e|
-      e.due.should be_an_instance_of DateTime
+      e.due.should be_an_instance_of Time
     end
 
     @manifest.schedule.each do |e|
-      e.start_time.should be_an_instance_of DateTime
-      e.end_time.should be_an_instance_of DateTime
+      e.start_time.should be_an_instance_of Time
+      e.end_time.should be_an_instance_of Time
     end
   end
 

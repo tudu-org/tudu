@@ -28,8 +28,8 @@ module Tudusched
     end
 
     def initialize args={}
-      @start_time = DateTime.parse(args['start'])
-      @end_time = DateTime.parse(args['end'])
+      @start_time = Time.parse(args['start'])
+      @end_time = Time.parse(args['end'])
       @schedule = args['schedule'].map{|e|
         Tudusched::ScheduleEntry.initialize_from_hash e
       }.sort_by{|e|
@@ -72,6 +72,16 @@ module Tudusched
       end
 
       entries
+    end
+
+    def load_from_google_calendar client
+      calendar = client.discovered_api('calendar', 'v3')
+      events = client.execute(:api_method => calendar.events.list,
+                              :parameters => {'calendarId' => 'primary'})
+      events.data.items.each do |gcal_event|
+        start_time = Time.parse gcal_event.start.dateTime
+        #@schedule << Tudusched::ScheduleEntry(:start_time =>)
+      end
     end
 
     def schedule_task
