@@ -22,7 +22,7 @@ module Tudusched
     end
 
     def remove_irrelevant_schedule_entries
-      @schedule = schedule.filter{|e|
+      @schedule = schedule.select{|e|
         e.end_time > start_time and e.start_time < end_time
       }
     end
