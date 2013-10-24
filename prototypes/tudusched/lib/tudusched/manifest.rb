@@ -109,6 +109,7 @@ module Tudusched
     end
 
     def schedule_tasks
+      remove_irrelevant_schedule_entries
       while not tasks.empty?
         if not schedule_task
           return false
