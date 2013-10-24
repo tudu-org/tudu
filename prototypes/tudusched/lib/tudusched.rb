@@ -2,7 +2,6 @@ require 'json'
 require 'optparse'
 require 'google/api_client'
 
-require 'tudusched/scheduler'
 require 'tudusched/manifest'
 
 module Tudusched
