@@ -21,6 +21,12 @@ module Tudusched
       out
     end
 
+    def remove_irrelevant_schedule_entries
+      @schedule = schedule.filter{|e|
+        e.end_time > start_time and e.start_time < end_time
+      }
+    end
+
     def initialize args={}
       @start_time = DateTime.parse(args['start'])
       @end_time = DateTime.parse(args['end'])
@@ -45,9 +51,14 @@ module Tudusched
       entries = []
 
       schedule.each do |e|
-        if e.start_time == cur_time
+        if e.start_time <= cur_time
           cur_time = e.end_time
           next
+        end
+
+        free_end = e.end_time
+        if free_end > end_time
+          free_end = end_time
         end
 
         entries << ScheduleEntry.new(:name => 'free',
