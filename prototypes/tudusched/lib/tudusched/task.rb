@@ -34,6 +34,11 @@ module Tudusched
       end
 
       add_priority_fn do |cur_time|
+        # if there isn't any due date
+        # just ignore it
+        if not due
+          return 0
+        end
         # function for "time-til due-"
         time_til_due = due - cur_time
         if time_til_due == 0

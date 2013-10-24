@@ -1,7 +1,43 @@
 {
-  "start": "2013-10-24T00:00:00",
+  "start": "2013-10-24T19:00:00",
   "end": "2013-10-30T23:59:59",
-  "schedule": [],
+  "schedule": [
+    {
+      "name": "sleep",
+      "start": "2013-10-24T00:00:00",
+      "end": "2013-10-24T07:30:00"
+    },
+    {
+      "name": "sleep",
+      "start": "2013-10-25T00:00:00",
+      "end": "2013-10-25T07:30:00"
+    },
+    {
+      "name": "sleep",
+      "start": "2013-10-26T00:00:00",
+      "end": "2013-10-26T07:30:00"
+    },
+    {
+      "name": "sleep",
+      "start": "2013-10-27T00:00:00",
+      "end": "2013-10-27T07:30:00"
+    },
+    {
+      "name": "sleep",
+      "start": "2013-10-28T00:00:00",
+      "end": "2013-10-24T08:30:00"
+    },
+    {
+      "name": "sleep",
+      "start": "2013-10-29T00:00:00",
+      "end": "2013-10-29T07:30:00"
+    },
+    {
+      "name": "sleep",
+      "start": "2013-10-30T00:00:00",
+      "end": "2013-10-30T07:30:00"
+    }
+  ],
   "tasks": [
     {
       "name": "writing assignment",
@@ -10,10 +46,28 @@
       "due": "2013-10-26T14:00:00"
     },
     {
-      "name": "math homework",
-      "time": 3600,
+      "name": "AI assignment 2",
+      "time": 7200,
       "importance": 2,
-      "due": "2013-10-28T10:00:00"
+      "due": "2013-10-25T23:59:59"
+    },
+    {
+      "name": "reorganize PC case",
+      "time": 3600,
+      "importance": 0,
+      "due": "2013-10-30T23:59:59"
+    },
+    {
+      "name": "create white paper for tudusched",
+      "time": 7200,
+      "importance": 1,
+      "due": "2013-10-29T15:30:00"
+    },
+    {
+      "name": "work on ISI imaging problem",
+      "time": 14400,
+      "importance": 1,
+      "due": "2013-10-25T18:00:00"
     }
   ]
 }
