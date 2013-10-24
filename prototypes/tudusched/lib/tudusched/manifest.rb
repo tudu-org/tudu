@@ -77,11 +77,29 @@ module Tudusched
     def load_from_google_calendar client
       calendar = client.discovered_api('calendar', 'v3')
       events = client.execute(:api_method => calendar.events.list,
-                              :parameters => {'calendarId' => 'primary'})
-      events.data.items.each do |gcal_event|
-        start_time = Time.parse gcal_event.start.dateTime
-        #@schedule << Tudusched::ScheduleEntry(:start_time =>)
+                              :parameters => {'calendarId' => 'primary',
+                                              #'timeMin' => start_time,
+                                              #'timeMax' => end_time,
+                                              'singleEvents' => true})
+      loop do
+        events.data.items.each do |gcal_event|
+          if not gcal_event.start['dateTime']
+            next
+          end
+          start_time = gcal_event.start.dateTime
+          end_time = gcal_event.end.dateTime
+          #puts "found event " + gcal_event.summary
+          @schedule << ScheduleEntry.new(:name => gcal_event.summary ,
+            :start_time => start_time,
+            :end_time => end_time)
+        end
+
+        break unless events.next_page_token
+        events = client.execute(events.next_page)
       end
+    end
+
+    def write_scheduled_tasks_to_google_calendar calendar="tudu"
     end
 
     def schedule_task

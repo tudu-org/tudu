@@ -78,6 +78,8 @@ module Tudusched
                                    :parameters => {'calendarId' => 'primary'})
 
           p events
+        else
+          m.load_from_google_calendar client
         end
       end
 
