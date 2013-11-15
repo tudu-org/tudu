@@ -1,0 +1,27 @@
+body {
+  padding-top: 20px;
+}
+
+th{
+	width: 100px;
+}
+
+td{
+	height: 100px;
+}
+
+td:hover{
+	background-color: #D6EFF7;
+}
+
+.event{
+	background-color: #66E0FF;
+}
+
+.task{
+	background-color: #C285C2;
+}
+
+h1{
+	text-align:center;
+}
