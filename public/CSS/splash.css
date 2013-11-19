@@ -3,12 +3,15 @@
 	font-size:20px;
 }
 
-html 
-{ 
-	background: transparent 
+.centered
+{
+	
 }
 
-p
+.logo-scaled
 {
-	color:red;
+	height: 350px; 
+	width: 350px;
+	margin:0 auto;
+	float:left;
 }
