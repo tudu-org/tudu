@@ -6,7 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../ASSETS/checkmark-512.png">
-
+    <!-- <script type='text/javascript' src='../JS/jquery.js'></script> -->
+   
     <TITLE>
 			Tudu: What do you have Tudu?
 	</TITLE>
@@ -16,13 +17,43 @@
 
     <!-- Custom styles for this template -->
     <link href="../CSS/home.css" rel="stylesheet">
-    <link href="../JS/calendarJQuery.js" rel="text/javascript">
+
+    <link rel='stylesheet' type='text/css' href='../CSS/fullcalendar.css' />
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script type='text/javascript' src='../JS/fullcalendar.js'></script>
+<script type='text/javascript'>
+$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+
+    dayClick: function(date, allDay, jsEvent, view) {
+
+        // if (allDay) {
+        //     alert('Clicked on the entire day: ' + date);
+        // }else{
+        //     alert('Clicked on the slot: ' + date);
+        // }
+        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        // alert('Current view: ' + view.name);
+
+        // Highlight the day selected
+        $('.fc-day').not('.fc-state-highlight').css('background-color', 'white');
+        $(this).not('.fc-state-highlight').css('background-color','#B8CBDC');
+    }
+    });
+
+});
+</script>
+    
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
+
   </head>
 
   <body>
@@ -59,7 +90,10 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-	<div style="margin:50px;" class="table-responsive">
+    <!-- Ryan's new calendar -->
+    <div id='calendar'></div>
+
+	<!-- <div style="margin:50px;" class="table-responsive">
 		<h1>November</h1>
         <table class="table table-bordered">
           <thead>
@@ -121,12 +155,12 @@
             </tr>
           </tbody>
         </table>
-      </div><!-- /.table-responsive -->
+      </div><!-- /.table-responsive --> -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap-3.0.0/assets/js/jquery.js"></script>
-    <script src="bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="../CSS/bootstrap-3.0.0/assets/js/jquery.js"></script>
+    <script src="../CSS/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
