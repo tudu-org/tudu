@@ -1,0 +1,33 @@
+<h1>Register at Tudu</h1>
+<%= form_for :user, url: users_path do |f| %>
+	<% if @user.errors.any? %>
+	<div id="error_window">
+		<h2><%= pluralize(@user.errors.count, "error") %> kept this from happening.</h2>
+		<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<p>
+		<%= f.label :email %><br>
+		<%= f.text_field :email %>
+	</p>
+	<p>
+		<%= f.label :password %><br>
+		<%= f.text_field :password%>
+	</p>
+	<p>
+		<%= f.label :password_confirmation %><br>
+		<%= f.text_field :password_confirmation%>
+	</p>
+	<p>
+		<%= f.label :terms_of_service %><br>
+		<%= f.check_box :terms_of_service %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+<% link_to 'Splash', splash_index_path %>	
