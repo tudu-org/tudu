@@ -1,36 +1,17 @@
 body {
-  padding-top: 20px;
+	min-height: 2000px;
+	margin-top: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 }
 
-th{
-	width: 100px;
-}
-
-td{
-	height: 100px;
-}
-
-td:hover{
-	background-color: #D6EFF7;
-}
-
-.event{
-	background-color: #66E0FF;
-	border-radius:25px;
-	text-align:center;
-}
-
-.task{
-	background-color: #C285C2;
-	border-radius:25px;
-	text-align:center;
-}
-
-h1{
-	text-align:center;
-}
-
-.faded-date
+ #calendar 
 {
-	color:#CCCCCC;
+	width: 900px;
+	margin: 0 auto;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
 }
