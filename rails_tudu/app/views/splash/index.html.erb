@@ -1,2 +1,18 @@
-<h1>Tudu</h1>
-<%= link_to "Register", new_user_path %>
+<div class="container">
+	<div class="span12 offset1">
+		<%= image_tag("checkmark-512.png", :class=>"logo-scaled" ) %>
+		<form class="form-signin">
+			<h1 class="form-signin-heading">You Have A Lot Tudu</h1>
+		<input type="text" class="form-control" placeholder="Email address" required autofocus>
+		<input type="password" class="form-control" placeholder="Password" required>
+		<label class="checkbox">
+			<input type="checkbox" value="remember-me"> Remember me
+		</label>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+					<!--signup -->
+		<%= link_to "Register", new_user_path %>
+		</form>
+	</div>
+</div> <!-- /container -->
+	
+
