@@ -1,0 +1,17 @@
+#SignUp
+{
+	font-size:20px;
+}
+
+.centered
+{
+	margin: auto;
+}
+
+.logo-scaled
+{
+	height: 350px; 
+	width: 350px;
+	margin:0 auto;
+	float:left;
+}
