@@ -1,16 +1,16 @@
 body {
-	min-height: 2000px;
-	margin-top: 40px;
 	text-align: center;
 	font-size: 14px;
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-	margin: auto;
 }
 
  #calendar 
 {
-	width: 90px;
-	margin: 0 auto;
+	width: 900px;
+    margin-left:10%;
+    margin-right:10%;
+    height:80%;
+    width:80%;
 }
 
 .navbar-static-top {
