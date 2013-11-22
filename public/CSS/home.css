@@ -4,11 +4,12 @@ body {
 	text-align: center;
 	font-size: 14px;
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	margin: auto;
 }
 
  #calendar 
 {
-	width: 900px;
+	width: 90px;
 	margin: 0 auto;
 }
 
