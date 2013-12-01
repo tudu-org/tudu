@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<style type="text/css">
+		#task_wrapper {
+			background-color: #E9E9E9;
+			width: 40%;
+			height: 40%;
+			margin-top: 10%;
+			margin-left: 30%;
+			margin-bottom: 20%;
+		}
+
+		.form-group {
+			padding-left: 5%;
+			padding-top: 5%;
+		}
+
+		.form-group .form-control {
+			max-width: 75%;
+			display:inline;
+		}
+
+
+		</style>
+		
+		<link href="../CSS/bootstrap-3.0.0/dist/css/bootstrap.css" rel="stylesheet"/>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+	</head>
+
+	<body>
+		<div id="task_wrapper">
+			<div class="form-group">
+				<input id="add_task_input" type="text" class="form-control" placeholder="Add a new task">
+				<button id="add_task_btn" type="button" class="btn btn-primary btn-lg">
+  					<span style="margin-top:-3px"class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div> <!-- form-group -->
+
+			<br><br>
+			<div id="task_list">
+				<div class="col-lg-6">
+    				<div class="input-group">
+     					<span class="input-group-addon">
+        					<input type="checkbox">
+      					</span>
+      					<input type="text" class="form-control">
+    				</div><!-- /input-group -->
+  				</div><!-- /.col-lg-6 -->
+			</div><!-- task_list -->
+
+		</div> <!-- task_wrapper -->
+
+		<script>
+		var tasks = new Array("Wash Car", "Walk Dog");
+
+
+		$(document).ready(function() {
+  				load_tasks();
+
+			$( "#add_task_btn" ).click(function() {
+  				//alert( "=" + $("#add_task_input").val());
+  				tasks.push($("#add_task_input").val());
+  				update_tasks();
+			});
+		});
+
+		function load_tasks() {							
+			for (var i=0; i < tasks.length; i++) {
+				$("#task_list").append('<input type="checkbox" name="task" value="'+tasks[i]+'">'+tasks[i]+'<br>');
+			}
+		}
+
+		function update_tasks() {
+			$("#task_list").append
+		}
+		
+		</script>
+
+	</body>
+</html>
+
+
+
+
+
