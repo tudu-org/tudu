@@ -1,4 +1,10 @@
 <html>
+<!-- TODO:
+Need to update the names of the tasks when the user does an upkey (edits the tasks).
+Need to do task deletion.
+Reordering?
+Modals for task detail?
+	-->
 	<head>
 		<style type="text/css">
 		#task_wrapper {
@@ -7,7 +13,11 @@
 			height: 40%;
 			margin-top: 10%;
 			margin-left: 30%;
-			margin-bottom: 20%;
+			margin-bottom: 10%;
+		}
+
+		#task_list {
+			padding-left: 5%;
 		}
 
 		.form-group {
@@ -37,16 +47,13 @@
 				</button>
 			</div> <!-- form-group -->
 
-			<br><br>
-			<div id="task_list">
-				<div class="col-lg-6">
-    				<div class="input-group">
-     					<span class="input-group-addon">
-        					<input type="checkbox">
-      					</span>
-      					<input type="text" class="form-control">
-    				</div><!-- /input-group -->
-  				</div><!-- /.col-lg-6 -->
+			<div id="task_list" class="col-lg-6">
+				<div style="visibility:hidden" id="example_task" class="input-group">
+						<span class="input-group-addon">
+							<input type="checkbox">
+						</span>
+						<input type="text" class="form-control" value="asdfasdf">
+				</div>
 			</div><!-- task_list -->
 
 		</div> <!-- task_wrapper -->
@@ -60,20 +67,37 @@
 
 			$( "#add_task_btn" ).click(function() {
   				//alert( "=" + $("#add_task_input").val());
-  				tasks.push($("#add_task_input").val());
-  				update_tasks();
+  				var new_task = $("#add_task_input").val();
+  				tasks.push(new_task);
+  				update_tasks(new_task);
 			});
 		});
 
 		function load_tasks() {							
 			for (var i=0; i < tasks.length; i++) {
-				$("#task_list").append('<input type="checkbox" name="task" value="'+tasks[i]+'">'+tasks[i]+'<br>');
+				var div = '<div class="input-group">' +
+          				'    <span class="input-group-addon">' +
+				          '        <input type="checkbox">' +
+				          '		</span>' +
+				          '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
+				          '</div>';
+
+				$('#task_list').append(div);
 			}
 		}
 
-		function update_tasks() {
-			$("#task_list").append
+		function update_tasks(new_task) {
+				var div = '<div class="input-group">' +
+          				'    <span class="input-group-addon">' +
+				          '        <input type="checkbox">' +
+				          '		</span>' +
+				          '		<input type="text" class="form-control" value="'+new_task+'" >' +
+				          '</div>';
+
+				$('#task_list').append(div);
 		}
+
+		
 		
 		</script>
 
