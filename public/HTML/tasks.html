@@ -47,14 +47,15 @@ Modals for task detail?
 				</button>
 			</div> <!-- form-group -->
 
-			<div id="task_list" class="col-lg-6">
-				<div style="visibility:hidden" id="example_task" class="input-group">
+			<ul id="task_list" class="col-lg-6" style="list-style-type:none;">
+
+<!-- 				<div style="visibility:hidden" id="example_task" class="input-group">
 						<span class="input-group-addon">
 							<input type="checkbox">
 						</span>
 						<input type="text" class="form-control" value="asdfasdf">
-				</div>
-			</div><!-- task_list -->
+				</div> -->
+			</ul><!-- task_list -->
 
 		</div> <!-- task_wrapper -->
 
@@ -70,31 +71,53 @@ Modals for task detail?
   				var new_task = $("#add_task_input").val();
   				tasks.push(new_task);
   				update_tasks(new_task);
+  				var cur_div_height = $("#task_wrapper").height();
+  				var cur_div_top = $("#task_wrapper").offset().top;
+
+  				var last_task_top = $("#task_list li:last-child").offset().top;
+  				var task_height = $(".form-group").height();
+  				var y_pos = last_task_top + task_height;
+  				
+  				var div_level = cur_div_top + cur_div_height - 20; // 20 for a small buffer
+
+  				//alert("ypos = "+y_pos+" div_level = "+div_level);
+  				if (y_pos >= div_level) {
+  					$( "#task_wrapper" ).animate({
+				    height: "+="+task_height
+				  }, 1000, function() {
+				    // Animation complete.
+				  });
+  				}
 			});
 		});
 
 		function load_tasks() {							
 			for (var i=0; i < tasks.length; i++) {
-				var div = '<div class="input-group">' +
-          				'    <span class="input-group-addon">' +
-				          '        <input type="checkbox">' +
-				          '		</span>' +
-				          '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
-				          '</div>';
+				var div = '<li>' + 
+							'<div class="input-group">' +
+	          				'    <span class="input-group-addon">' +
+					          '        <input type="checkbox">' +
+					          '		</span>' +
+					          '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
+					          '</div>' +
+					       '</li>' ;
 
 				$('#task_list').append(div);
 			}
 		}
 
 		function update_tasks(new_task) {
-				var div = '<div class="input-group">' +
-          				'    <span class="input-group-addon">' +
-				          '        <input type="checkbox">' +
-				          '		</span>' +
-				          '		<input type="text" class="form-control" value="'+new_task+'" >' +
-				          '</div>';
+				var div = '<li>' + 
+							'<div class="input-group">' +
+	          				'    <span class="input-group-addon">' +
+					          '        <input type="checkbox">' +
+					          '		</span>' +
+					          '		<input type="text" class="form-control" value="'+new_task+'" >' +
+					          '</div>' +
+					       '</li>' ;
 
 				$('#task_list').append(div);
+
 		}
 
 		
