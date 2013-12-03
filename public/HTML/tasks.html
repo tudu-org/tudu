@@ -60,11 +60,16 @@ Modals for task detail?
 		</div> <!-- task_wrapper -->
 
 		<script>
-		var tasks = new Array("Wash Car", "Walk Dog");
+		var tasks = new Array("CS 351 Final Project", "Walk Dog");
 
 
 		$(document).ready(function() {
-  				load_tasks();
+  			
+  			load_tasks();
+
+  			$("#task_wrapper").on('click', '.task_checkbox', function(){
+  				$(this).parent().parent().parent().hide('slow', function() {$(this).remove();});			
+  			});
 
 			$( "#add_task_btn" ).click(function() {
   				//alert( "=" + $("#add_task_input").val());
@@ -80,7 +85,6 @@ Modals for task detail?
   				
   				var div_level = cur_div_top + cur_div_height - 20; // 20 for a small buffer
 
-  				//alert("ypos = "+y_pos+" div_level = "+div_level);
   				if (y_pos >= div_level) {
   					$( "#task_wrapper" ).animate({
 				    height: "+="+task_height
@@ -96,7 +100,7 @@ Modals for task detail?
 				var div = '<li>' + 
 							'<div class="input-group">' +
 	          				'    <span class="input-group-addon">' +
-					          '        <input type="checkbox">' +
+					          '        <input class="task_checkbox" type="checkbox">' +
 					          '		</span>' +
 					          '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
 					          '</div>' +
@@ -110,7 +114,7 @@ Modals for task detail?
 				var div = '<li>' + 
 							'<div class="input-group">' +
 	          				'    <span class="input-group-addon">' +
-					          '        <input type="checkbox">' +
+					          '        <input class="task_checkbox" type="checkbox">' +
 					          '		</span>' +
 					          '		<input type="text" class="form-control" value="'+new_task+'" >' +
 					          '</div>' +
