@@ -1,0 +1,18 @@
+<div id="centered">
+	<div id ="logo-div">
+		<%= image_tag("checkmark-512.png", :class=>"logo-scaled")  %>
+	</div>
+	<div id= "form-div">
+		<%= form_for @user, :as => :user, :class=> "form-signin", :url => sign_in_path(@user) do |f| %>
+		<h1 class="form-signin-heading">You Have A Lot Tudu</h1>
+		<%= f.text_field :email, :class => "form-control",:autofocus => true,:required => true, :placeholder => "Email Address" %>
+		<%= f.text_field :password, :class => "form-control",:required => true, :placeholder => "Password" %>
+		
+		<%= f.submit "Sign In", :class=>"btn btn-lg btn-primary btn-block" %>
+		<%= link_to "Sign Up", new_user_path %>
+		
+		<% end%>
+	</div>
+</div> <!-- /container -->
+	
+

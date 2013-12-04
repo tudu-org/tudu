@@ -1,0 +1,31 @@
+	#task_wrapper {
+			background-color: #E9E9E9;
+			width: 40%;
+			height: 40%;
+			padding-left: 2%;		
+			margin: 3% auto;
+		}
+
+		#task_header {
+			width: 40%;
+			margin: 0 auto;
+			margin-top: 3%;
+		}
+
+		#task_list {
+			padding-left: 5%;
+		}
+
+		.form-group {
+			padding-left: 5%;
+			padding-top: 5%;
+		}
+
+		.form-group .form-control {
+			max-width: 75%;
+			display:inline;
+		}
+
+		#task_checkbox {
+			margin-top: -4px;
+		}

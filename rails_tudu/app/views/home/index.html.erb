@@ -1,0 +1,99 @@
+
+<script>
+
+  $(document).ready(function() {
+  
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'today',
+        center: 'prev," ",title," ",next',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      editable: true,
+      events: [
+        {
+          title: 'All Day Event',
+          start: new Date(y, m, 1)
+        },
+        {
+          title: 'Camp out for Xbox One',
+          start: new Date(y, m, 14),
+          end: new Date(y, m, 21)
+        },
+        {
+          id: 999,
+          title: 'Party',
+          start: new Date(y, m, d-3, 22, 0),
+          allDay: false
+        },
+        {
+          id: 999,
+          title: 'Party',
+          start: new Date(y, m, d+4, 22, 0),
+          allDay: false
+        },
+        {
+          title: 'Meeting',
+          start: new Date(y, m, 21, 10, 30),
+          allDay: false
+        },
+        {
+          title: 'Present',
+          start: new Date(y, m, 22, 11, 00),
+          end: new Date(y, m, 22, 12, 00),
+          allDay: false
+        },
+        {
+          title: 'Birthday Party',
+          start: new Date(y, m, 22, 20, 00),
+          end: new Date(y, m, 22, 24, 00),
+          allDay: false
+        },
+        {
+          title: 'Cresent Classic',
+          start: new Date(y, m, 22, 11, 30),
+          end: new Date(y, m, 22, 2, 00),
+          allDay: false,
+          url: 'https://www.facebook.com/events/711255902220840/?ref=2&ref_dashboard_filter=calendar'
+        }
+      ],
+    });
+    
+  });
+
+</script>
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container"style="padding-bottom:10px">
+        <div class="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><%= link_to 'View Tasks', task_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Edit Tasks</a></li>
+                <li><a href="#">Edit Events</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Other Calendars</li>
+                <li><a href="#">Import</a></li>
+                <li><a href="#">Export</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">View Stats</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><%= link_to "Logout",signed_out_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  <!--NAVBAR END-->
+
+<div id='calendar'></div>

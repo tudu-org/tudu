@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.custom.min
+//= require calendarJQuery
+//= require gcal
+//= require jquery.min
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .

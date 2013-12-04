@@ -1,0 +1,156 @@
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container"style="padding-bottom:10px">
+        <div class="navbar">
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', home_path %></li>
+            <li class="active"><%= link_to 'View Tasks', task_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Edit Tasks</a></li>
+                <li><a href="#">Edit Events</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Other Calendars</li>
+                <li><a href="#">Import</a></li>
+                <li><a href="#">Export</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">View Stats</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><%= link_to "Logout",signed_out_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  <!--NAVBAR END-->
+  <h2 id="task_header"> My Tasks </h2>
+		<div id="task_wrapper">
+			<div class="form-group">
+				<input id="add_task_input" type="text" class="form-control" placeholder="Add a new task">
+				<button id="add_task_btn" type="button" class="btn btn-primary btn-lg">
+  					<span style="margin-top:-3px"class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div> <!-- form-group -->
+  
+
+			<ul id="task_list" class="col-lg-6" style="list-style-type:none; display: block; margin-left: auto; margin-right: auto;">
+
+			</ul><!-- task_list -->
+
+
+			<!-- Modal -->
+		<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		      </div>
+		      <div class="modal-body">
+				
+			<div class="btn-group">
+			  <button type="button" class="btn btn-success">Low</button>
+			  <button type="button" class="btn btn-warning">Medium</button>
+			  <button type="button" class="btn btn-danger">High</button>
+			</div></br></br>
+		      Deadline:<input id="deadline_input" type="text" class="form-control" placeholder="When is it due?"></br>
+		      Estimated Time:<input id="estimated_time_input" type="text" class="form-control" placeholder="How long will it take?"></br>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		</div> <!-- task_wrapper -->
+
+		<script>
+		var tasks = new Array("CS 351 Final Project", "Walk Dog", "Hate Life");
+
+
+		$(document).ready(function() {
+
+		  			
+  			load_tasks();
+
+  			$("#task_wrapper").on('click', '#task_title', function() {
+  				// Prepare the modal:
+  				// var title = $(this).html(); // Alex, I know this is exactly what you said not to do...but I'm running short on time
+  				// $('#myModalLabel').html(title);
+
+  				// $('#myModal').modal({
+  				// 	keyboard: true
+  				// });		
+  			});
+
+
+  			$("#task_wrapper").on('click', '#task_checkbox', function(){
+  				 // var a = $(this).parent();
+  				 // var index = $("#task_list").index(a);
+  				 // alert("ksjdflkjsdfklj="+index);
+  				$(this).parent().parent().hide('slow', function() {$(this).remove();});	
+  			});
+
+			$( "#add_task_btn" ).click(function() {
+  				//alert( "=" + $("#add_task_input").val());
+  				var new_task = $("#add_task_input").val();
+  				tasks.push(new_task);
+  				update_tasks(new_task);
+  				var cur_div_height = $("#task_wrapper").height();
+  				var cur_div_top = $("#task_wrapper").offset().top;
+
+  				var last_task_top = $("#task_list li:last-child").offset().top;
+  				var task_height = $(".form-group").height();
+  				var y_pos = last_task_top + task_height;
+  				
+  				var div_level = cur_div_top + cur_div_height - 20; // 20 for a small buffer
+
+  				if (y_pos >= div_level) {
+  					$( "#task_wrapper" ).animate({
+				    height: "+="+task_height
+				  }, 800, function() {
+				    // Animation complete.
+				  });
+  				}
+			});
+		});
+
+		function load_tasks() {							
+			for (var i=0; i < tasks.length; i++) {
+				var div = '<li>' + 
+	          				// '    <span class="input-group-addon">' +
+					          		'  <button type="button" class="btn btn-default" style="float:left;height:34px">' +
+					          			'  <span id="task_checkbox" class="glyphicon glyphicon-ok"></span>' +
+							  		'  </button>' +
+					          // '	</span>' +
+					          '		<button id="task_title" type="button" data-toggle="modal" data-target="#myModal" style="width:81%" class="btn btn-default">' + tasks[i] + '</button>' +
+					          // '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
+					       '</li>' ;
+
+				$('#task_list').append(div);
+			}
+		}
+
+		function update_tasks(new_task) {
+				var div = '<li>' + 
+	          				// '    <span class="input-group-addon">' +
+					          		'  <button type="button" class="btn btn-default" style="float:left;height:34px">' +
+					          			'  <span id="task_checkbox" class="glyphicon glyphicon-ok"></span>' +
+							  		'  </button>' +
+					          // '	</span>' +
+					          '		<button id="task_title" type="button" data-toggle="modal" data-target="#myModal" style="width:81%" class="btn btn-default">' + new_task + '</button>' +
+					          // '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
+					       '</li>' ;
+
+				$('#task_list').append(div);
+
+		}
+
+		
+		
+		</script>

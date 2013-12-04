@@ -1,36 +1,18 @@
 body {
-  padding-top: 20px;
+	text-align: center;
+	font-size: 14px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 }
 
-th{
-	width: 100px;
-}
-
-td{
-	height: 100px;
-}
-
-td:hover{
-	background-color: #D6EFF7;
-}
-
-.event{
-	background-color: #66E0FF;
-	border-radius:25px;
-	text-align:center;
-}
-
-.task{
-	background-color: #C285C2;
-	border-radius:25px;
-	text-align:center;
-}
-
-h1{
-	text-align:center;
-}
-
-.faded-date
+ #calendar 
 {
-	color:#CCCCCC;
+	width: 900px;
+    margin-left:10%;
+    margin-right:10%;
+    height:80%;
+    width:80%;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
 }

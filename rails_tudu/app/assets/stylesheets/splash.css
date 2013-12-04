@@ -1,0 +1,28 @@
+#SignUp
+{
+	font-size:20px;
+}
+
+#centered
+{
+	width: 90%;
+	padding-left: 20%;
+	margin:0 auto;
+}
+
+.logo-scaled
+{
+	height: 330px; 
+	width: 330px;
+}
+
+#logo-div
+{
+	float:left;
+	margin-left: -20px;
+}
+
+#form-div
+{
+	float:left;
+}

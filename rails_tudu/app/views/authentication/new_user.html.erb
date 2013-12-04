@@ -1,0 +1,16 @@
+<div class="container">
+<h1>Register at Tudu</h1>
+<%= link_to 'Go Back', root_url %>	
+<%= form_for @user, :as => :user, :url => new_user_path, :method => :post  do |f| %>
+	<p>
+		<%= f.label :email %><%= f.text_field :email %>
+		<%= show_field_error(@user,:email) %>
+		<%= f.label :password %><%= f.text_field :password%>
+		<%= show_field_error(@user,:password) %>
+		<%= f.label :password_confirmation %><%= f.text_field :password_confirmation%>
+		<% show_field_error(@user,:email) %>
+		<br>
+		<%= f.submit 'Sign Up' %>
+	</p>
+<% end %>
+</div>
