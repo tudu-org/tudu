@@ -109,7 +109,14 @@ Modals for task detail?
 		        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
 		      </div>
 		      <div class="modal-body">
-		        ...
+				
+			<div class="btn-group">
+			  <button type="button" class="btn btn-success">Low</button>
+			  <button type="button" class="btn btn-warning">Medium</button>
+			  <button type="button" class="btn btn-danger">High</button>
+			</div></br></br>
+		      Deadline:<input id="deadline_input" type="text" class="form-control" placeholder="When is it due?"></br>
+		      Estimated Time:<input id="estimated_time_input" type="text" class="form-control" placeholder="How long will it take?"></br>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -132,7 +139,7 @@ Modals for task detail?
 
   			$("#task_wrapper").on('click', '#task_title', function() {
   				// Prepare the modal:
-  				var title = $(this).html();
+  				var title = $(this).html(); // Alex, I know this is exactly what you said not to do...but I'm running short on time
   				$('#myModalLabel').html(title);
 
   				$('#myModal').modal({
