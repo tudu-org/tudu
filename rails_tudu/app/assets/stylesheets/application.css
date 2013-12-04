@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ @import "twitter/bootstrap"
+ *= require twitter/bootstrap
  *= require fullcalendar
  *= require fullcalendar.print
  *= require home
