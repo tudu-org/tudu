@@ -11,7 +11,14 @@ Modals for task detail?
 			background-color: #E9E9E9;
 			width: 40%;
 			height: 40%;
+			padding-left: 2%;		
+			margin: 3% auto;
+		}
+
+		#task_header {
+			width: 40%;
 			margin: 0 auto;
+			margin-top: 3%;
 		}
 
 		#task_list {
@@ -28,6 +35,9 @@ Modals for task detail?
 			display:inline;
 		}
 
+		#task_checkbox {
+			margin-top: -4px;
+		}
 
 		</style>
 		
@@ -52,8 +62,8 @@ Modals for task detail?
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="home.html">Home</a></li>
-            <li><a href="tasks.html">View Tasks</a></li>
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="tasks.html">View Tasks</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -75,6 +85,7 @@ Modals for task detail?
       </div>
     </div>
   <!--NAVBAR END-->
+  <h2 id="task_header"> My Tasks </h2>
 		<div id="task_wrapper">
 			<div class="form-group">
 				<input id="add_task_input" type="text" class="form-control" placeholder="Add a new task">
@@ -82,15 +93,14 @@ Modals for task detail?
   					<span style="margin-top:-3px"class="glyphicon glyphicon-plus"></span>
 				</button>
 			</div> <!-- form-group -->
+  
 
-			<ul id="task_list" class="col-lg-6" style="list-style-type:none;">
+			<ul id="task_list" class="col-lg-6" style="list-style-type:none; display: block; margin-left: auto; margin-right: auto;">
 
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+			</ul><!-- task_list -->
 
-		<!-- Modal -->
+
+			<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -108,13 +118,6 @@ Modals for task detail?
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-<!-- 				<div style="visibility:hidden" id="example_task" class="input-group">
-						<span class="input-group-addon">
-							<input type="checkbox">
-						</span>
-						<input type="text" class="form-control" value="asdfasdf">
-				</div> -->
-			</ul><!-- task_list -->
 
 		</div> <!-- task_wrapper -->
 
@@ -123,15 +126,26 @@ Modals for task detail?
 
 
 		$(document).ready(function() {
-  			
-  			// $('#myModal').modal(
-  			// 	{keyboard: true
-  			// 	})
 
+		  			
   			load_tasks();
 
-  			$("#task_wrapper").on('click', '.task_checkbox', function(){
-  				$(this).parent().parent().parent().hide('slow', function() {$(this).remove();});			
+  			$("#task_wrapper").on('click', '#task_title', function() {
+  				// Prepare the modal:
+  				var title = $(this).html();
+  				$('#myModalLabel').html(title);
+
+  				$('#myModal').modal({
+  					keyboard: true
+  				});		
+  			});
+
+
+  			$("#task_wrapper").on('click', '#task_checkbox', function(){
+  				 // var a = $(this).parent();
+  				 // var index = $("#task_list").index(a);
+  				 // alert("ksjdflkjsdfklj="+index);
+  				$(this).parent().parent().hide('slow', function() {$(this).remove();});	
   			});
 
 			$( "#add_task_btn" ).click(function() {
@@ -151,7 +165,7 @@ Modals for task detail?
   				if (y_pos >= div_level) {
   					$( "#task_wrapper" ).animate({
 				    height: "+="+task_height
-				  }, 100, function() {
+				  }, 800, function() {
 				    // Animation complete.
 				  });
   				}
@@ -161,12 +175,13 @@ Modals for task detail?
 		function load_tasks() {							
 			for (var i=0; i < tasks.length; i++) {
 				var div = '<li>' + 
-							'<div class="input-group">' +
-	          				'    <span class="input-group-addon">' +
-					          '        <input class="task_checkbox" type="checkbox">' +
-					          '		</span>' +
-					          '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
-					          '</div>' +
+	          				// '    <span class="input-group-addon">' +
+					          		'  <button type="button" class="btn btn-default" style="float:left;height:34px">' +
+					          			'  <span id="task_checkbox" class="glyphicon glyphicon-ok"></span>' +
+							  		'  </button>' +
+					          // '	</span>' +
+					          '		<button id="task_title" type="button" data-toggle="modal" data-target="#myModal" style="width:81%" class="btn btn-default">' + tasks[i] + '</button>' +
+					          // '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
 					       '</li>' ;
 
 				$('#task_list').append(div);
@@ -175,12 +190,13 @@ Modals for task detail?
 
 		function update_tasks(new_task) {
 				var div = '<li>' + 
-							'<div class="input-group">' +
-	          				'    <span class="input-group-addon">' +
-					          '        <input class="task_checkbox" type="checkbox">' +
-					          '		</span>' +
-					          '		<input type="text" class="form-control" value="'+new_task+'" >' +
-					          '</div>' +
+	          				// '    <span class="input-group-addon">' +
+					          		'  <button type="button" class="btn btn-default" style="float:left;height:34px">' +
+					          			'  <span id="task_checkbox" class="glyphicon glyphicon-ok"></span>' +
+							  		'  </button>' +
+					          // '	</span>' +
+					          '		<button id="task_title" type="button" data-toggle="modal" data-target="#myModal" style="width:81%" class="btn btn-default">' + new_task + '</button>' +
+					          // '		<input type="text" class="form-control" value="'+tasks[i]+'" >' +
 					       '</li>' ;
 
 				$('#task_list').append(div);
