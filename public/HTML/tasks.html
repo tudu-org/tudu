@@ -101,7 +101,7 @@ Modals for task detail?
 
 
 			<!-- Modal -->
-		<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -122,9 +122,9 @@ Modals for task detail?
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        <button type="button" class="btn btn-primary">Save changes</button>
 		      </div>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal --> -->
+		    </div>
+		  </div>
+		</div>
 
 		</div> <!-- task_wrapper -->
 
@@ -139,12 +139,12 @@ Modals for task detail?
 
   			$("#task_wrapper").on('click', '#task_title', function() {
   				// Prepare the modal:
-  				// var title = $(this).html(); // Alex, I know this is exactly what you said not to do...but I'm running short on time
-  				// $('#myModalLabel').html(title);
+  				var title = $(this).html(); // Alex, I know this is exactly what you said not to do...but I'm running short on time
+  				$('#myModalLabel').html(title);
 
-  				// $('#myModal').modal({
-  				// 	keyboard: true
-  				// });		
+  				$('#myModal').modal({
+  					keyboard: true
+  				});		
   			});
 
 
