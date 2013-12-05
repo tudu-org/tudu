@@ -9,10 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- @import "twitter/bootstrap"
- *= require twitter/bootstrap
  *= require fullcalendar
  *= require fullcalendar.print
+ @import "twitter/bootstrap"
+ *= require twitter/bootstrap
  *= require home
  *= require signin
  *= require splash
@@ -31,4 +31,8 @@
 	padding:4px;
 	margin-bottom:10px;
 	background-color: #A3B15A;
+}
+.fc-event-inner {
+	background-color: #3A87AD;
+	color: white;
 }

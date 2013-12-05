@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	validates_presence_of :password, :on => :create
 	validates_presence_of :email, :on => :create
 	validates :email, 
-				format: /@/, 
+				format: {:message=> 'Email is invalid format' , with: /@/},
 				uniqueness: true
 	
 	#validates :terms_of_service, acceptance: true
