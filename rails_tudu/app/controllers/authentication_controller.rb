@@ -1,6 +1,7 @@
 class AuthenticationController < ApplicationController
 	before_action :sign_in, except: [:index,:new]
-
+	before_filter :authenticate_user, :only => [:home]
+	
 	def sign_in
 		@user = User.new
 	end
@@ -27,6 +28,8 @@ class AuthenticationController < ApplicationController
 		user = User.authenticate_by_email(email,password)
 
 		if user
+			update_authentication_token(user,params[:user][:remember_me])
+			user.save
 			session[:user_id] = user.id
 			flash[:notice] = 'Welcome'
 			redirect_to :home
@@ -35,6 +38,15 @@ class AuthenticationController < ApplicationController
 			render :action => "sign_in"
 		end
 	end
-
-
+	def signed_out
+   		if user
+    		update_authentication_token(user,nil)
+    		user.save
+      		session[:user_id] = nil
+      		flash[:notice] = "You have been signed out."
+      		redirect_to :root
+    	else
+      		redirect_to :root
+    	end
+  	end  
 end

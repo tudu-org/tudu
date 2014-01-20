@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :password, :password_confirmation
-	attr_accessor :password
+	attr_accessible :email, :password, :password_confirmation,:remember_me
+	attr_accessor :password, :remember_me
 	before_save :encrypt_password
 	validates :password,
 				length: { within: 8..20},
