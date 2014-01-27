@@ -29,6 +29,11 @@ class tudu-dev {
     require => Exec['apt-update'],
   }
 
+  package {'vim':
+    ensure => 'installed',
+    require => Exec['apt-update'],
+  }
+
   package {'bundler':
     ensure => 'installed',
     provider => 'gem',
