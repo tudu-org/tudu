@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA449D7917F8023900E12847 /* Today.png in Resources */ = {isa = PBXBuildFile; fileRef = FA449D7817F8023900E12847 /* Today.png */; };
+		FA449D7B17F804F300E12847 /* Tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = FA449D7A17F804F300E12847 /* Tasks.png */; };
+		FA4B197B1818F95400DA4A6C /* TasksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4B197A1818F95400DA4A6C /* TasksModel.m */; };
+		FA4B197E1818FA1800DA4A6C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4B197D1818FA1800DA4A6C /* Task.m */; };
+		FA4B19811819038500DA4A6C /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4B19801819038500DA4A6C /* TodayViewController.m */; };
+		FA4B1984181905C400DA4A6C /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4B1983181905C400DA4A6C /* InputViewController.m */; };
+		FA51D88417F7E09700C9FFB8 /* IMG_0589.PNG in Resources */ = {isa = PBXBuildFile; fileRef = FA51D88317F7E09700C9FFB8 /* IMG_0589.PNG */; };
+		FA776677183FC7E6005AB01D /* AddNewTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA776676183FC7E6005AB01D /* AddNewTaskController.m */; };
+		FAB29BD017F4F1FF00B32F58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB29BCF17F4F1FF00B32F58 /* Foundation.framework */; };
+		FAB29BD217F4F1FF00B32F58 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB29BD117F4F1FF00B32F58 /* CoreGraphics.framework */; };
+		FAB29BD417F4F1FF00B32F58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB29BD317F4F1FF00B32F58 /* UIKit.framework */; };
+		FAB29BDA17F4F1FF00B32F58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAB29BD817F4F1FF00B32F58 /* InfoPlist.strings */; };
+		FAB29BDC17F4F1FF00B32F58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB29BDB17F4F1FF00B32F58 /* main.m */; };
+		FAB29BE017F4F1FF00B32F58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB29BDF17F4F1FF00B32F58 /* AppDelegate.m */; };
+		FAB29BE317F4F1FF00B32F58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB29BE117F4F1FF00B32F58 /* Main.storyboard */; };
+		FAB29BEB17F4F1FF00B32F58 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB29BEA17F4F1FF00B32F58 /* Images.xcassets */; };
+		FAB29BF217F4F1FF00B32F58 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB29BF117F4F1FF00B32F58 /* XCTest.framework */; };
+		FAB29BF317F4F1FF00B32F58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB29BCF17F4F1FF00B32F58 /* Foundation.framework */; };
+		FAB29BF417F4F1FF00B32F58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB29BD317F4F1FF00B32F58 /* UIKit.framework */; };
+		FAB29BFC17F4F1FF00B32F58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAB29BFA17F4F1FF00B32F58 /* InfoPlist.strings */; };
+		FAB29BFE17F4F1FF00B32F58 /* TuduTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB29BFD17F4F1FF00B32F58 /* TuduTests.m */; };
+		FAF9A92518198ED100591BC5 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9A92418198ED100591BC5 /* DetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAB29BF517F4F1FF00B32F58 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB29BC417F4F1FF00B32F58 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB29BCB17F4F1FF00B32F58;
+			remoteInfo = iScheduler;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FA449D7817F8023900E12847 /* Today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Today.png; sourceTree = "<group>"; };
+		FA449D7A17F804F300E12847 /* Tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tasks.png; sourceTree = "<group>"; };
+		FA4B19791818F95400DA4A6C /* TasksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksModel.h; sourceTree = "<group>"; };
+		FA4B197A1818F95400DA4A6C /* TasksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksModel.m; sourceTree = "<group>"; };
+		FA4B197C1818FA1800DA4A6C /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		FA4B197D1818FA1800DA4A6C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		FA4B197F1819038500DA4A6C /* TodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		FA4B19801819038500DA4A6C /* TodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		FA4B1982181905C400DA4A6C /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
+		FA4B1983181905C400DA4A6C /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
+		FA51D88317F7E09700C9FFB8 /* IMG_0589.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0589.PNG; sourceTree = "<group>"; };
+		FA776675183FC7E6005AB01D /* AddNewTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewTaskController.h; sourceTree = "<group>"; };
+		FA776676183FC7E6005AB01D /* AddNewTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewTaskController.m; sourceTree = "<group>"; };
+		FAB29BCC17F4F1FF00B32F58 /* Tudu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tudu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB29BCF17F4F1FF00B32F58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FAB29BD117F4F1FF00B32F58 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FAB29BD317F4F1FF00B32F58 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FAB29BD717F4F1FF00B32F58 /* Tudu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tudu-Info.plist"; sourceTree = "<group>"; };
+		FAB29BD917F4F1FF00B32F58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAB29BDB17F4F1FF00B32F58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAB29BDD17F4F1FF00B32F58 /* Tudu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tudu-Prefix.pch"; sourceTree = "<group>"; };
+		FAB29BDE17F4F1FF00B32F58 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FAB29BDF17F4F1FF00B32F58 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FAB29BE217F4F1FF00B32F58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAB29BEA17F4F1FF00B32F58 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FAB29BF017F4F1FF00B32F58 /* TuduTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuduTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB29BF117F4F1FF00B32F58 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		FAB29BF917F4F1FF00B32F58 /* TuduTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TuduTests-Info.plist"; sourceTree = "<group>"; };
+		FAB29BFB17F4F1FF00B32F58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FAB29BFD17F4F1FF00B32F58 /* TuduTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuduTests.m; sourceTree = "<group>"; };
+		FAF9A92318198ED100591BC5 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		FAF9A92418198ED100591BC5 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAB29BC917F4F1FF00B32F58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB29BD217F4F1FF00B32F58 /* CoreGraphics.framework in Frameworks */,
+				FAB29BD417F4F1FF00B32F58 /* UIKit.framework in Frameworks */,
+				FAB29BD017F4F1FF00B32F58 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB29BED17F4F1FF00B32F58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB29BF217F4F1FF00B32F58 /* XCTest.framework in Frameworks */,
+				FAB29BF417F4F1FF00B32F58 /* UIKit.framework in Frameworks */,
+				FAB29BF317F4F1FF00B32F58 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA51D88017F7E06900C9FFB8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA449D7A17F804F300E12847 /* Tasks.png */,
+				FA449D7817F8023900E12847 /* Today.png */,
+				FA51D88317F7E09700C9FFB8 /* IMG_0589.PNG */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FAB29BC317F4F1FF00B32F58 = {
+			isa = PBXGroup;
+			children = (
+				FAB29BD517F4F1FF00B32F58 /* Tudu */,
+				FAB29BF717F4F1FF00B32F58 /* TuduTests */,
+				FAB29BCE17F4F1FF00B32F58 /* Frameworks */,
+				FAB29BCD17F4F1FF00B32F58 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAB29BCD17F4F1FF00B32F58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAB29BCC17F4F1FF00B32F58 /* Tudu.app */,
+				FAB29BF017F4F1FF00B32F58 /* TuduTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAB29BCE17F4F1FF00B32F58 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAB29BCF17F4F1FF00B32F58 /* Foundation.framework */,
+				FAB29BD117F4F1FF00B32F58 /* CoreGraphics.framework */,
+				FAB29BD317F4F1FF00B32F58 /* UIKit.framework */,
+				FAB29BF117F4F1FF00B32F58 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAB29BD517F4F1FF00B32F58 /* Tudu */ = {
+			isa = PBXGroup;
+			children = (
+				FA51D88017F7E06900C9FFB8 /* Resources */,
+				FAB29BDE17F4F1FF00B32F58 /* AppDelegate.h */,
+				FAB29BDF17F4F1FF00B32F58 /* AppDelegate.m */,
+				FA4B19791818F95400DA4A6C /* TasksModel.h */,
+				FA4B197A1818F95400DA4A6C /* TasksModel.m */,
+				FA4B197F1819038500DA4A6C /* TodayViewController.h */,
+				FA4B19801819038500DA4A6C /* TodayViewController.m */,
+				FA776675183FC7E6005AB01D /* AddNewTaskController.h */,
+				FA776676183FC7E6005AB01D /* AddNewTaskController.m */,
+				FA4B1982181905C400DA4A6C /* InputViewController.h */,
+				FA4B1983181905C400DA4A6C /* InputViewController.m */,
+				FAF9A92318198ED100591BC5 /* DetailViewController.h */,
+				FAF9A92418198ED100591BC5 /* DetailViewController.m */,
+				FA4B197C1818FA1800DA4A6C /* Task.h */,
+				FA4B197D1818FA1800DA4A6C /* Task.m */,
+				FAB29BE117F4F1FF00B32F58 /* Main.storyboard */,
+				FAB29BEA17F4F1FF00B32F58 /* Images.xcassets */,
+				FAB29BD617F4F1FF00B32F58 /* Supporting Files */,
+			);
+			name = Tudu;
+			path = iScheduler;
+			sourceTree = "<group>";
+		};
+		FAB29BD617F4F1FF00B32F58 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAB29BD717F4F1FF00B32F58 /* Tudu-Info.plist */,
+				FAB29BD817F4F1FF00B32F58 /* InfoPlist.strings */,
+				FAB29BDB17F4F1FF00B32F58 /* main.m */,
+				FAB29BDD17F4F1FF00B32F58 /* Tudu-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAB29BF717F4F1FF00B32F58 /* TuduTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAB29BFD17F4F1FF00B32F58 /* TuduTests.m */,
+				FAB29BF817F4F1FF00B32F58 /* Supporting Files */,
+			);
+			name = TuduTests;
+			path = iSchedulerTests;
+			sourceTree = "<group>";
+		};
+		FAB29BF817F4F1FF00B32F58 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAB29BF917F4F1FF00B32F58 /* TuduTests-Info.plist */,
+				FAB29BFA17F4F1FF00B32F58 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAB29BCB17F4F1FF00B32F58 /* Tudu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB29C0117F4F1FF00B32F58 /* Build configuration list for PBXNativeTarget "Tudu" */;
+			buildPhases = (
+				FAB29BC817F4F1FF00B32F58 /* Sources */,
+				FAB29BC917F4F1FF00B32F58 /* Frameworks */,
+				FAB29BCA17F4F1FF00B32F58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tudu;
+			productName = iScheduler;
+			productReference = FAB29BCC17F4F1FF00B32F58 /* Tudu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAB29BEF17F4F1FF00B32F58 /* TuduTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB29C0417F4F1FF00B32F58 /* Build configuration list for PBXNativeTarget "TuduTests" */;
+			buildPhases = (
+				FAB29BEC17F4F1FF00B32F58 /* Sources */,
+				FAB29BED17F4F1FF00B32F58 /* Frameworks */,
+				FAB29BEE17F4F1FF00B32F58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAB29BF617F4F1FF00B32F58 /* PBXTargetDependency */,
+			);
+			name = TuduTests;
+			productName = iSchedulerTests;
+			productReference = FAB29BF017F4F1FF00B32F58 /* TuduTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAB29BC417F4F1FF00B32F58 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Alex Young";
+				TargetAttributes = {
+					FAB29BEF17F4F1FF00B32F58 = {
+						TestTargetID = FAB29BCB17F4F1FF00B32F58;
+					};
+				};
+			};
+			buildConfigurationList = FAB29BC717F4F1FF00B32F58 /* Build configuration list for PBXProject "Tudu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAB29BC317F4F1FF00B32F58;
+			productRefGroup = FAB29BCD17F4F1FF00B32F58 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAB29BCB17F4F1FF00B32F58 /* Tudu */,
+				FAB29BEF17F4F1FF00B32F58 /* TuduTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAB29BCA17F4F1FF00B32F58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA449D7B17F804F300E12847 /* Tasks.png in Resources */,
+				FAB29BEB17F4F1FF00B32F58 /* Images.xcassets in Resources */,
+				FA449D7917F8023900E12847 /* Today.png in Resources */,
+				FA51D88417F7E09700C9FFB8 /* IMG_0589.PNG in Resources */,
+				FAB29BDA17F4F1FF00B32F58 /* InfoPlist.strings in Resources */,
+				FAB29BE317F4F1FF00B32F58 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB29BEE17F4F1FF00B32F58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB29BFC17F4F1FF00B32F58 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAB29BC817F4F1FF00B32F58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA4B197E1818FA1800DA4A6C /* Task.m in Sources */,
+				FA4B1984181905C400DA4A6C /* InputViewController.m in Sources */,
+				FAB29BE017F4F1FF00B32F58 /* AppDelegate.m in Sources */,
+				FA776677183FC7E6005AB01D /* AddNewTaskController.m in Sources */,
+				FA4B197B1818F95400DA4A6C /* TasksModel.m in Sources */,
+				FAB29BDC17F4F1FF00B32F58 /* main.m in Sources */,
+				FA4B19811819038500DA4A6C /* TodayViewController.m in Sources */,
+				FAF9A92518198ED100591BC5 /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB29BEC17F4F1FF00B32F58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB29BFE17F4F1FF00B32F58 /* TuduTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAB29BF617F4F1FF00B32F58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB29BCB17F4F1FF00B32F58 /* Tudu */;
+			targetProxy = FAB29BF517F4F1FF00B32F58 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAB29BD817F4F1FF00B32F58 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB29BD917F4F1FF00B32F58 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FAB29BE117F4F1FF00B32F58 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB29BE217F4F1FF00B32F58 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAB29BFA17F4F1FF00B32F58 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB29BFB17F4F1FF00B32F58 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAB29BFF17F4F1FF00B32F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FAB29C0017F4F1FF00B32F58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAB29C0217F4F1FF00B32F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iScheduler/Tudu-Prefix.pch";
+				INFOPLIST_FILE = "iScheduler/Tudu-Info.plist";
+				PRODUCT_NAME = Tudu;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FAB29C0317F4F1FF00B32F58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iScheduler/Tudu-Prefix.pch";
+				INFOPLIST_FILE = "iScheduler/Tudu-Info.plist";
+				PRODUCT_NAME = Tudu;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FAB29C0517F4F1FF00B32F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iScheduler.app/iScheduler";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iScheduler/iScheduler-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "iSchedulerTests/TuduTests-Info.plist";
+				PRODUCT_NAME = TuduTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		FAB29C0617F4F1FF00B32F58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iScheduler.app/iScheduler";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iScheduler/iScheduler-Prefix.pch";
+				INFOPLIST_FILE = "iSchedulerTests/TuduTests-Info.plist";
+				PRODUCT_NAME = TuduTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAB29BC717F4F1FF00B32F58 /* Build configuration list for PBXProject "Tudu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB29BFF17F4F1FF00B32F58 /* Debug */,
+				FAB29C0017F4F1FF00B32F58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB29C0117F4F1FF00B32F58 /* Build configuration list for PBXNativeTarget "Tudu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB29C0217F4F1FF00B32F58 /* Debug */,
+				FAB29C0317F4F1FF00B32F58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB29C0417F4F1FF00B32F58 /* Build configuration list for PBXNativeTarget "TuduTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB29C0517F4F1FF00B32F58 /* Debug */,
+				FAB29C0617F4F1FF00B32F58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAB29BC417F4F1FF00B32F58 /* Project object */;
+}
