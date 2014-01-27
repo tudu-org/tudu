@@ -16,6 +16,8 @@ class CreateRecurringEvents < ActiveRecord::Migration
       t.string :name
       t.text :description
 
+      t.belongs_to :user
+
       t.timestamps
     end
   end

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140127221040) do
     t.datetime "end_time"
     t.string   "name"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140127221040) do
     t.integer  "weeks_between"
     t.string   "name"
     t.text     "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
