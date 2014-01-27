@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recurring_start_time: 2014-01-27 14:10:40
+  recurring_end_time: 2014-01-27 14:10:40
+  start_time: 2014-01-27 14:10:40
+  end_time: 2014-01-27 14:10:40
+  every_monday: false
+  every_tuesday: false
+  every_wednesday: false
+  every_thursday: false
+  every_friday: false
+  every_saturday: false
+  every_sunday: false
+  weeks_between: 1
+  name: MyString
+  description: MyText
+
+two:
+  recurring_start_time: 2014-01-27 14:10:40
+  recurring_end_time: 2014-01-27 14:10:40
+  start_time: 2014-01-27 14:10:40
+  end_time: 2014-01-27 14:10:40
+  every_monday: false
+  every_tuesday: false
+  every_wednesday: false
+  every_thursday: false
+  every_friday: false
+  every_saturday: false
+  every_sunday: false
+  weeks_between: 1
+  name: MyString
+  description: MyText

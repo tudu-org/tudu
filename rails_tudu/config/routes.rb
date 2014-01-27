@@ -1,4 +1,6 @@
 Tudu::Application.routes.draw do
+  resources :recurring_events
+
   resources :events
 
   # The priority is based upon order of creation: first created -> highest priority.

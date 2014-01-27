@@ -1,0 +1,53 @@
+<h1>Listing recurring_events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Recurring start time</th>
+      <th>Recurring end time</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Every monday</th>
+      <th>Every tuesday</th>
+      <th>Every wednesday</th>
+      <th>Every thursday</th>
+      <th>Every friday</th>
+      <th>Every saturday</th>
+      <th>Every sunday</th>
+      <th>Weeks between</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recurring_events.each do |recurring_event| %>
+      <tr>
+        <td><%= recurring_event.recurring_start_time %></td>
+        <td><%= recurring_event.recurring_end_time %></td>
+        <td><%= recurring_event.start_time %></td>
+        <td><%= recurring_event.end_time %></td>
+        <td><%= recurring_event.every_monday %></td>
+        <td><%= recurring_event.every_tuesday %></td>
+        <td><%= recurring_event.every_wednesday %></td>
+        <td><%= recurring_event.every_thursday %></td>
+        <td><%= recurring_event.every_friday %></td>
+        <td><%= recurring_event.every_saturday %></td>
+        <td><%= recurring_event.every_sunday %></td>
+        <td><%= recurring_event.weeks_between %></td>
+        <td><%= recurring_event.name %></td>
+        <td><%= recurring_event.description %></td>
+        <td><%= link_to 'Show', recurring_event %></td>
+        <td><%= link_to 'Edit', edit_recurring_event_path(recurring_event) %></td>
+        <td><%= link_to 'Destroy', recurring_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recurring event', new_recurring_event_path %>

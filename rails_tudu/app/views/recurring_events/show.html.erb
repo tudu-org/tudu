@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Recurring start time:</strong>
+  <%= @recurring_event.recurring_start_time %>
+</p>
+
+<p>
+  <strong>Recurring end time:</strong>
+  <%= @recurring_event.recurring_end_time %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @recurring_event.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @recurring_event.end_time %>
+</p>
+
+<p>
+  <strong>Every monday:</strong>
+  <%= @recurring_event.every_monday %>
+</p>
+
+<p>
+  <strong>Every tuesday:</strong>
+  <%= @recurring_event.every_tuesday %>
+</p>
+
+<p>
+  <strong>Every wednesday:</strong>
+  <%= @recurring_event.every_wednesday %>
+</p>
+
+<p>
+  <strong>Every thursday:</strong>
+  <%= @recurring_event.every_thursday %>
+</p>
+
+<p>
+  <strong>Every friday:</strong>
+  <%= @recurring_event.every_friday %>
+</p>
+
+<p>
+  <strong>Every saturday:</strong>
+  <%= @recurring_event.every_saturday %>
+</p>
+
+<p>
+  <strong>Every sunday:</strong>
+  <%= @recurring_event.every_sunday %>
+</p>
+
+<p>
+  <strong>Weeks between:</strong>
+  <%= @recurring_event.weeks_between %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @recurring_event.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @recurring_event.description %>
+</p>
+
+<%= link_to 'Edit', edit_recurring_event_path(@recurring_event) %> |
+<%= link_to 'Back', recurring_events_path %>
