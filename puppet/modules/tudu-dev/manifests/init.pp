@@ -7,7 +7,13 @@ class tudu-dev {
     ensure => 'installed',
     require => Exec['apt-update'],
   }
+
   package {'ruby-dev':
+    ensure => 'installed',
+    require => Exec['apt-update'],
+  }
+
+  package {'libsqlite3-dev':
     ensure => 'installed',
     require => Exec['apt-update'],
   }
