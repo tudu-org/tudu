@@ -9,6 +9,7 @@
 #import "CreateEventViewController.h"
 
 @interface CreateEventViewController ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addEventBtn;
 
 @end
 
@@ -33,6 +34,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)addEventBtnPressed:(id)sender {
+    [self performSegueWithIdentifier:@"AddEventSegue" sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AddEventSegue"]) {
+        NSLog(@"Preparing to add an event.");
+        UITabBarController *tabBarController = segue.destinationViewController;
+        tabBarController.selectedIndex = SCHEDULE_TAB_INDEX;
+        //        UINavigationController *navigationController = segue.destinationViewController;
+        //        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
+        //        playerDetailsViewController.delegate = self;
+    }
 }
 
 @end

@@ -38,13 +38,14 @@
 - (IBAction)addBtnPressed:(id)sender {
     NSLog(@"YAAY");
     [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
-    self.tabBarController.selectedIndex=TASKS_TAB_INDEX;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"AddTaskSegue"]) {
-        NSLog(@"im preppin");
+        NSLog(@"Preparing to add a task.");
+        UITabBarController *tabBarController = segue.destinationViewController;
+        tabBarController.selectedIndex = TASKS_TAB_INDEX;
 //        UINavigationController *navigationController = segue.destinationViewController;
 //        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
 //        playerDetailsViewController.delegate = self;
