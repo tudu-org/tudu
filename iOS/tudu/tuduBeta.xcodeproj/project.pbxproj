@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05630F189D810200BEA3AE /* RootTabBarController.m */; };
 		E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */; };
 		E298981F18905E9F0011D027 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298981E18905E9F0011D027 /* Foundation.framework */; };
 		E298982118905E9F0011D027 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298982018905E9F0011D027 /* CoreGraphics.framework */; };
@@ -41,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B05630D189D7CEC00BEA3AE /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5B05630E189D810200BEA3AE /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
+		5B05630F189D810200BEA3AE /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateEventViewController.h; path = ../CreateEventViewController.h; sourceTree = "<group>"; };
 		E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateEventViewController.m; path = ../CreateEventViewController.m; sourceTree = "<group>"; };
 		E298981B18905E9F0011D027 /* tuduBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tuduBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +140,8 @@
 				E298982D18905E9F0011D027 /* AppDelegate.h */,
 				E298982E18905E9F0011D027 /* AppDelegate.m */,
 				E298983018905E9F0011D027 /* Main.storyboard */,
+				5B05630E189D810200BEA3AE /* RootTabBarController.h */,
+				5B05630F189D810200BEA3AE /* RootTabBarController.m */,
 				E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */,
 				E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */,
 				E29C2B3D1896D1FE00F986EC /* TaskDetailViewController.h */,
@@ -154,6 +160,7 @@
 				E29C2B261894486F00F986EC /* TasksViewController.m */,
 				E298983918905E9F0011D027 /* Images.xcassets */,
 				E298982518905E9F0011D027 /* Supporting Files */,
+				5B05630D189D7CEC00BEA3AE /* Constants.h */,
 			);
 			path = tuduBeta;
 			sourceTree = "<group>";
@@ -292,6 +299,7 @@
 				E29C2B3318944BDF00F986EC /* CreateViewController.m in Sources */,
 				E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */,
 				E298982B18905E9F0011D027 /* main.m in Sources */,
+				5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */,
 				E29C2B3F1896D1FE00F986EC /* TaskDetailViewController.m in Sources */,
 				E29C2B271894486F00F986EC /* TasksViewController.m in Sources */,
 			);

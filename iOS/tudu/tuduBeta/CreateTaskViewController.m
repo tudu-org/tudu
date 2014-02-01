@@ -9,6 +9,7 @@
 #import "CreateTaskViewController.h"
 
 @interface CreateTaskViewController ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addBtn;
 
 @end
 
@@ -33,6 +34,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)addBtnPressed:(id)sender {
+    NSLog(@"YAAY");
+    [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
+    self.tabBarController.selectedIndex=TASKS_TAB_INDEX;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AddTaskSegue"]) {
+        NSLog(@"im preppin");
+//        UINavigationController *navigationController = segue.destinationViewController;
+//        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
+//        playerDetailsViewController.delegate = self;
+    }
 }
 
 @end
