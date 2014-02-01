@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */; };
 		E298981F18905E9F0011D027 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298981E18905E9F0011D027 /* Foundation.framework */; };
 		E298982118905E9F0011D027 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298982018905E9F0011D027 /* CoreGraphics.framework */; };
 		E298982318905E9F0011D027 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298982218905E9F0011D027 /* UIKit.framework */; };
@@ -26,7 +27,6 @@
 		E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C2B2F18944B8D00F986EC /* SettingsViewController.m */; };
 		E29C2B3318944BDF00F986EC /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C2B3218944BDF00F986EC /* CreateViewController.m */; };
 		E29C2B3918944EEC00F986EC /* CreateTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C2B3818944EEC00F986EC /* CreateTaskViewController.m */; };
-		E29C2B3C18944EF700F986EC /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C2B3B18944EF700F986EC /* CreateEventViewController.m */; };
 		E29C2B3F1896D1FE00F986EC /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C2B3E1896D1FE00F986EC /* TaskDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateEventViewController.h; path = ../CreateEventViewController.h; sourceTree = "<group>"; };
+		E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateEventViewController.m; path = ../CreateEventViewController.m; sourceTree = "<group>"; };
 		E298981B18905E9F0011D027 /* tuduBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tuduBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E298981E18905E9F0011D027 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E298982018905E9F0011D027 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,8 +72,6 @@
 		E29C2B3218944BDF00F986EC /* CreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		E29C2B3718944EEC00F986EC /* CreateTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTaskViewController.h; sourceTree = "<group>"; };
 		E29C2B3818944EEC00F986EC /* CreateTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTaskViewController.m; sourceTree = "<group>"; };
-		E29C2B3A18944EF700F986EC /* CreateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateEventViewController.h; path = ../CreateEventViewController.h; sourceTree = "<group>"; };
-		E29C2B3B18944EF700F986EC /* CreateEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateEventViewController.m; path = ../CreateEventViewController.m; sourceTree = "<group>"; };
 		E29C2B3D1896D1FE00F986EC /* TaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailViewController.h; sourceTree = "<group>"; };
 		E29C2B3E1896D1FE00F986EC /* TaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,12 +136,12 @@
 				E298982D18905E9F0011D027 /* AppDelegate.h */,
 				E298982E18905E9F0011D027 /* AppDelegate.m */,
 				E298983018905E9F0011D027 /* Main.storyboard */,
+				E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */,
+				E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */,
 				E29C2B3D1896D1FE00F986EC /* TaskDetailViewController.h */,
 				E29C2B3E1896D1FE00F986EC /* TaskDetailViewController.m */,
 				E29C2B3718944EEC00F986EC /* CreateTaskViewController.h */,
 				E29C2B3818944EEC00F986EC /* CreateTaskViewController.m */,
-				E29C2B3A18944EF700F986EC /* CreateEventViewController.h */,
-				E29C2B3B18944EF700F986EC /* CreateEventViewController.m */,
 				E29C2B3118944BDF00F986EC /* CreateViewController.h */,
 				E29C2B3218944BDF00F986EC /* CreateViewController.m */,
 				E29C2B2E18944B8D00F986EC /* SettingsViewController.h */,
@@ -285,10 +285,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29C2B2A1894489F00F986EC /* RightNowViewController.m in Sources */,
+				E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */,
 				E298982F18905E9F0011D027 /* AppDelegate.m in Sources */,
 				E29C2B2D189448E500F986EC /* ScheduleViewController.m in Sources */,
 				E29C2B3918944EEC00F986EC /* CreateTaskViewController.m in Sources */,
-				E29C2B3C18944EF700F986EC /* CreateEventViewController.m in Sources */,
 				E29C2B3318944BDF00F986EC /* CreateViewController.m in Sources */,
 				E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */,
 				E298982B18905E9F0011D027 /* main.m in Sources */,
