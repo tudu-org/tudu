@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CalendarKit/CalendarKit.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) CKCalendarViewController *viewController;
-
 
 @end

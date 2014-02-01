@@ -44,7 +44,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"AddTaskSegue"]) {
-        NSLog(@"im preppin to add task");
+        NSLog(@"im preppin");
 //        UINavigationController *navigationController = segue.destinationViewController;
 //        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
 //        playerDetailsViewController.delegate = self;

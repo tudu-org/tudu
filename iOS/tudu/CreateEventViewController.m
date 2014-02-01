@@ -34,20 +34,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)addEventBtnPressed:(id)sender {
-    [self performSegueWithIdentifier:@"AddEventSegue" sender:sender];
-    self.tabBarController.selectedIndex=SCHEDULE_TAB_INDEX;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"AddEventSegue"]) {
-        NSLog(@"im preppin to add event");
-        //        UINavigationController *navigationController = segue.destinationViewController;
-        //        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
-        //        playerDetailsViewController.delegate = self;
-    }
-}
-
 
 @end
