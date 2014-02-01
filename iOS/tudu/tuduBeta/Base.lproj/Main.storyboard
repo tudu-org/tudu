@@ -65,13 +65,6 @@
                     <view key="view" contentMode="scaleToFill" id="0kJ-up-daz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O51-UJ-SKa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="sSL-fz-HAA">
@@ -86,13 +79,28 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="calendarView" destination="O51-UJ-SKa" id="Krc-Kp-527"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7g0-vc-I2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3136" y="403"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qzy-gM-llQ">
+            <objects>
+                <viewController id="wE3-pp-nWg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lgn-Ma-KB5"/>
+                        <viewControllerLayoutGuide type="bottom" id="fd8-Bb-CtP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0hV-Tf-81W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afV-jl-Bsu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2103" y="457"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="00Z-eG-Chl">
@@ -312,10 +320,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-2130" y="-1090"/>
         </scene>
-        <!--View Controller - Edit Task-->
+        <!--Create Task View Controller - Edit Task-->
         <scene sceneID="gUe-cY-NRm">
             <objects>
-                <viewController id="xKm-JF-b3w" sceneMemberID="viewController">
+                <viewController id="xKm-JF-b3w" customClass="CreateTaskViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ukl-2R-Ezm"/>
                         <viewControllerLayoutGuide type="bottom" id="ivJ-bK-ocx"/>
@@ -679,7 +687,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mdC-yB-zoV"/>
-        <segue reference="hLO-sz-u4z"/>
+        <segue reference="icz-X9-RSy"/>
+        <segue reference="dgl-Jh-U1s"/>
     </inferredMetricsTieBreakers>
 </document>
