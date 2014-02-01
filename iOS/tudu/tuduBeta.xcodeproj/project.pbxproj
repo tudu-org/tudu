@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		E27A8600189D7B4400EE1B56 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27A85FF189D7B4300EE1B56 /* QuartzCore.framework */; };
 		E27A8606189D7E7A00EE1B56 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A8605189D7E7A00EE1B56 /* CreateEventViewController.m */; };
 		E27A863F189D7EB300EE1B56 /* NSCalendar+Components.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A860D189D7EB200EE1B56 /* NSCalendar+Components.m */; };
@@ -29,6 +30,10 @@
 		E27A8650189D7EB300EE1B56 /* CKCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A863C189D7EB300EE1B56 /* CKCalendarViewController.m */; };
 		E27A8651189D7EB300EE1B56 /* CKCalendarViewControllerInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A863E189D7EB300EE1B56 /* CKCalendarViewControllerInternal.m */; };
 		E27A8656189D7FF000EE1B56 /* CKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A8653189D7FF000EE1B56 /* CKAppDelegate.m */; };
+=======
+		5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05630F189D810200BEA3AE /* RootTabBarController.m */; };
+		E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */; };
+>>>>>>> 87b0078b9b47d6e4c87e35f6abdd4be07d886f96
 		E298981F18905E9F0011D027 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298981E18905E9F0011D027 /* Foundation.framework */; };
 		E298982118905E9F0011D027 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298982018905E9F0011D027 /* CoreGraphics.framework */; };
 		E298982318905E9F0011D027 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298982218905E9F0011D027 /* UIKit.framework */; };
@@ -62,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 		E27A85FF189D7B4300EE1B56 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E27A8601189D7B6800EE1B56 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E27A8604189D7E7A00EE1B56 /* CreateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateEventViewController.h; sourceTree = "<group>"; };
@@ -114,6 +120,13 @@
 		E27A863E189D7EB300EE1B56 /* CKCalendarViewControllerInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCalendarViewControllerInternal.m; sourceTree = "<group>"; };
 		E27A8652189D7FF000EE1B56 /* CKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAppDelegate.h; sourceTree = "<group>"; };
 		E27A8653189D7FF000EE1B56 /* CKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAppDelegate.m; sourceTree = "<group>"; };
+=======
+		5B05630D189D7CEC00BEA3AE /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5B05630E189D810200BEA3AE /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
+		5B05630F189D810200BEA3AE /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
+		E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateEventViewController.h; path = ../CreateEventViewController.h; sourceTree = "<group>"; };
+		E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateEventViewController.m; path = ../CreateEventViewController.m; sourceTree = "<group>"; };
+>>>>>>> 87b0078b9b47d6e4c87e35f6abdd4be07d886f96
 		E298981B18905E9F0011D027 /* tuduBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tuduBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E298981E18905E9F0011D027 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E298982018905E9F0011D027 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -340,6 +353,13 @@
 				E27A8604189D7E7A00EE1B56 /* CreateEventViewController.h */,
 				E27A8605189D7E7A00EE1B56 /* CreateEventViewController.m */,
 				E298983018905E9F0011D027 /* Main.storyboard */,
+<<<<<<< HEAD
+=======
+				5B05630E189D810200BEA3AE /* RootTabBarController.h */,
+				5B05630F189D810200BEA3AE /* RootTabBarController.m */,
+				E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */,
+				E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */,
+>>>>>>> 87b0078b9b47d6e4c87e35f6abdd4be07d886f96
 				E29C2B3D1896D1FE00F986EC /* TaskDetailViewController.h */,
 				E29C2B3E1896D1FE00F986EC /* TaskDetailViewController.m */,
 				E29C2B3718944EEC00F986EC /* CreateTaskViewController.h */,
@@ -356,6 +376,7 @@
 				E29C2B261894486F00F986EC /* TasksViewController.m */,
 				E298983918905E9F0011D027 /* Images.xcassets */,
 				E298982518905E9F0011D027 /* Supporting Files */,
+				5B05630D189D7CEC00BEA3AE /* Constants.h */,
 			);
 			path = tuduBeta;
 			sourceTree = "<group>";
@@ -510,6 +531,7 @@
 				E27A864B189D7EB300EE1B56 /* CKCalendarCell.m in Sources */,
 				E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */,
 				E298982B18905E9F0011D027 /* main.m in Sources */,
+				5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */,
 				E29C2B3F1896D1FE00F986EC /* TaskDetailViewController.m in Sources */,
 				E27A864A189D7EB300EE1B56 /* UIView+Border.m in Sources */,
 				E27A8656189D7FF000EE1B56 /* CKAppDelegate.m in Sources */,

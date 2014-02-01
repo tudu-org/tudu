@@ -1,18 +1,18 @@
 //
-//  CreateEventViewController.m
+//  RootTabBarController.m
 //  tuduBeta
 //
-//  Created by Jonathan Rusnak on 2/1/14.
+//  Created by Ryan Cleary on 2/1/14.
 //  Copyright (c) 2014 Jonathan Rusnak. All rights reserved.
 //
 
-#import "CreateEventViewController.h"
+#import "RootTabBarController.h"
 
-@interface CreateEventViewController ()
+@interface RootTabBarController ()
 
 @end
 
-@implementation CreateEventViewController
+@implementation RootTabBarController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
