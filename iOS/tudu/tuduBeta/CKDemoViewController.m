@@ -1,21 +1,19 @@
 //
-//  ScheduleViewController.m
-//  tuduBeta
+//  CKDemoViewController.m
+//  MBCalendarKit
 //
-//  Created by Jonathan Rusnak on 1/25/14.
-//  Copyright (c) 2014 Jonathan Rusnak. All rights reserved.
+//  Created by Moshe Berman on 4/17/13.
+//  Copyright (c) 2013 Moshe Berman. All rights reserved.
 //
 
-#import "ScheduleViewController.h"
-//#import "CKDemoViewController.h"
+#import "CKDemoViewController.h"
 
 #import "NSCalendarCategories.h"
 
 #import "NSDate+Components.h"
 
-
 @interface CKDemoViewController () <CKCalendarViewDelegate, CKCalendarViewDataSource>
-@property (nonatomic, strong) NSMutableDictionary *data;
+    @property (nonatomic, strong) NSMutableDictionary *data;
 @end
 
 @implementation CKDemoViewController
@@ -30,15 +28,21 @@
     return self;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSURL *myURL = [[NSURL alloc] initWithString:@"http://bootstrap-calendar.azurewebsites.net"];
-    NSURLRequest *myRequest = [[NSURLRequest alloc] initWithURL:myURL];
-    //[self.calendarView loadRequest: myRequest];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    /*
+    NSDate *min = [NSDate dateWithDay:10 month:4 year:2013];
+    NSDate *max = [NSDate dateWithDay:20 month:4 year:2013];
+    
+    [[self calendarView] setMaximumDate:max];
+    [[self calendarView] setMinimumDate:min];
+     */
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,6 +50,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 #pragma mark - CKCalendarViewDataSource
 
 - (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date

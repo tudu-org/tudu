@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScheduleViewController : UIViewController
+#import "CalendarKit.h"
+#import "CKCalendarViewController.h"
+
+@interface CKDemoViewController : CKCalendarViewController
 
 @end
