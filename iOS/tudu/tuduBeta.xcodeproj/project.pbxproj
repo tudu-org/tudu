@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05630F189D810200BEA3AE /* RootTabBarController.m */; };
+		5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B056311189D9F1700BEA3AE /* CoreData.framework */; };
+		5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */; };
 		E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */; };
 		E298981F18905E9F0011D027 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298981E18905E9F0011D027 /* Foundation.framework */; };
 		E298982118905E9F0011D027 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E298982018905E9F0011D027 /* CoreGraphics.framework */; };
@@ -45,6 +47,8 @@
 		5B05630D189D7CEC00BEA3AE /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5B05630E189D810200BEA3AE /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		5B05630F189D810200BEA3AE /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
+		5B056311189D9F1700BEA3AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tuduBeta.xcdatamodel; sourceTree = "<group>"; };
 		E27A85FC189D749E00EE1B56 /* CreateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreateEventViewController.h; path = ../CreateEventViewController.h; sourceTree = "<group>"; };
 		E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreateEventViewController.m; path = ../CreateEventViewController.m; sourceTree = "<group>"; };
 		E298981B18905E9F0011D027 /* tuduBeta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tuduBeta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */,
 				E298982118905E9F0011D027 /* CoreGraphics.framework in Frameworks */,
 				E298982318905E9F0011D027 /* UIKit.framework in Frameworks */,
 				E298981F18905E9F0011D027 /* Foundation.framework in Frameworks */,
@@ -126,6 +131,7 @@
 		E298981D18905E9F0011D027 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B056311189D9F1700BEA3AE /* CoreData.framework */,
 				E298981E18905E9F0011D027 /* Foundation.framework */,
 				E298982018905E9F0011D027 /* CoreGraphics.framework */,
 				E298982218905E9F0011D027 /* UIKit.framework */,
@@ -137,6 +143,7 @@
 		E298982418905E9F0011D027 /* tuduBeta */ = {
 			isa = PBXGroup;
 			children = (
+				5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */,
 				E298982D18905E9F0011D027 /* AppDelegate.h */,
 				E298982E18905E9F0011D027 /* AppDelegate.m */,
 				E298983018905E9F0011D027 /* Main.storyboard */,
@@ -294,6 +301,7 @@
 				E29C2B2A1894489F00F986EC /* RightNowViewController.m in Sources */,
 				E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */,
 				E298982F18905E9F0011D027 /* AppDelegate.m in Sources */,
+				5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */,
 				E29C2B2D189448E500F986EC /* ScheduleViewController.m in Sources */,
 				E29C2B3918944EEC00F986EC /* CreateTaskViewController.m in Sources */,
 				E29C2B3318944BDF00F986EC /* CreateViewController.m in Sources */,
@@ -522,6 +530,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */,
+			);
+			currentVersion = 5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */;
+			path = tuduBeta.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E298981318905E9F0011D027 /* Project object */;
 }
