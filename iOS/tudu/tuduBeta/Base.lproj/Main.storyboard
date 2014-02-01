@@ -549,7 +549,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aCm-O7-gwL">
-                        <barButtonItem key="rightBarButtonItem" title="Add to Calendar" id="uOS-5f-X0h"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add to Calendar" id="uOS-5f-X0h">
+                            <connections>
+                                <action selector="addEventBtnPressed:" destination="PYK-Lh-4DW" id="YEe-T6-XGN"/>
+                                <segue destination="8YX-ce-x5E" kind="modal" id="PZg-yC-j91"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtO-if-2PB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -688,6 +693,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="PZg-yC-j91"/>
         <segue reference="mdC-yB-zoV"/>
         <segue reference="hLO-sz-u4z"/>
     </inferredMetricsTieBreakers>
