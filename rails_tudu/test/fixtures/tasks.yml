@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_id: 
+  start_time: 2014-02-02 01:37:21
+  end_time: 2014-02-02 01:37:21
+  name: MyString
+  description: MyString
+  priority: 
+  deadline: 2014-02-02 01:37:21
+  belongs_to: 
+
+two:
+  task_id: 
+  start_time: 2014-02-02 01:37:21
+  end_time: 2014-02-02 01:37:21
+  name: MyString
+  description: MyString
+  priority: 
+  deadline: 2014-02-02 01:37:21
+  belongs_to: 
