@@ -36,7 +36,9 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br>
-    <%= f.text_field :priority %>
+	<%= f.radio_button :priority, 1 %> Low
+	<%= f.radio_button :priority, 2 %> Medium
+	<%= f.radio_button :priority, 3 %> High
   </div>
   <div class="actions">
     <%= f.submit %>
