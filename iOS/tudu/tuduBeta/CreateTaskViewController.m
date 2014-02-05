@@ -10,6 +10,10 @@
 
 @interface CreateTaskViewController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addBtn;
+@property (strong, nonatomic) IBOutlet UITextField *taskNameField;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *durationSegmentedControlBar;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *prioritySegmentedControlBar;
+@property (strong, nonatomic) IBOutlet UIDatePicker *deadlineDatePicker;
 
 @end
 
@@ -28,6 +32,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // CoreData Setup:
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.managedObjectContext;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,8 +43,58 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
++ (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex {
+
+    switch (selectedIndex) {
+        case 0:
+            return 60*15; // 15 minutes
+            break;
+        case 1:
+            return 60*30; // 30 minutes
+            break;
+        case 2:
+            return 60*60; // 1 hour
+            break;
+        case 3:
+            return 60*120; // 2 hours
+            break;
+        
+        case 4:
+            //return getSecondsValueFromDurationSlider();
+            break;
+            
+        default:
+            return 0; // should never happen
+            break;
+    }
+    return 0; // should never happen
+}
+
 - (IBAction)addBtnPressed:(id)sender {
-    NSLog(@"YAAY");
+    // Create a new Task object
+    Task * newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
+                           inManagedObjectContext:self.managedObjectContext];
+   
+    // Gather data from view controller's data entry fields
+    newTask.name = self.taskNameField.text;
+    NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
+    newTask.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
+    newTask.deadline = self.deadlineDatePicker.date;
+    
+    // Save the task to the CoreData database
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    // Clear the data entry fields
+    self.taskNameField.text = @"";
+    
+    // Exit editing mode (Dismiss Keyboard)
+    [self.view endEditing:YES];
+    
+    // Perform the segue to the TasksViewController
     [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
 }
 
@@ -46,10 +104,14 @@
         NSLog(@"Preparing to add a task.");
         UITabBarController *tabBarController = segue.destinationViewController;
         tabBarController.selectedIndex = TASKS_TAB_INDEX;
-//        UINavigationController *navigationController = segue.destinationViewController;
-//        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
-//        playerDetailsViewController.delegate = self;
     }
 }
 
 @end
+
+
+
+
+
+
+

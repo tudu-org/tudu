@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "Task.h"
+#import "AppDelegate.h"
 
 @interface CreateTaskViewController : UIViewController
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+- (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex;
+//- (NSInteger) getSecondsValueFromDurationSlider;
 
 @end

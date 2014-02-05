@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
+#import "AppDelegate.h"
+
 
 @interface TasksViewController : UIViewController
+
+@property (nonatomic,strong)NSArray* fetchedRecordsArray;
 
 @end

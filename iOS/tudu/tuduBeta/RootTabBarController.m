@@ -8,6 +8,7 @@
 
 #import "RootTabBarController.h"
 
+
 @interface RootTabBarController ()
 
 @end
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning
