@@ -10,7 +10,7 @@
 #import "CalendarKit/CalendarKit.h"
 
 @interface ScheduleViewController ()
-@property (weak, nonatomic) IBOutlet UIWebView *calendarView;
+@property (weak, nonatomic) IBOutlet UIView *calendarView;
 
 @end
 
@@ -37,7 +37,7 @@
     [calendar setDataSource:self];
     
     // 3. Present the calendar
-    [[self view] addSubview:calendar];
+    [[self calendarView] addSubview:calendar];
 
 }
 
