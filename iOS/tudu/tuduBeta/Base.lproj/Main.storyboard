@@ -66,13 +66,6 @@
                     <view key="view" contentMode="scaleToFill" id="0kJ-up-daz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O51-UJ-SKa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="sSL-fz-HAA">
@@ -87,9 +80,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="calendarView" destination="O51-UJ-SKa" id="Krc-Kp-527"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7g0-vc-I2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -697,7 +687,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Ogr-Qu-GaL"/>
-        <segue reference="mdC-yB-zoV"/>
-        <segue reference="hLO-sz-u4z"/>
+        <segue reference="dgl-Jh-U1s"/>
+        <segue reference="icz-X9-RSy"/>
     </inferredMetricsTieBreakers>
 </document>
