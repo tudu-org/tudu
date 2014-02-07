@@ -220,10 +220,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="20" y="222" width="280" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="10 min"/>
                                     <segment title="15 min"/>
                                     <segment title="30 min"/>
                                     <segment title="1 hour"/>
+                                    <segment title="2 hours"/>
                                     <segment title="Custom"/>
                                 </segments>
                             </segmentedControl>
@@ -234,12 +234,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <barButtonItem key="rightBarButtonItem" title="Add" id="NBM-lI-Jdi">
                             <connections>
                                 <action selector="addBtnPressed:" destination="3uq-dz-kZw" id="1lv-na-tMC"/>
-                                <segue destination="8YX-ce-x5E" kind="modal" identifier="AddTaskSegue" modalTransitionStyle="crossDissolve" id="Ogr-Qu-GaL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBtn" destination="NBM-lI-Jdi" id="7C5-nP-GLg"/>
+                        <outlet property="addBtn" destination="NBM-lI-Jdi" id="DTg-Aw-Vy5"/>
+                        <outlet property="deadlineDatePicker" destination="HYQ-ZT-98w" id="YgK-hi-Nxu"/>
+                        <outlet property="durationSegmentedControlBar" destination="AB6-4e-6w0" id="jhb-Vh-1gM"/>
+                        <outlet property="prioritySegmentedControlBar" destination="qCW-4D-tJA" id="49q-fe-ovW"/>
+                        <outlet property="taskNameField" destination="qxP-md-MSq" id="KTS-hY-L5I"/>
+                        <segue destination="8YX-ce-x5E" kind="modal" identifier="AddTaskSegue" modalTransitionStyle="crossDissolve" id="mdX-V6-qJM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kh-Mf-DvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -581,21 +585,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="5Cn-yk-OtB" detailTextLabel="3Tn-h9-aY7" style="IBUITableViewCellStyleSubtitle" id="VRb-71-kco">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="standardIdentifier" textLabel="cAW-Ph-ZMo" detailTextLabel="KbQ-CF-g6x" style="IBUITableViewCellStyleSubtitle" id="VRb-71-kco">
                                         <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VRb-71-kco" id="KWC-Bm-d1n">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Cn-yk-OtB">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cAW-Ph-ZMo">
                                                     <rect key="frame" x="15" y="3" width="34" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Tn-h9-aY7">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KbQ-CF-g6x">
                                                     <rect key="frame" x="15" y="25" width="43" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -609,6 +613,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="j31-IQ-Kkb" id="uVQ-Fw-WWm"/>
+                                    <outlet property="delegate" destination="j31-IQ-Kkb" id="crC-8N-Hv2"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -696,8 +704,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ogr-Qu-GaL"/>
-        <segue reference="dgl-Jh-U1s"/>
-        <segue reference="icz-X9-RSy"/>
+        <segue reference="mdC-yB-zoV"/>
+        <segue reference="mdX-V6-qJM"/>
+        <segue reference="hLO-sz-u4z"/>
     </inferredMetricsTieBreakers>
 </document>

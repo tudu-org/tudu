@@ -14,6 +14,7 @@
 @end
 
 @implementation TasksViewController
+@synthesize fetchedRecordsArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,6 +51,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    NSLog(@"NUMTASKS: %lu",(unsigned long)[self.fetchedRecordsArray count]);
     return [self.fetchedRecordsArray count];
 }
 
@@ -58,7 +60,7 @@
     static NSString *CellIdentifier = @"standardIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Task * task = [self.fetchedRecordsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ ",task.name,task.duration];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@,  %@ ",task.name,task.duration];
     return cell;
 }
 

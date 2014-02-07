@@ -16,5 +16,10 @@
 
 - (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex;
 //- (NSInteger) getSecondsValueFromDurationSlider;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addBtn;
+@property (strong, nonatomic) IBOutlet UITextField *taskNameField;
+@property (strong, nonatomic) IBOutlet UIDatePicker *deadlineDatePicker;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *prioritySegmentedControlBar;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *durationSegmentedControlBar;
 
 @end

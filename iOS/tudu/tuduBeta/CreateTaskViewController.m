@@ -8,14 +8,6 @@
 
 #import "CreateTaskViewController.h"
 
-@interface CreateTaskViewController ()
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *addBtn;
-@property (strong, nonatomic) IBOutlet UITextField *taskNameField;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *durationSegmentedControlBar;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *prioritySegmentedControlBar;
-@property (strong, nonatomic) IBOutlet UIDatePicker *deadlineDatePicker;
-
-@end
 
 @implementation CreateTaskViewController
 
@@ -44,7 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-+ (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex {
+- (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex {
 
     switch (selectedIndex) {
         case 0:
@@ -61,6 +53,7 @@
             break;
         
         case 4:
+            // TODO:
             //return getSecondsValueFromDurationSlider();
             break;
             
@@ -79,6 +72,7 @@
     // Gather data from view controller's data entry fields
     newTask.name = self.taskNameField.text;
     NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
+    NSLog(@"edadad");
     newTask.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
     newTask.deadline = self.deadlineDatePicker.date;
     

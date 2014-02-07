@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 
-@interface TasksViewController : UIViewController
+@interface TasksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic,strong)NSArray* fetchedRecordsArray;
 
