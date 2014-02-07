@@ -28,6 +28,10 @@
     // CoreData Setup:
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    // Hide the Duration Slider (we only want it to appear after tapping 'Custom')
+    [self.durationSlider setHidden:TRUE];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,7 +57,8 @@
             break;
         
         case 4:
-            // TODO:
+            [self.durationSlider setHidden:FALSE];
+            [self.durationSegmentedControlBar setHidden:TRUE];
             //return getSecondsValueFromDurationSlider();
             break;
             
@@ -72,7 +77,6 @@
     // Gather data from view controller's data entry fields
     newTask.name = self.taskNameField.text;
     NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
-    NSLog(@"edadad");
     newTask.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
     newTask.deadline = self.deadlineDatePicker.date;
     
@@ -100,6 +104,17 @@
         tabBarController.selectedIndex = TASKS_TAB_INDEX;
     }
 }
+
+/* Hide the keyboard when the user taps something other than the Task name field. */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([self.taskNameField isFirstResponder] && [touch view] != self.taskNameField) {
+        [self.taskNameField resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
 
 @end
 

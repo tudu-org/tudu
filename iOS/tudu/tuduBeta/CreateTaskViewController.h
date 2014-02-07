@@ -21,5 +21,6 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *deadlineDatePicker;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *prioritySegmentedControlBar;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *durationSegmentedControlBar;
+@property (strong, nonatomic) IBOutlet UISlider *durationSlider;
 
 @end
