@@ -10,6 +10,8 @@
 		5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05630F189D810200BEA3AE /* RootTabBarController.m */; };
 		5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B056311189D9F1700BEA3AE /* CoreData.framework */; };
 		5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */; };
+		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
+		5B9ECDCE18A2DD91001A324E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCD18A2DD91001A324E /* Task.m */; };
 		E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57018A2C10200A51CA9 /* NSCalendar+Components.m */; };
 		E239C5A318A2C10200A51CA9 /* NSCalendar+DateComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57218A2C10200A51CA9 /* NSCalendar+DateComparison.m */; };
 		E239C5A418A2C10200A51CA9 /* NSCalendar+DateManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57418A2C10200A51CA9 /* NSCalendar+DateManipulation.m */; };
@@ -68,6 +70,10 @@
 		5B05630F189D810200BEA3AE /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		5B056311189D9F1700BEA3AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tuduBeta.xcdatamodel; sourceTree = "<group>"; };
+		5B9ECDC918A2DD85001A324E /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		5B9ECDCA18A2DD85001A324E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		5B9ECDCC18A2DD91001A324E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		5B9ECDCD18A2DD91001A324E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		E239C56B18A2C10200A51CA9 /* CalendarKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarKit.h; sourceTree = "<group>"; };
 		E239C56F18A2C10200A51CA9 /* NSCalendar+Components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Components.h"; sourceTree = "<group>"; };
 		E239C57018A2C10200A51CA9 /* NSCalendar+Components.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Components.m"; sourceTree = "<group>"; };
@@ -335,6 +341,10 @@
 			isa = PBXGroup;
 			children = (
 				5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */,
+				5B9ECDC918A2DD85001A324E /* Event.h */,
+				5B9ECDCA18A2DD85001A324E /* Event.m */,
+				5B9ECDCC18A2DD91001A324E /* Task.h */,
+				5B9ECDCD18A2DD91001A324E /* Task.m */,
 				E298982D18905E9F0011D027 /* AppDelegate.h */,
 				E298982E18905E9F0011D027 /* AppDelegate.m */,
 				E298983018905E9F0011D027 /* Main.storyboard */,
@@ -493,6 +503,7 @@
 				E239C5AC18A2C10200A51CA9 /* UIView+AnimatedFrame.m in Sources */,
 				E239C5B118A2C10200A51CA9 /* CKCalendarView.m in Sources */,
 				E29C2B2A1894489F00F986EC /* RightNowViewController.m in Sources */,
+				5B9ECDCB18A2DD85001A324E /* Event.m in Sources */,
 				E239C5B418A2C10200A51CA9 /* CKCalendarViewControllerInternal.m in Sources */,
 				E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */,
 				E239C5A718A2C10200A51CA9 /* NSDate+Components.m in Sources */,
@@ -513,6 +524,7 @@
 				E239C5B318A2C10200A51CA9 /* CKCalendarViewController.m in Sources */,
 				E298982B18905E9F0011D027 /* main.m in Sources */,
 				E239C5A618A2C10200A51CA9 /* NSCalendar+Ranges.m in Sources */,
+				5B9ECDCE18A2DD91001A324E /* Task.m in Sources */,
 				5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */,
 				E239C5A918A2C10200A51CA9 /* NSDateComponents+AllComponents.m in Sources */,
 				E239C5AA18A2C10200A51CA9 /* NSString+Color.m in Sources */,
