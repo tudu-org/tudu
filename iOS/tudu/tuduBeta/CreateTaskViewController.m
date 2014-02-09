@@ -44,6 +44,17 @@
     // Set the deadline picker to continuously update its value label as it changes
     [self.deadlineDatePicker addTarget:self action:@selector(deadlinePickerDateChanged:) forControlEvents:UIControlEventValueChanged];
     
+    
+    if (self.task != NULL) {
+        // EDITING TASK MODE
+        [self.navigationController.navigationItem.rightBarButtonItem setTitle:@"Done"]; // No longer "Add" but "Done", as in 'Done Editing'
+        
+        [self.taskNameField setText:self.task.name];
+        [self.durationValueLabel setText:[NSString stringWithFormat:@"%@",self.task.duration]];
+        [self.prioritySegmentedControlBar setSelectedSegmentIndex:self.task.priority];
+        [self.deadlineDatePicker setDate:self.task.deadline];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,7 +132,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"AddTaskSegue"]) {
-        NSLog(@"Preparing to add a task.");
         UITabBarController *tabBarController = segue.destinationViewController;
         tabBarController.selectedIndex = TASKS_TAB_INDEX;
     }

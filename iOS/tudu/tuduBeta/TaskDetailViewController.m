@@ -27,7 +27,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",self.task.duration]];
+    [self.priorityLabel setText:[NSString stringWithFormat:@"Priority: %@",self.task.priority]];
+    [self.deadlineLabel setText:[NSString stringWithFormat:@"Deadline: %@",self.task.deadline]];
+    [self setTitle:self.task.name];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"EditTaskSegue"]) {
+        CreateTaskViewController *ctvc = segue.destinationViewController;
+        [ctvc setTask:self.task]; // Pass along the task so that the Edit view controller can populate its fields with the correct data
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

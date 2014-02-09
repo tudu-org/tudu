@@ -37,6 +37,17 @@
     [self.tableView reloadData];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ExamineTaskSegue"]) {
+        TaskDetailViewController *tdvc = segue.destinationViewController;
+        // Get the Task information from the stored Tasks array based on the index of the selected row
+        Task * task = [self.fetchedRecordsArray objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        [tdvc setTask:task];
+    }
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,7 +72,7 @@
     static NSString *CellIdentifier = @"standardIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Task * task = [self.fetchedRecordsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@,  %@ ",task.name,task.duration];
+    cell.textLabel.text = [NSString stringWithString:task.name];
     return cell;
 }
 

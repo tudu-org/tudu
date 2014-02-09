@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Task.h"
 #import "AppDelegate.h"
+#import "TaskDetailViewController.h"
 
 
 @interface TasksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
