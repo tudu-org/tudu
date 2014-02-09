@@ -30,7 +30,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-    
+    self.managedObjectContext = appDelegate.managedObjectContext;
+
     // Fetching Records and saving it in "fetchedRecordsArray" object
     self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
     [self.tableView reloadData];
@@ -62,6 +63,34 @@
     Task * task = [self.fetchedRecordsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@,  %@ ",task.name,task.duration];
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        [tableView beginUpdates];
+
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        // 3
+        [self.managedObjectContext deleteObject:[self.fetchedRecordsArray objectAtIndex:indexPath.row]];
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        // 4
+        AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+        self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
+        // 5
+        [tableView endUpdates];
+    }
 }
 
 @end

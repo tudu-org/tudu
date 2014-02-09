@@ -14,6 +14,7 @@
 @interface CreateTaskViewController : UIViewController
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)durationValueChanged:(id)sender;
 - (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex;
 //- (NSInteger) getSecondsValueFromDurationSlider;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addBtn;
@@ -22,5 +23,9 @@
 @property (strong, nonatomic) IBOutlet UISegmentedControl *prioritySegmentedControlBar;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *durationSegmentedControlBar;
 @property (strong, nonatomic) IBOutlet UISlider *durationSlider;
+@property (strong, nonatomic) IBOutlet UILabel *durationValueLabel;
+@property (strong, nonatomic) IBOutlet UILabel *durationMaxLabel;
+@property (strong, nonatomic) IBOutlet UILabel *durationMinLabel;
+@property (strong, nonatomic) IBOutlet UILabel *deadlineLabel;
 
 @end
