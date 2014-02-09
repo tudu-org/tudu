@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = User.find(params[:user_id]).events
   end
 
   # GET /events/1
@@ -58,6 +58,21 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /events/in_range?start=datetime&end=datetime
+  # GET /events/in_range.json?start=datetime&end=datetime
+  def in_range
+    start_time = DateTime.parse params[:start]
+    end_time = DateTime.parse params[:end]
+
+    @events = User.find(params[:user_id]).events
+    @events = @events.where(start_time: (start_time..end_time))
+
+    respond_to do |format|
+      format.html { render text: "Unimplemented" }
+      format.json { render json: @events }
     end
   end
 

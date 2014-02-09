@@ -19,8 +19,16 @@ Tudu::Application.routes.draw do
   post "new_user" => "authentication#register"
   get "password_sent" => "authentication#password_sent"
 
-get "home" => "home#index"
-get "task" => "home#task"
+  resources :users do
+    resources :events do
+      collection do
+        get "in_range"
+      end
+    end
+  end
+
+  get "home" => "home#index"
+  get "task" => "home#task"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
