@@ -42,12 +42,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"AddEventSegue"]) {
-        NSLog(@"Preparing to add an event.");
         UITabBarController *tabBarController = segue.destinationViewController;
         tabBarController.selectedIndex = SCHEDULE_TAB_INDEX;
-        //        UINavigationController *navigationController = segue.destinationViewController;
-        //        PlayerDetailsViewController *playerDetailsViewController = [navigationController viewControllers][0];
-        //        playerDetailsViewController.delegate = self;
     }
 }
 

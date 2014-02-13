@@ -15,7 +15,7 @@
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-// 1
+
 - (NSManagedObjectContext *) managedObjectContext {
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
@@ -29,7 +29,7 @@
     return _managedObjectContext;
 }
 
-//2
+
 - (NSManagedObjectModel *)managedObjectModel {
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
@@ -38,24 +38,62 @@
     
     return _managedObjectModel;
 }
+//
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+//    if (_persistentStoreCoordinator != nil) {
+//        return _persistentStoreCoordinator;
+//    }
+//    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
+//                                               stringByAppendingPathComponent: @"tuduBeta.sqlite"]];
+//    NSError *error = nil;
+//    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+//                                   initWithManagedObjectModel:[self managedObjectModel]];
+//    if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+//                                                  configuration:nil URL:storeUrl options:nil error:&error]) {
+//        /*Error for store creation should be handled in here*/
+//    }
+//    
+//    return _persistentStoreCoordinator;
+//}
 
-//3
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
-                                               stringByAppendingPathComponent: @"PhoneBook.sqlite"]];
+    
+    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"tuduBeta.sqlite"]];
+    
     NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
-                                   initWithManagedObjectModel:[self managedObjectModel]];
-    if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                  configuration:nil URL:storeUrl options:nil error:&error]) {
-        /*Error for store creation should be handled in here*/
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+    						 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+    						 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
+        // Handle error
     }
     
     return _persistentStoreCoordinator;
 }
+
+-(NSArray*)getAllTaskRecords
+{
+    // initializing NSFetchRequest
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    //Setting Entity to be Queried
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Task"
+                                    inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError* error;
+    
+    // Query on managedObjectContext With Generated fetchRequest
+    NSArray *fetchedRecords = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    // Returning Fetched Records
+    return fetchedRecords;
+}
+
 
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
