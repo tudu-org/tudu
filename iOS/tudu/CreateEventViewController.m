@@ -50,8 +50,8 @@
     NSError *error = nil;
     EKEvent *myEvent = [EKEvent eventWithEventStore:eventStore];
     myEvent.allDay = NO;
-    myEvent.startDate = [NSDate date]; //[[self eventDatePicker] date];
-    myEvent.endDate = [NSDate date];
+    myEvent.startDate = startTime;
+    myEvent.endDate = endTime;
     myEvent.title = @"Finish Blog Post";
     myEvent.calendar = defaultCalendar; // Does this work ?
     [eventStore saveEvent:myEvent span:EKSpanThisEvent commit:YES error:&error];
