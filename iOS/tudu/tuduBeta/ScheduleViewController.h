@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ScheduleViewController : UIViewController
+#import "CKCalendarView.h"
+@interface ScheduleViewController : UIViewController<CKCalendarViewDelegate, CKCalendarViewDataSource>
+@property (strong, nonatomic) CKCalendarView *calendar;
 
 @end

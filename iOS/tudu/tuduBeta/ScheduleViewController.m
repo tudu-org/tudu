@@ -30,14 +30,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     // 1. Instantiate a CKCalendarView
-    CKCalendarView *calendar = [CKCalendarView new];
+    self.calendar = [CKCalendarView new];
     
     // 2. Optionally, set up the datasource and delegates
-    [calendar setDelegate:self];
-    [calendar setDataSource:self];
+    [self.calendar setDelegate:self];
+    [self.calendar setDataSource:self];
     
     // 3. Present the calendar
-    [[self calendarView] addSubview:calendar];
+    [[self calendarView] addSubview:self.calendar];
 
 }
 
