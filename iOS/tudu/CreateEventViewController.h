@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *eventLocationField;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *eventSegmentedControlBar;
 @property (strong, nonatomic) IBOutlet UIDatePicker *eventDatePicker;
+@property (strong, nonatomic) IBOutlet UILabel *startTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *endTimeLabel;
 
 @property (strong, nonatomic) NSDate *startTime;
 @property (strong, nonatomic) NSDate *endTime;
