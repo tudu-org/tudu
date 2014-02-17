@@ -37,12 +37,18 @@
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ExamineTaskSegue"]) {
         TaskDetailViewController *tdvc = segue.destinationViewController;
         // Get the Task information from the stored Tasks array based on the index of the selected row
-        Task * task = [self.fetchedRecordsArray objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        Task * task = [self.fetchedRecordsArray objectAtIndex:[self.tableView indexPathForSelectedRow].row+1]; // +1 for difference between array indexing
         [tdvc setTask:task];
     }
 }
