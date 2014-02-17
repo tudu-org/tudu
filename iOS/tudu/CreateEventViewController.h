@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
 #import "Constants.h"
 
 @interface CreateEventViewController : UIViewController

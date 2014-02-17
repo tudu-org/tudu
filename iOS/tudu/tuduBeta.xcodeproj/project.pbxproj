@@ -10,6 +10,7 @@
 		5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05630F189D810200BEA3AE /* RootTabBarController.m */; };
 		5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B056311189D9F1700BEA3AE /* CoreData.framework */; };
 		5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */; };
+		5B8439E018B298820082F088 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8439DF18B298820082F088 /* EventKit.framework */; };
 		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
 		5B9ECDCE18A2DD91001A324E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCD18A2DD91001A324E /* Task.m */; };
 		E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57018A2C10200A51CA9 /* NSCalendar+Components.m */; };
@@ -70,6 +71,7 @@
 		5B05630F189D810200BEA3AE /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		5B056311189D9F1700BEA3AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tuduBeta.xcdatamodel; sourceTree = "<group>"; };
+		5B8439DF18B298820082F088 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		5B9ECDC918A2DD85001A324E /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		5B9ECDCA18A2DD85001A324E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		5B9ECDCC18A2DD91001A324E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B8439E018B298820082F088 /* EventKit.framework in Frameworks */,
 				5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */,
 				E298982118905E9F0011D027 /* CoreGraphics.framework in Frameworks */,
 				E298982318905E9F0011D027 /* UIKit.framework in Frameworks */,
@@ -328,6 +331,7 @@
 		E298981D18905E9F0011D027 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B8439DF18B298820082F088 /* EventKit.framework */,
 				5B056311189D9F1700BEA3AE /* CoreData.framework */,
 				E298981E18905E9F0011D027 /* Foundation.framework */,
 				E298982018905E9F0011D027 /* CoreGraphics.framework */,
