@@ -56,7 +56,7 @@
 
 }
 
--(void)addEvent:(UIEvent*)event{
+-(void)addEvent:(EKEvent*)event{
 
 }
 
