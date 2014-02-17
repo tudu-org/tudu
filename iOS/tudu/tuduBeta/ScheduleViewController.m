@@ -56,9 +56,9 @@
 
 }
 
--(void)addEvent:(EKEvent*)event{
-
-}
+//-(void)addEvent:(EKEvent*)event{
+//
+//}
 
 - (void)didReceiveMemoryWarning
 {
