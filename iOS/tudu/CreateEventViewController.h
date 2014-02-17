@@ -11,5 +11,14 @@
 #import "Constants.h"
 
 @interface CreateEventViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UITextField *eventNameField;
+@property (strong, nonatomic) IBOutlet UITextField *eventLocationField;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *eventSegmentedControlBar;
+@property (strong, nonatomic) IBOutlet UIDatePicker *eventDatePicker;
+
+@property (strong, nonatomic) NSDate *startTime;
+@property (strong, nonatomic) NSDate *endTime;
+
+- (IBAction)eventSegmentedControlBarValueChanged:(id)sender;
 
 @end

@@ -14,6 +14,7 @@
 @end
 
 @implementation CreateEventViewController
+@synthesize startTime, endTime;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +29,43 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        // handle access here
+    }];
+    
+    NSDate * now = [[NSDate alloc] init];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents * comps = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    [comps setMinute:0];
+    [comps setSecond:0];
+    NSDate * date = [cal dateFromComponents:comps];
+    [self.eventDatePicker setDate:date animated:TRUE];
+    
+    EKCalendar *defaultCalendar = [eventStore defaultCalendarForNewEvents];
+
+    // Create a new event... save and commit
+    NSError *error = nil;
+    EKEvent *myEvent = [EKEvent eventWithEventStore:eventStore];
+    myEvent.allDay = NO;
+    myEvent.startDate = [NSDate date]; //[[self eventDatePicker] date];
+    myEvent.endDate = [NSDate date];
+    myEvent.title = @"Finish Blog Post";
+    myEvent.calendar = defaultCalendar; // Does this work ?
+    [eventStore saveEvent:myEvent span:EKSpanThisEvent commit:YES error:&error];
+    
+    if (!error) {
+        NSLog(@"the event saved and committed correctly with identifier %@", myEvent.eventIdentifier);
+    } else {
+        NSLog(@"there was an error saving and committing the event");
+        error = nil;
+    }
+    
+    EKEvent *savedEvent = [eventStore eventWithIdentifier:myEvent.eventIdentifier];
+    NSLog(@"saved event description: %@",savedEvent);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,4 +85,41 @@
     }
 }
 
+// Called when the eventSegmentedControlBar's value changes
+// i.e. the user switches from setting the beginning to setting the ending
+- (IBAction)eventSegmentedControlBarValueChanged:(id)sender {
+    int index = [self.eventSegmentedControlBar selectedSegmentIndex];
+    switch (index) {
+        case 0: // 'BEGIN' SEGMENT
+            // store the "END" time
+            endTime = self.eventDatePicker.date;
+            [self.eventDatePicker setDate:startTime animated:TRUE];
+            break;
+        case 1: // 'END' SEGMENT
+            // store the "START" time
+            if (startTime == NULL) {
+                // First time this segment button is pressed
+                startTime = self.eventDatePicker.date;
+                NSTimeInterval numSecondsInOneHour = 60 * 60;
+                NSDate *oneHourAhead = [self.eventDatePicker.date dateByAddingTimeInterval:numSecondsInOneHour];
+                [self.eventDatePicker setDate:oneHourAhead animated:TRUE];
+            } else {
+                startTime = self.eventDatePicker.date;
+                [self.eventDatePicker setDate:endTime animated:TRUE];
+            }            
+            break;
+        
+        default:
+            break;
+    }
+}
 @end
+
+
+
+
+
+
+
+
+
