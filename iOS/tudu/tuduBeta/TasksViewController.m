@@ -14,7 +14,7 @@
 @end
 
 @implementation TasksViewController
-@synthesize fetchedRecordsArray;
+@synthesize fetchedTasksArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +33,7 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
 
     // Fetching Records and saving it in "fetchedRecordsArray" object
-    self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
+    self.fetchedTasksArray = [appDelegate getAllTaskRecords];
     [self.tableView reloadData];
 }
 
@@ -48,7 +48,7 @@
     if ([segue.identifier isEqualToString:@"ExamineTaskSegue"]) {
         TaskDetailViewController *tdvc = segue.destinationViewController;
         // Get the Task information from the stored Tasks array based on the index of the selected row
-        Task * task = [self.fetchedRecordsArray objectAtIndex:[self.tableView indexPathForSelectedRow].row+1]; // +1 for difference between array indexing
+        Task * task = [self.fetchedTasksArray objectAtIndex:[self.tableView indexPathForSelectedRow].row+1]; // +1 for difference between array indexing
         [tdvc setTask:task];
     }
 }
@@ -69,15 +69,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"NUMTASKS: %lu",(unsigned long)[self.fetchedRecordsArray count]);
-    return [self.fetchedRecordsArray count];
+    NSLog(@"NUMTASKS: %lu",(unsigned long)[self.fetchedTasksArray count]);
+    return [self.fetchedTasksArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"standardIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    Task * task = [self.fetchedRecordsArray objectAtIndex:indexPath.row];
+    Task * task = [self.fetchedTasksArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithString:task.name];
     return cell;
 }
@@ -97,14 +97,14 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // 3
-        [self.managedObjectContext deleteObject:[self.fetchedRecordsArray objectAtIndex:indexPath.row]];
+        [self.managedObjectContext deleteObject:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
         NSError *error;
         if (![self.managedObjectContext save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
         // 4
         AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-        self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
+        self.fetchedTasksArray = [appDelegate getAllTaskRecords];
         // 5
         [tableView endUpdates];
     }

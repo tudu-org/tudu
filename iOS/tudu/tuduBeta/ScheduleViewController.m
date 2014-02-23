@@ -14,16 +14,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *dayView;
 @property (weak, nonatomic) IBOutlet UIButton *weekView;
 @property (weak, nonatomic) IBOutlet UIButton *monthView;
+@property(strong, nonatomic) EKCalendar *defaultCalendar;
 
 @end
 
 @implementation ScheduleViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //ADD CODE HERE
         // Custom initialization
     }
     return self;
@@ -38,6 +39,11 @@
     [self.dayView addTarget:self action:@selector(viewTypeButtonPushed:) forControlEvents:UIControlEventTouchUpInside];
     [self.weekView addTarget:self action:@selector(viewTypeButtonPushed:) forControlEvents:UIControlEventTouchUpInside];
     [self.monthView addTarget:self action:@selector(viewTypeButtonPushed:) forControlEvents:UIControlEventTouchUpInside];
+    //Fetch Event Data for Calendar
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    self.defaultCalendar = [eventStore defaultCalendarForNewEvents];
+    
+    
     
     // 1. Instantiate a CKCalendarView
     self.calendar = [CKCalendarView new];
@@ -51,8 +57,29 @@
 
     // 4. Present the calendar
     [[self calendarView] addSubview:self.calendar];
+    
+    //Add events to calendar
+    //[self addEventsToCalendar:self.defaultCalendar];
 
 }
+
+//-(void)addEventsToCalendar:(EKCalendar*)cal{
+//    //SAMPLE CALENDAR VIEW
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    [comps setDay:22];
+//    [comps setMonth:2];
+//    [comps setYear:2014];
+//    NSCalendar *gregorian = [[NSCalendar alloc]
+//                             initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDate *date = [gregorian dateFromComponents:comps];
+//
+//    [[self dataSource] calendarView:self.calendar eventsForDate:date];
+//    
+//
+//    
+//}
+
+
 
 - (void)didReceiveMemoryWarning
 {

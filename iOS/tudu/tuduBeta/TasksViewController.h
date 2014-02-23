@@ -14,7 +14,7 @@
 
 @interface TasksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic,strong)NSArray* fetchedRecordsArray;
+@property (nonatomic,strong)NSArray* fetchedTasksArray;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -53,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ea6-5d-SHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3116" y="-345"/>
+            <point key="canvasLocation" x="-3137" y="-337"/>
         </scene>
         <!--Schedule View Controller - Schedule-->
         <scene sceneID="742-95-KlK">
@@ -650,7 +650,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtO-if-2PB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4590" y="-1131"/>
+            <point key="canvasLocation" x="-1590" y="-1792"/>
         </scene>
         <!--Tasks View Controller - Tasks-->
         <scene sceneID="Pof-u6-JGF">
@@ -713,7 +713,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0c-Fv-zcu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3116" y="-1090"/>
+            <point key="canvasLocation" x="-3137" y="-1090"/>
         </scene>
         <!--Navigation Controller - Tasks-->
         <scene sceneID="GQe-dg-KJj">
@@ -781,9 +781,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dgl-Jh-U1s"/>
         <segue reference="9Ra-Xa-fUe"/>
-        <segue reference="rbB-IQ-sBF"/>
+        <segue reference="dgl-Jh-U1s"/>
         <segue reference="icz-X9-RSy"/>
+        <segue reference="rbB-IQ-sBF"/>
     </inferredMetricsTieBreakers>
 </document>
