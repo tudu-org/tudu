@@ -30,12 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        // handle access here
-    }];
-    
+    // Set up the EventDatePicker
     NSDate * now = [[NSDate alloc] init];
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents * comps = [cal components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
@@ -44,15 +39,33 @@
     NSDate * date = [cal dateFromComponents:comps];
     [self.eventDatePicker setDate:date animated:TRUE];
     
-    EKCalendar *defaultCalendar = [eventStore defaultCalendarForNewEvents];
+    // Set up the text labels
+    self.startTimeLabel.text = @"";
+    self.endTimeLabel.text = @"";
+    
+}
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (IBAction)addEventBtnPressed:(id)sender {
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+        // handle access here
+    }];
+
+    EKCalendar *defaultCalendar = [eventStore defaultCalendarForNewEvents];
+    
     // Create a new event... save and commit
     NSError *error = nil;
     EKEvent *myEvent = [EKEvent eventWithEventStore:eventStore];
     myEvent.allDay = NO;
     myEvent.startDate = startTime;
     myEvent.endDate = endTime;
-    myEvent.title = @"Finish Blog Post";
+    myEvent.title = self.eventNameField.text;
+    myEvent.location = self.eventLocationField.text;
     myEvent.calendar = defaultCalendar; // Does this work ?
     [eventStore saveEvent:myEvent span:EKSpanThisEvent commit:YES error:&error];
     
@@ -66,14 +79,7 @@
     EKEvent *savedEvent = [eventStore eventWithIdentifier:myEvent.eventIdentifier];
     NSLog(@"saved event description: %@",savedEvent);
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)addEventBtnPressed:(id)sender {
+    // Transition to the Schedule/Calendar view
     [self performSegueWithIdentifier:@"AddEventSegue" sender:sender];
 }
 
@@ -90,12 +96,17 @@
 - (IBAction)eventSegmentedControlBarValueChanged:(id)sender {
     int index = [self.eventSegmentedControlBar selectedSegmentIndex];
     switch (index) {
-        case 0: // 'BEGIN' SEGMENT
+        case 0: { // 'BEGIN' SEGMENT
             // store the "END" time
             endTime = self.eventDatePicker.date;
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+            [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+            self.endTimeLabel.text = [dateFormatter stringFromDate:self.eventDatePicker.date];
             [self.eventDatePicker setDate:startTime animated:TRUE];
             break;
-        case 1: // 'END' SEGMENT
+        }
+        case 1: {// 'END' SEGMENT
             // store the "START" time
             if (startTime == NULL) {
                 // First time this segment button is pressed
@@ -105,10 +116,15 @@
                 [self.eventDatePicker setDate:oneHourAhead animated:TRUE];
             } else {
                 startTime = self.eventDatePicker.date;
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+                [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+                self.startTimeLabel.text = [dateFormatter stringFromDate:self.eventDatePicker.date];
                 [self.eventDatePicker setDate:endTime animated:TRUE];
             }            
             break;
-        
+        }
+            
         default:
             break;
     }
