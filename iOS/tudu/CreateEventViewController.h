@@ -20,7 +20,9 @@
 
 @property (strong, nonatomic) NSDate *startTime;
 @property (strong, nonatomic) NSDate *endTime;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 - (IBAction)eventSegmentedControlBarValueChanged:(id)sender;
+- (IBAction)datePickerValueChanged:(id)sender;
 
 @end

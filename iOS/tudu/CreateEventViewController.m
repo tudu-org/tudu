@@ -14,7 +14,7 @@
 @end
 
 @implementation CreateEventViewController
-@synthesize startTime, endTime;
+@synthesize startTime, endTime, dateFormatter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,10 +39,19 @@
     NSDate * date = [cal dateFromComponents:comps];
     [self.eventDatePicker setDate:date animated:TRUE];
     
-    // Set up the text labels
-    self.startTimeLabel.text = @"";
-    self.endTimeLabel.text = @"";
+    startTime = self.eventDatePicker.date;
     
+    // Start time text label
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+    self.startTimeLabel.text = [dateFormatter stringFromDate:startTime];
+
+    // End time text label
+    NSTimeInterval numSecondsInOneHour = 60 * 60;
+    NSDate *oneHourAhead = [self.startTime dateByAddingTimeInterval:numSecondsInOneHour];
+    endTime = oneHourAhead;
+    self.endTimeLabel.text = [dateFormatter stringFromDate:endTime];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,9 +108,6 @@
         case 0: { // 'BEGIN' SEGMENT
             // store the "END" time
             endTime = self.eventDatePicker.date;
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-            [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
             self.endTimeLabel.text = [dateFormatter stringFromDate:self.eventDatePicker.date];
             [self.eventDatePicker setDate:startTime animated:TRUE];
             break;
@@ -116,9 +122,6 @@
                 [self.eventDatePicker setDate:oneHourAhead animated:TRUE];
             } else {
                 startTime = self.eventDatePicker.date;
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-                [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
                 self.startTimeLabel.text = [dateFormatter stringFromDate:self.eventDatePicker.date];
                 [self.eventDatePicker setDate:endTime animated:TRUE];
             }            
@@ -129,6 +132,38 @@
             break;
     }
 }
+
+- (IBAction)datePickerValueChanged:(id)sender {
+    int seg = self.eventSegmentedControlBar.selectedSegmentIndex;
+    switch (seg) {
+        case 0:
+            self.startTimeLabel.text = [dateFormatter stringFromDate:self.eventDatePicker.date];
+            break;
+        case 1:
+            self.endTimeLabel.text = [dateFormatter stringFromDate:self.eventDatePicker.date];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+/* Hide the keyboard when the user taps something other than the Task name field. */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([self.eventNameField isFirstResponder] && [touch view] != self.eventNameField) {
+        [self.eventNameField resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+    if ([self.eventLocationField isFirstResponder] && [touch view] != self.eventLocationField) {
+        [self.eventLocationField resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+
 @end
 
 
