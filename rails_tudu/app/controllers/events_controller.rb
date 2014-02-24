@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
+  before_action :set_user
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
-    @events = User.find(params[:user_id]).events
+    @events = @user.events
   end
 
   # GET /events/1
@@ -14,7 +15,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    @event = @user.events.new
   end
 
   # GET /events/1/edit
@@ -24,11 +25,13 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    @event = @user.events.create(event_params)
+
+    Rails.logger.debug("event is #{@event}")
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to [@user, @event], notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -42,7 +45,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to [@user, @event], notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -67,7 +70,7 @@ class EventsController < ApplicationController
     start_time = DateTime.parse params[:start]
     end_time = DateTime.parse params[:end]
 
-    @events = User.find(params[:user_id]).events
+    @events = @user.events
     @events = @events.where(start_time: (start_time..end_time))
 
     respond_to do |format|
@@ -80,6 +83,11 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
