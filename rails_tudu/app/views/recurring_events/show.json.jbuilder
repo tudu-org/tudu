@@ -1,0 +1,1 @@
+json.extract! @recurring_event, :id, :recurring_start_time, :recurring_end_time, :start_time, :end_time, :every_monday, :every_tuesday, :every_wednesday, :every_thursday, :every_friday, :every_saturday, :every_sunday, :weeks_between, :name, :description, :created_at, :updated_at

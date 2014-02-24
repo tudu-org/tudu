@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 	validates :email, 
 				format: {:message=> 'Email is invalid format' , with: /@/},
 				uniqueness: true
+	has_many :events
+	has_many :recurring_events
 	
 	#validates :terms_of_service, acceptance: true
 	def initialize(attributes = {})

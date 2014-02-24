@@ -1,0 +1,73 @@
+<%= form_for(@recurring_event) do |f| %>
+  <% if @recurring_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recurring_event.errors.count, "error") %> prohibited this recurring_event from being saved:</h2>
+
+      <ul>
+      <% @recurring_event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :recurring_start_time %><br>
+    <%= f.datetime_select :recurring_start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :recurring_end_time %><br>
+    <%= f.datetime_select :recurring_end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br>
+    <%= f.time_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.time_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :every_monday %><br>
+    <%= f.check_box :every_monday %>
+  </div>
+  <div class="field">
+    <%= f.label :every_tuesday %><br>
+    <%= f.check_box :every_tuesday %>
+  </div>
+  <div class="field">
+    <%= f.label :every_wednesday %><br>
+    <%= f.check_box :every_wednesday %>
+  </div>
+  <div class="field">
+    <%= f.label :every_thursday %><br>
+    <%= f.check_box :every_thursday %>
+  </div>
+  <div class="field">
+    <%= f.label :every_friday %><br>
+    <%= f.check_box :every_friday %>
+  </div>
+  <div class="field">
+    <%= f.label :every_saturday %><br>
+    <%= f.check_box :every_saturday %>
+  </div>
+  <div class="field">
+    <%= f.label :every_sunday %><br>
+    <%= f.check_box :every_sunday %>
+  </div>
+  <div class="field">
+    <%= f.label :weeks_between %><br>
+    <%= f.number_field :weeks_between %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
