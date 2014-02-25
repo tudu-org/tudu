@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
+#import "AppDelegate.h"
+#import "TaskDetailViewController.h"
 
-@interface TasksViewController : UIViewController
+
+@interface TasksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic,strong)NSArray* fetchedRecordsArray;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import "ScheduleViewController.h"
+#import "CalendarKit/CalendarKit.h"
 
 @interface ScheduleViewController ()
-@property (weak, nonatomic) IBOutlet UIWebView *calendarView;
+@property (weak, nonatomic) IBOutlet UIView *calendarView;
 
 @end
 
@@ -28,9 +29,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    NSURL *myURL = [[NSURL alloc] initWithString:@"http://bootstrap-calendar.azurewebsites.net"];
-    NSURLRequest *myRequest = [[NSURLRequest alloc] initWithURL:myURL];
-    [self.calendarView loadRequest: myRequest];
+    // 1. Instantiate a CKCalendarView
+    CKCalendarView *calendar = [CKCalendarView new];
+    
+    // 2. Optionally, set up the datasource and delegates
+    [calendar setDelegate:self];
+    [calendar setDataSource:self];
+    
+    // 3. Present the calendar
+    [[self calendarView] addSubview:calendar];
 
 }
 

@@ -1,2 +1,4 @@
 *.DS_Store
 .vagrant
+iOS/tudu/tuduBeta.xcodeproj/*
+iOS/tudu/tuduBeta.xcodeproj/project.xcworkspace/xcuserdata/jonathanrusnak.xcuserdatad/UserInterfaceState.xcuserstate
