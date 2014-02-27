@@ -28,6 +28,7 @@ Tudu::Application.routes.draw do
 
   get "home" => "home#index"
   get "task" => "home#task"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
