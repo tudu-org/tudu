@@ -1,4 +1,6 @@
 Tudu::Application.routes.draw do
+  resources :tasks
+
   resources :recurring_events
 
   resources :events
