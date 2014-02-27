@@ -1,10 +1,4 @@
 Tudu::Application.routes.draw do
-  resources :tasks
-
-  resources :recurring_events
-
-  resources :events
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
@@ -27,6 +21,9 @@ Tudu::Application.routes.draw do
         get "in_range"
       end
     end
+
+    resources :tasks
+    resources :recurring_events
   end
 
   get "home" => "home#index"
