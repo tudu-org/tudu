@@ -16,6 +16,10 @@ Tudu::Application.routes.draw do
   get "password_sent" => "authentication#password_sent"
 
   resources :users do
+    collection do
+      get "by_email"
+    end
+
     resources :events do
       collection do
         get "in_range"
@@ -28,7 +32,7 @@ Tudu::Application.routes.draw do
 
   get "home" => "home#index"
   get "task" => "home#task"
-  
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
