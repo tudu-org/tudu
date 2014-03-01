@@ -7,17 +7,21 @@ Tudu::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   
   # You can have the root of your site routed with "root"
-  root 'authentication#sign_in'
+  
 
-
-  get "sign_in" => "authentication#sign_in"
-  get "signed_out" => "authentication#signed_out"
-  post "sign_in" =>"authentication#login"
-  get "change_password" => "authentication#change_password"
-  get "forgot_password" => "authentication#forgot_password"
-  get "new_user" => "authentication#new_user"
-  post "new_user" => "authentication#register"
-  get "password_sent" => "authentication#password_sent"
+  get "users" => "users#index" #remove in prod
+  get "new_user" => "users#new"
+  post "new_user" => "users#create"
+  
+  controller :sessions do
+     get 'login' => :new
+     post 'login' => :create
+     delete 'logout' => :destroy
+  end
+  get "/" => "sessions#new"
+  
+  get "sessions/create"
+  get "sessions/destroy"
 
   resources :users do
     resources :events do

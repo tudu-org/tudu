@@ -1,13 +1,9 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :password, :password_confirmation,:remember_me
-	attr_accessor :password, :remember_me
+	#attr_accessor remember_me
 	before_save :encrypt_password
-	validates :password,
-				length: { within: 8..20},
-				format: {:message=> 'The password must be between 8 and 20 characters ', with: /^[a-zA-Z]\w{8,20}$/,multiline: true} #dont leave this, securityerror, change the password format too
+	has_secure_password
 
 	validates_confirmation_of :password
-	validates_presence_of :password, :on => :create
 	validates_presence_of :email, :on => :create
 	validates :email, 
 				format: {:message=> 'Email is invalid format' , with: /@/},
@@ -37,5 +33,6 @@ class User < ActiveRecord::Base
 			self.password_hash = BCrypt::Engine.hash_secret(password,password_salt)
 		end
 	end
+	
 
 end
