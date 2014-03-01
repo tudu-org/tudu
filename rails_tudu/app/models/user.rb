@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 				uniqueness: true
 	has_many :events
 	has_many :recurring_events
+	has_many :tasks
 	
 	#validates :terms_of_service, acceptance: true
 	def initialize(attributes = {})
