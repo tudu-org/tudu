@@ -1,8 +1,4 @@
 Tudu::Application.routes.draw do
-  resources :recurring_events
-
-  resources :events
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
@@ -24,15 +20,23 @@ Tudu::Application.routes.draw do
   get "sessions/destroy"
 
   resources :users do
+    collection do
+      get "by_email"
+    end
+
     resources :events do
       collection do
         get "in_range"
       end
     end
+
+    resources :tasks
+    resources :recurring_events
   end
 
   get "home" => "home#index"
   get "task" => "home#task"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
