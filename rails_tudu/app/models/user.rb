@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	#attr_accessor remember_me
 	before_save :encrypt_password
+	before_create :set_auth_token
 	has_secure_password
 
 	validates_confirmation_of :password
@@ -34,6 +35,10 @@ class User < ActiveRecord::Base
 			self.password_hash = BCrypt::Engine.hash_secret(password,password_salt)
 		end
 	end
-	
 
+	def set_auth_token
+		begin
+			self.auth_token = SecureRandom.hex
+		end while self.class.exists?(auth_token: self.auth_token)
+	end
 end
