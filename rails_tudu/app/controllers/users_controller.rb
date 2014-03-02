@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	skip_before_action :authorize, only: [:new, :create]
 	def index
 		@users = User.order(:email)
 	end
