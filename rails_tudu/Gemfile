@@ -14,7 +14,7 @@ gem "anjlab-bootstrap-rails", :require=> 'bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+# gem 'coffee-rails', '~> 4.0.0' #Alex doesn't know how to use CoffeeScript
 gem 'bcrypt-ruby', :require=>'bcrypt'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
