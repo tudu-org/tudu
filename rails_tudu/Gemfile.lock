@@ -119,7 +119,6 @@ PLATFORMS
 DEPENDENCIES
   anjlab-bootstrap-rails
   bcrypt-ruby
-  coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
   protected_attributes
