@@ -1,40 +1,4 @@
 
-<div class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">What do you have Tudu?</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Home', home_path %></li>
-            <li class="active"><%= link_to 'View Tasks', task_path %></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Edit Tasks</a></li>
-                <li><a href="#">Edit Events</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Other Calendars</li>
-                <li><a href="#">Import</a></li>
-                <li><a href="#">Export</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">View Stats</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><%= link_to "Logout",sessions_destroy_path %></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-  <!--NAVBAR END-->
    <h2 id="task_header"> My Tasks </h2>
 		<div id="task_wrapper">
 			<div class="form-group">
