@@ -95,8 +95,6 @@ class User < ActiveRecord::Base
 			tasks_hash[e.id.to_s] = e
 		end
 
-		#return manifest_h
-
 		m = Tudusched::Manifest.new manifest_h
 
 		if not m.schedule_tasks
@@ -111,9 +109,11 @@ class User < ActiveRecord::Base
 			mytask = tasks_hash[e.name]
 			mytask.start_time = e.start
 			mytask.end_time = e.end
+
+			mytask.save
 		end
 
-		relevant_tasks
+		true
 	end
 
 	def test_make_schedule

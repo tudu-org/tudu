@@ -30,7 +30,12 @@ Tudu::Application.routes.draw do
       end
     end
 
-    resources :tasks
+    resources :tasks do
+      collection do
+        post "schedule"
+      end
+    end
+
     resources :recurring_events
   end
 
