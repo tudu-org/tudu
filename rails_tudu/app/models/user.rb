@@ -41,4 +41,14 @@ class User < ActiveRecord::Base
 			self.auth_token = SecureRandom.hex
 		end while self.class.exists?(auth_token: self.auth_token)
 	end
+
+	def events_in_range start_time, end_time
+		self.events.where('start_time BETWEEN :start_time AND :end_time OR end_time BETWEEN :start_time AND :end_time',
+			:start_time => start_time,
+			:end_time => end_time)
+	end
+
+	def tasks_with_deadline_in_range begin_time, end_time
+		self.tasks.where(:deadline => begin_time..end_time)
+	end
 end
