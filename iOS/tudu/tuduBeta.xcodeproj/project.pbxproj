@@ -10,6 +10,7 @@
 		5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05630F189D810200BEA3AE /* RootTabBarController.m */; };
 		5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B056311189D9F1700BEA3AE /* CoreData.framework */; };
 		5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */; };
+		5B68991018C7B4780095C8FE /* RNTaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B68990F18C7B4780095C8FE /* RNTaskDetailViewController.m */; };
 		5B8439E018B298820082F088 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8439DF18B298820082F088 /* EventKit.framework */; };
 		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
 		5B9ECDCE18A2DD91001A324E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCD18A2DD91001A324E /* Task.m */; };
@@ -73,6 +74,8 @@
 		5B05630F189D810200BEA3AE /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		5B056311189D9F1700BEA3AE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tuduBeta.xcdatamodel; sourceTree = "<group>"; };
+		5B68990E18C7B4780095C8FE /* RNTaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTaskDetailViewController.h; sourceTree = "<group>"; };
+		5B68990F18C7B4780095C8FE /* RNTaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTaskDetailViewController.m; sourceTree = "<group>"; };
 		5B8439DF18B298820082F088 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		5B9ECDC918A2DD85001A324E /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		5B9ECDCA18A2DD85001A324E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 				E29C2B2C189448E500F986EC /* ScheduleViewController.m */,
 				E29C2B281894489F00F986EC /* RightNowViewController.h */,
 				E29C2B291894489F00F986EC /* RightNowViewController.m */,
+				5B68990E18C7B4780095C8FE /* RNTaskDetailViewController.h */,
+				5B68990F18C7B4780095C8FE /* RNTaskDetailViewController.m */,
 				E29C2B251894486F00F986EC /* TasksViewController.h */,
 				E29C2B261894486F00F986EC /* TasksViewController.m */,
 				E298983918905E9F0011D027 /* Images.xcassets */,
@@ -529,6 +534,7 @@
 				E239C5AB18A2C10200A51CA9 /* UIColor+HexString.m in Sources */,
 				E29C2B2D189448E500F986EC /* ScheduleViewController.m in Sources */,
 				5BF3916318BE71B300159970 /* User.m in Sources */,
+				5B68991018C7B4780095C8FE /* RNTaskDetailViewController.m in Sources */,
 				E29C2B3918944EEC00F986EC /* CreateTaskViewController.m in Sources */,
 				E239C5AD18A2C10200A51CA9 /* UIView+Border.m in Sources */,
 				E239C5B218A2C10200A51CA9 /* MBPolygonView.m in Sources */,
