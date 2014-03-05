@@ -17,7 +17,6 @@
 //= require calendarJQuery
 //= require gcal
 //= require twitter/bootstrap
-//= require turbolinks
 //= require fullcalendar
 //= require fullcalendar.min
 //= require_tree .
