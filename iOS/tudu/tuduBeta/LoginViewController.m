@@ -102,6 +102,8 @@ bool alreadyLoggedIn;
         }
     }
     
+    [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+    
     
 }
 
