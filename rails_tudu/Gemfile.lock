@@ -37,6 +37,10 @@ GEM
       sass (>= 3.2)
     arel (4.0.2)
     atomic (1.1.15)
+    autoparse (0.3.3)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
     bcrypt-ruby (3.1.5)
@@ -75,6 +79,9 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
@@ -86,6 +93,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.4)
+    multipart-post (2.0.0)
     polyglot (0.3.4)
     protected_attributes (1.0.5)
       activemodel (>= 4.0.1, < 5.0)
@@ -108,6 +116,7 @@ GEM
     rake (10.1.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    retriable (1.4.1)
     sass (3.2.14)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -116,6 +125,11 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    signet (0.5.0)
+      addressable (>= 2.2.3)
+      faraday (>= 0.9.0.rc5)
+      jwt (>= 0.1.5)
+      multi_json (>= 1.0.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -151,6 +165,7 @@ DEPENDENCIES
   bcrypt-ruby
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails
   protected_attributes
   rails (= 4.0.1)
   sass-rails (~> 4.0.0)
