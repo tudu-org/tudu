@@ -17,8 +17,16 @@
         <attribute name="task_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="task_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password_hash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sleep_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="wakeup_time" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Task" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

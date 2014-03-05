@@ -16,4 +16,6 @@
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator ;
 
 -(NSArray*)getAllTaskRecords;
+-(NSArray*)getAllUserRecords;
+
 @end
