@@ -33,10 +33,10 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
 
     // Show the Login View Controller if necessary
-    bool login = false; // Need to change this (use core data to establish need)
-    if (!login) {
-        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
-    }    
+//    bool login = false; // Need to change this (use core data to establish need)
+//    if (!login) {
+//        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+//    }    
     
     // Fetching Records and saving it in "fetchedRecordsArray" object
     self.fetchedTasksArray = [appDelegate getAllTaskRecords];
