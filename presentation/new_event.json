@@ -1,0 +1,9 @@
+{
+	"auth_token" : "add8ee8b8fa15f049f1c71b75e5d2bd2",
+	"event": {
+		"name": "Project Presentation",
+		"description": "I need to find a way to demo what I've been working on.",
+		"start_time": "2014-03-05T15:00:00.000Z",
+		"end_time": "2014-03-05T15:50:00.000Z"
+	}
+}
