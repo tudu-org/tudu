@@ -101,14 +101,16 @@ class User < ActiveRecord::Base
 			return false
 		end
 
-		m.tasks.each do |e|
+		m.schedule.each do |e|
 			if not e.scheduled
 				next
 			end
 
 			mytask = tasks_hash[e.name]
-			mytask.start_time = e.start
-			mytask.end_time = e.end
+			mytask.start_time = e.start_time
+			mytask.end_time = e.end_time
+
+			print "updating #{mytask}"
 
 			mytask.save
 		end
