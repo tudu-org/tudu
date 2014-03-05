@@ -66,7 +66,7 @@ class TasksController < ApplicationController
   def schedule
     # kludgey. rework how we schedule tasks
     respond_to do |format|
-      if @user.schedule_tasks Time.now, Time.now + 1.year
+      if @user.make_schedule Time.now, Time.now + 1.year
         format.json { render json: @user.tasks }
       else
         format.json { render json: "Failed to schedule tasks", status: 400}
@@ -87,6 +87,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:start_time, :end_time, :name, :description, :priority, :deadline)
+      params.require(:task).permit(:start_time, :end_time, :name, :description, :priority, :deadline, :duration)
     end
 end
