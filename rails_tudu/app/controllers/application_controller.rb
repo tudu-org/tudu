@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   protected
     def authorize
       if request.format == :json
+        if User.find_by(id: session[:user_id])
+          return
+        end
+
         unless params[:auth_token] && User.find_by(auth_token: params[:auth_token])
           render json: 'Bad credentials (auth_token param needed)', status: 401
         end
@@ -22,6 +26,4 @@ class ApplicationController < ActionController::Base
         redirect_to login_path, notice: "Please Log In"
       end
     end
-
-  
 end
