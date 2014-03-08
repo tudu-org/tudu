@@ -7,4 +7,7 @@ Gem::Specification.new do |s|
   s.email       = 'gerow@mgerow.com'
   s.files       = ["lib/tudusched.rb"]
   s.bindir      = 'bin'
+
+  s.add_development_dependency 'rspec'
+  s.add_runtime_dependency 'google-api-client'
 end

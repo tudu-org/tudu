@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2014-02-27 04:35:05
+  end_time: 2014-02-27 04:35:05
+  name: MyString
+  description: MyText
+  priority: 1
+  deadline: 2014-02-27 04:35:05
+
+two:
+  start_time: 2014-02-27 04:35:05
+  end_time: 2014-02-27 04:35:05
+  name: MyString
+  description: MyText
+  priority: 1
+  deadline: 2014-02-27 04:35:05
