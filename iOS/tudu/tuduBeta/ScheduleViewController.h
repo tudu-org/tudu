@@ -10,9 +10,11 @@
 #import <EventKit/EventKit.h>
 #import <EventKit/EventKit.h>
 #import "CKCalendarView.h"
+
 @interface ScheduleViewController : UIViewController<CKCalendarViewDelegate, CKCalendarViewDataSource>
 @property (strong, nonatomic) CKCalendarView *calendar;
 @property (nonatomic, assign) id<CKCalendarViewDataSource> dataSource;
+@property (nonatomic, assign) id<CKCalendarViewDelegate> delegate;
 
 
 @end

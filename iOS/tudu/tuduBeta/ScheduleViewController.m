@@ -63,29 +63,20 @@
 
 }
 
+
 -(void)addEventsToCalendar:(EKCalendar*)cal{
     //SAMPLE CALENDAR VIEW
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:22];
-    [comps setMonth:2];
+    [comps setDay:8];
+    [comps setMonth:3];
     [comps setYear:2014];
     NSCalendar *gregorian = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *date = [gregorian dateFromComponents:comps];
-
     [[self dataSource] calendarView:self.calendar eventsForDate:date];
-    
-
-    
 }
 
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Toolbar Items
 
 -(void)viewTypeButtonPushed:(id)sender
 {
@@ -101,6 +92,70 @@
         self.calendar.displayMode = 2;
     }
     
+}
+
+#pragma mark - CKCalendarViewDataSource
+
+- (NSArray *)calendarView:(CKCalendarView *)CalendarView eventsForDate:(NSDate *)date
+{
+    if ([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)]) {
+        return [[self dataSource] calendarView:CalendarView eventsForDate:date];
+    }
+    return nil;
+}
+
+#pragma mark - CKCalendarViewDelegate
+
+// Called before/after the selected date changes
+- (void)calendarView:(CKCalendarView *)calendarView willSelectDate:(NSDate *)date
+{
+    if ([self isEqual:[self delegate]]) {
+        return;
+    }
+    
+    if ([[self delegate] respondsToSelector:@selector(calendarView:willSelectDate:)]) {
+        [[self delegate] calendarView:calendarView willSelectDate:date];
+    }
+}
+
+- (void)calendarView:(CKCalendarView *)calendarView didSelectDate:(NSDate *)date
+{
+    if ([self isEqual:[self delegate]]) {
+        return;
+    }
+    
+    if ([[self delegate] respondsToSelector:@selector(calendarView:didSelectDate:)]) {
+        [[self delegate] calendarView:calendarView didSelectDate:date];
+    }
+}
+
+//  A row is selected in the events table. (Use to push a detail view or whatever.)
+- (void)calendarView:(CKCalendarView *)calendarView didSelectEvent:(CKCalendarEvent *)event
+{
+    if ([self isEqual:[self delegate]]) {
+        return;
+    }
+    
+    if ([[self delegate] respondsToSelector:@selector(calendarView:didSelectEvent:)]) {
+        [[self delegate] calendarView:calendarView didSelectEvent:event];
+    }
+}
+
+#pragma mark - Calendar View
+//
+//- (CKCalendarView *)calendarView
+//{
+//    return self.calendar;
+//}
+
+
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end
