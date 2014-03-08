@@ -5,9 +5,9 @@ Tudu::Application.routes.draw do
   # You can have the root of your site routed with "root"
   
 
-  get "users" => "users#index" #remove in prod
-  get "new_user" => "users#new"
-  post "new_user" => "users#create"
+  # get "users" => "users#index" #remove in prod
+  # get "new_user" => "users#new"
+  # post "new_user" => "users#create"
   
   controller :sessions do
      get 'login' => :new
@@ -44,6 +44,7 @@ Tudu::Application.routes.draw do
   get "task" => "home#task"
 
   resources :calendar
+  resources :events
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
