@@ -59,4 +59,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def schedule
+    @user = User.find(params[:user_id])
+
+    respond_to do |format|
+      format.html {
+
+      }
+      format.json {
+        render json: {events: @user.events, tasks: @user.tasks}
+      }
+    end
+  end
+
 end

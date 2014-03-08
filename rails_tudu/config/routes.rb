@@ -20,6 +20,7 @@ Tudu::Application.routes.draw do
   get "sessions/destroy"
 
   resources :users do
+    get "schedule"
     collection do
       get "by_email"
     end
