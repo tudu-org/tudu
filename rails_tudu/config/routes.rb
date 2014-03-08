@@ -37,6 +37,7 @@ Tudu::Application.routes.draw do
       end
     end
 
+    get "calendar" => "calendar#index"
     resources :recurring_events
   end
 
