@@ -59,25 +59,25 @@
     [[self calendarView] addSubview:self.calendar];
     
     //Add events to calendar
-    //[self addEventsToCalendar:self.defaultCalendar];
+    [self addEventsToCalendar:self.defaultCalendar];
 
 }
 
-//-(void)addEventsToCalendar:(EKCalendar*)cal{
-//    //SAMPLE CALENDAR VIEW
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    [comps setDay:22];
-//    [comps setMonth:2];
-//    [comps setYear:2014];
-//    NSCalendar *gregorian = [[NSCalendar alloc]
-//                             initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDate *date = [gregorian dateFromComponents:comps];
-//
-//    [[self dataSource] calendarView:self.calendar eventsForDate:date];
-//    
-//
-//    
-//}
+-(void)addEventsToCalendar:(EKCalendar*)cal{
+    //SAMPLE CALENDAR VIEW
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:22];
+    [comps setMonth:2];
+    [comps setYear:2014];
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *date = [gregorian dateFromComponents:comps];
+
+    [[self dataSource] calendarView:self.calendar eventsForDate:date];
+    
+
+    
+}
 
 
 

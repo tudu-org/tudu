@@ -91,7 +91,9 @@
     if ([segue.identifier isEqualToString:@"ExamineTaskSegue"]) {
         TaskDetailViewController *tdvc = segue.destinationViewController;
         // Get the Task information from the stored Tasks array based on the index of the selected row
-        Task * task = [self.fetchedTasksArray objectAtIndex:[self.tableView indexPathForSelectedRow].row+1]; // +1 for difference between array indexing
+        Task * task = [self.fetchedTasksArray objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+        NSLog(@"Current Table View: %@", self.tableView);
+        
         [tdvc setTask:task];
     }
 }
