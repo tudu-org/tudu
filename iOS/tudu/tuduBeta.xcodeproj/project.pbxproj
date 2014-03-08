@@ -14,6 +14,7 @@
 		5B8439E018B298820082F088 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8439DF18B298820082F088 /* EventKit.framework */; };
 		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
 		5B9ECDCE18A2DD91001A324E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCD18A2DD91001A324E /* Task.m */; };
+		5BDAE5FD18CBCFC6002E2AE7 /* WebBackEndManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */; };
 		5BF3916018BE686B00159970 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3915F18BE686B00159970 /* LoginViewController.m */; };
 		5BF3916318BE71B300159970 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3916218BE71B300159970 /* User.m */; };
 		E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57018A2C10200A51CA9 /* NSCalendar+Components.m */; };
@@ -81,6 +82,8 @@
 		5B9ECDCA18A2DD85001A324E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		5B9ECDCC18A2DD91001A324E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		5B9ECDCD18A2DD91001A324E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		5BDAE5FB18CBCFC6002E2AE7 /* WebBackEndManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebBackEndManager.h; path = ../WebBackEndManager.h; sourceTree = "<group>"; };
+		5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebBackEndManager.m; path = ../WebBackEndManager.m; sourceTree = "<group>"; };
 		5BF3915E18BE686B00159970 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5BF3915F18BE686B00159970 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5BF3916118BE71B300159970 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -387,7 +390,6 @@
 				E29C2B261894486F00F986EC /* TasksViewController.m */,
 				E298983918905E9F0011D027 /* Images.xcassets */,
 				E298982518905E9F0011D027 /* Supporting Files */,
-				5B05630D189D7CEC00BEA3AE /* Constants.h */,
 			);
 			path = tuduBeta;
 			sourceTree = "<group>";
@@ -395,6 +397,9 @@
 		E298982518905E9F0011D027 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5BDAE5FB18CBCFC6002E2AE7 /* WebBackEndManager.h */,
+				5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */,
+				5B05630D189D7CEC00BEA3AE /* Constants.h */,
 				E298982618905E9F0011D027 /* tuduBeta-Info.plist */,
 				E298982718905E9F0011D027 /* InfoPlist.strings */,
 				E298982A18905E9F0011D027 /* main.m */,
@@ -542,6 +547,7 @@
 				E239C5AE18A2C10200A51CA9 /* CKCalendarCell.m in Sources */,
 				E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */,
 				E239C5A418A2C10200A51CA9 /* NSCalendar+DateManipulation.m in Sources */,
+				5BDAE5FD18CBCFC6002E2AE7 /* WebBackEndManager.m in Sources */,
 				E239C5B318A2C10200A51CA9 /* CKCalendarViewController.m in Sources */,
 				E298982B18905E9F0011D027 /* main.m in Sources */,
 				5BF3916018BE686B00159970 /* LoginViewController.m in Sources */,

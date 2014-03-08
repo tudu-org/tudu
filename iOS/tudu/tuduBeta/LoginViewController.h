@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "User.h"
+#import "WebBackEndManager.h"
 
 @interface LoginViewController : UIViewController
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

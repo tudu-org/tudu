@@ -108,6 +108,8 @@ bool alreadyLoggedIn;
 }
 
 - (bool) verifyUserLogin:(NSString*)email withPassword:(NSString*)password {
+    WebBackEndManager *wbem = [[WebBackEndManager alloc] init];
+    [wbem getData]; /* TODO: Move this somewhere else! */
     return true; /* TODO: Connect this to the back-end for valid user login verification. */
 }
 
