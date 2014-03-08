@@ -1,29 +1,29 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+
+  protect_from_forgery with: :null_session
+  before_action :authorize
   helper_method :current_user
 
-  def current_user
-  	@current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
-    @current_user ||= User.find_by_authentication_token(cookies[:auth_token]) if cookies[:auth_token] && @current_user.nil?
-      @current_user
-  end
-  def update_authentication_token(user, remember_me)
-    if remember_me == 1
-      auth_token = SecureRandom.urlsafe_base64
-      user.authentication_token = auth_token
-      cookies.permanent[:auth_token] = auth_token
-    else
-      user.authentication_token = nil
-      cookies.permanent[:auth_token] = nil
+
+  protected
+    def authorize
+      if request.format == :json
+        if User.find_by(id: session[:user_id])
+          return
+        end
+
+        unless params[:auth_token] && User.find_by(auth_token: params[:auth_token])
+          render json: 'Bad credentials (auth_token param needed)', status: 401
+        end
+
+        # early return to say that we are finished
+        return
+      end
+
+      unless User.find_by(id: session[:user_id])
+        redirect_to login_path, notice: "Please Log In"
+      end
     end
-  end
-   
-  def authenticate_user
-    if current_user.nil?
-      flash[:error] = 'You must be signed in to view that page.'
-      redirect_to :root
-    end
-  end
 end

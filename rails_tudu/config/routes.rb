@@ -1,34 +1,50 @@
 Tudu::Application.routes.draw do
-  resources :recurring_events
-
-  resources :events
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
   # You can have the root of your site routed with "root"
-  root 'authentication#sign_in'
+  
 
-
-  get "sign_in" => "authentication#sign_in"
-  get "signed_out" => "authentication#signed_out"
-  post "sign_in" =>"authentication#login"
-  get "change_password" => "authentication#change_password"
-  get "forgot_password" => "authentication#forgot_password"
-  get "new_user" => "authentication#new_user"
-  post "new_user" => "authentication#register"
-  get "password_sent" => "authentication#password_sent"
+  get "users" => "users#index" #remove in prod
+  get "new_user" => "users#new"
+  post "new_user" => "users#create"
+  
+  controller :sessions do
+     get 'login' => :new
+     post 'login' => :create
+     delete 'logout' => :destroy
+  end
+  get "/" => "sessions#new"
+  
+  get "sessions/create"
+  get "sessions/destroy"
 
   resources :users do
+    get "schedule"
+    collection do
+      get "by_email"
+    end
+
     resources :events do
       collection do
         get "in_range"
       end
     end
+
+    resources :tasks do
+      collection do
+        post "schedule"
+      end
+    end
+
+    resources :recurring_events
   end
 
   get "home" => "home#index"
   get "task" => "home#task"
+
+  resources :calendar
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

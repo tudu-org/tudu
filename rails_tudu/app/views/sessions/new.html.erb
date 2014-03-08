@@ -1,0 +1,26 @@
+<% if flash[:alert]%>
+<p id="notice"><%= flash[:alert] %></p>
+<% end %>
+
+<div id="centered">
+	<div id="logo-div">
+		<%= image_tag("checkmark-512.png",:class=>"logo-scaled") %>
+	</div>
+	<div id="form-div">
+		<%= form_tag do %>
+		<fieldset class="form-signin">
+		<div>
+			<%= label_tag :email, 'Email: ' %>
+			<%= text_field_tag :email, params[:email] %>
+		</div>
+		<div>
+			<%= label_tag :password, 'Password: ' %>
+			<%= password_field_tag :password, params[:password] %>
+		</div>
+		<div>
+			<%= submit_tag "Login" %>
+		</div>
+	</fieldset>
+	<% end %>
+	</div>
+</div>

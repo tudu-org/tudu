@@ -1,0 +1,7 @@
+{
+	"user": {
+		"email": "test@example.com",
+		"password": "alongpassword",
+		"password_confirmation": "alongpassword"
+	}
+}
