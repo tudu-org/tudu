@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   helper_method :current_user
 
+  def current_user
+    user = User.find_by(id: session[:user_id])
+    if not user
+      user = User.find_by(auth_token: params[:auth_token])
+    end
+
+    user
+  end
 
   protected
     def authorize
