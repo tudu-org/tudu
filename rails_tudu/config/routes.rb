@@ -19,6 +19,26 @@ Tudu::Application.routes.draw do
   get "sessions/create"
   get "sessions/destroy"
 
+  # Repeated routes for logged in users
+  get "schedule" => "users#schedule"
+
+  resources :events do
+    collection do
+      get "in_range"
+    end
+  end
+
+  resources :tasks do
+    collection do
+      post "schedule"
+    end
+  end
+
+  get "home" => "home#index"
+  get "task" => "home#task"
+
+  # end repeated routes for logged in users
+
   resources :users do
     get "schedule"
     collection do
@@ -40,11 +60,7 @@ Tudu::Application.routes.draw do
     resources :recurring_events
   end
 
-  get "home" => "home#index"
-  get "task" => "home#task"
-
   resources :calendar
-  resources :events
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
