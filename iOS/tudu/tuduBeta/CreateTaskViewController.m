@@ -51,7 +51,6 @@
     if (self.mode == 1) {
         // EDITING TASK MODE
         self.addBtn.title = @"Done"; // No longer "Add" but "Done", as in 'Done Editing'
-        
         [self.taskNameField setText:self.task.name];
         [self.durationValueLabel setText:[NSString stringWithFormat:@"%@",self.task.duration]];
         //convert to integer
@@ -164,12 +163,7 @@
             self.task.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
         }
         self.task.name = self.taskNameField.text;
-        
-        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-        [f setNumberStyle:NSNumberFormatterDecimalStyle];
-        NSNumber * durVal = [f numberFromString:self.durationValueLabel.text];
-        self.task.duration = durVal;
-        
+                
         self.task.priority = [NSNumber numberWithInteger:self.prioritySegmentedControlBar.selectedSegmentIndex];
         
         self.task.deadline = self.deadlineDatePicker.date;
