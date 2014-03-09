@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
   	user = User.find_by(email: params[:email])
   	if user and user.authenticate(params[:password])
   		session[:user_id] = user.id
-
       if request.format == :json
         render json: user
         return
