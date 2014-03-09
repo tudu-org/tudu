@@ -51,13 +51,13 @@
     if (self.mode == 1) {
         // EDITING TASK MODE
         self.addBtn.title = @"Done"; // No longer "Add" but "Done", as in 'Done Editing'
-        
         [self.taskNameField setText:self.task.name];
         [self.durationValueLabel setText:[NSString stringWithFormat:@"%@",self.task.duration]];
         //convert to integer
         int selectedSegmentedIndex = [self.task.priority intValue];
         [self.prioritySegmentedControlBar setSelectedSegmentIndex:selectedSegmentedIndex];
         [self.deadlineDatePicker setDate:self.task.deadline];
+        self.navigationItem.title = @"Edit Task";
     }
 }
 
@@ -95,46 +95,80 @@
 }
 
 - (IBAction)addBtnPressed:(id)sender {
-    // Create a new Task object
-    Task * newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
-                           inManagedObjectContext:self.managedObjectContext];
-   
-    // Gather data from view controller's data entry fields
-    newTask.name = self.taskNameField.text;
-    NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
-    if ([self.durationSegmentedControlBar isHidden]) {
-        // We are taking the duration value from the duration slider
-        int durVal = self.durationSlider.value;
-        if (durVal == 0) {
-            newTask.duration = [NSNumber numberWithInt:(5*60)]; // 5 minutes, converted to seconds
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    if(self.mode ==0){
+        // Create a new Task object
+        Task * newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
+                                                       inManagedObjectContext:self.managedObjectContext];
+        
+        // Gather data from view controller's data entry fields
+        newTask.name = self.taskNameField.text;
+        NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
+        if ([self.durationSegmentedControlBar isHidden]) {
+            // We are taking the duration value from the duration slider
+            int durVal = self.durationSlider.value;
+            if (durVal == 0) {
+                newTask.duration = [NSNumber numberWithInt:(5*60)]; // 5 minutes, converted to seconds
+            } else {
+                newTask.duration = [NSNumber numberWithInt:(durVal * 15 * 60)]; // stores increments of 15 minutes, convert to seconds
+            }
         } else {
-            newTask.duration = [NSNumber numberWithInt:(durVal * 15 * 60)]; // stores increments of 15 minutes, convert to seconds
+            // We are taking the duration value from the duration segmented control
+            newTask.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
         }
-    } else {
-        // We are taking the duration value from the duration segmented control
-        newTask.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
+        
+        //newTask.priority = self.prioritySegmentedControlBar.selectedSegmentIndex;
+        
+        switch(self.prioritySegmentedControlBar.selectedSegmentIndex){
+            case 0:
+                newTask.priority = [[NSNumber alloc]initWithInt:0];
+                break;
+            case 1:
+                newTask.priority = [[NSNumber alloc]initWithInt:1];
+                break;
+            case 2:
+                newTask.priority = [[NSNumber alloc]initWithInt:2];
+                break;
+                
+            default:
+                newTask.priority = [[NSNumber alloc]initWithInt:-1];//SHOULD NEVER HAPPEN
+                break;
+                
+        }
+        
+        newTask.deadline = self.deadlineDatePicker.date;
+        
+        // Clear the data entry fields
+        self.taskNameField.text = @"";
+        
+        // Exit editing mode (Dismiss Keyboard)
+        [self.view endEditing:YES];
+        
     }
     
-    //newTask.priority = self.prioritySegmentedControlBar.selectedSegmentIndex;
-    
-    switch(self.prioritySegmentedControlBar.selectedSegmentIndex){
-        case 0:
-            newTask.priority = [[NSNumber alloc]initWithInt:0];
-            break;
-        case 1:
-            newTask.priority = [[NSNumber alloc]initWithInt:1];
-            break;
-        case 2:
-            newTask.priority = [[NSNumber alloc]initWithInt:2];
-            break;
-            
-        default:
-            newTask.priority = [[NSNumber alloc]initWithInt:-1];//SHOULD NEVER HAPPEN
-            break;
-            
+    if(self.mode ==1){
+        NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
+        if ([self.durationSegmentedControlBar isHidden]) {
+            // We are taking the duration value from the duration slider
+            int durVal = self.durationSlider.value;
+            if (durVal == 0) {
+                self.task.duration = [NSNumber numberWithInt:(5*60)]; // 5 minutes, converted to seconds
+            } else {
+                self.task.duration = [NSNumber numberWithInt:(durVal * 15 * 60)]; // stores increments of 15 minutes, convert to seconds
+            }
+        } else {
+            // We are taking the duration value from the duration segmented control
+            self.task.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
+        }
+        self.task.name = self.taskNameField.text;
+                
+        self.task.priority = [NSNumber numberWithInteger:self.prioritySegmentedControlBar.selectedSegmentIndex];
+        
+        self.task.deadline = self.deadlineDatePicker.date;
+        
     }
-    
-    newTask.deadline = self.deadlineDatePicker.date;
     
     // Save the task to the CoreData database
     NSError *error;
@@ -142,14 +176,10 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     
-    // Clear the data entry fields
-    self.taskNameField.text = @"";
-    
-    // Exit editing mode (Dismiss Keyboard)
-    [self.view endEditing:YES];
     
     // Perform the segue to the TasksViewController
     [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
