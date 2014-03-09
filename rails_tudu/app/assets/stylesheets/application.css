@@ -15,7 +15,6 @@
  *= require twitter/bootstrap
  *= require home
  *= require signin
- *= require splash
  *= require task
  *= require docs
  *= require_tree .
