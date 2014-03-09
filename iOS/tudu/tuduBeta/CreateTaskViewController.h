@@ -18,7 +18,6 @@
 - (NSInteger) getSecondsValueFromDurationSegmentedControlBar: (NSInteger) selectedIndex;
 
 @property (strong, nonatomic) Task *task;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addBtn;
 @property (strong, nonatomic) IBOutlet UITextField *taskNameField;
 @property (strong, nonatomic) IBOutlet UIDatePicker *deadlineDatePicker;
@@ -29,5 +28,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *durationMaxLabel;
 @property (strong, nonatomic) IBOutlet UILabel *durationMinLabel;
 @property (strong, nonatomic) IBOutlet UILabel *deadlineLabel;
+@property int mode; // if mode = 0 then it is add mode; if mode = 1 then it is edit mode
 
 @end

@@ -11,6 +11,7 @@
 
 @implementation CreateTaskViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +26,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+ 
+        
     // CoreData Setup:
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -45,16 +48,17 @@
     [self.deadlineDatePicker addTarget:self action:@selector(deadlinePickerDateChanged:) forControlEvents:UIControlEventValueChanged];
     
     
-    if (self.task != NULL) {
+    if (self.mode == 1) {
         // EDITING TASK MODE
-        [self.navigationController.navigationItem.rightBarButtonItem setTitle:@"Done"]; // No longer "Add" but "Done", as in 'Done Editing'
+        self.addBtn.title = @"Done"; // No longer "Add" but "Done", as in 'Done Editing'
         
         [self.taskNameField setText:self.task.name];
         [self.durationValueLabel setText:[NSString stringWithFormat:@"%@",self.task.duration]];
-        [self.prioritySegmentedControlBar setSelectedSegmentIndex:self.task.priority];
+        //convert to integer
+        int selectedSegmentedIndex = [self.task.priority intValue];
+        [self.prioritySegmentedControlBar setSelectedSegmentIndex:selectedSegmentedIndex];
         [self.deadlineDatePicker setDate:self.task.deadline];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +113,25 @@
     } else {
         // We are taking the duration value from the duration segmented control
         newTask.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
+    }
+    
+    //newTask.priority = self.prioritySegmentedControlBar.selectedSegmentIndex;
+    
+    switch(self.prioritySegmentedControlBar.selectedSegmentIndex){
+        case 0:
+            newTask.priority = [[NSNumber alloc]initWithInt:0];
+            break;
+        case 1:
+            newTask.priority = [[NSNumber alloc]initWithInt:1];
+            break;
+        case 2:
+            newTask.priority = [[NSNumber alloc]initWithInt:2];
+            break;
+            
+        default:
+            newTask.priority = [[NSNumber alloc]initWithInt:-1];//SHOULD NEVER HAPPEN
+            break;
+            
     }
     
     newTask.deadline = self.deadlineDatePicker.date;

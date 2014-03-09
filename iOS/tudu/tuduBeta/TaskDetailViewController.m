@@ -38,6 +38,7 @@
 {
     if ([segue.identifier isEqualToString:@"EditTaskSegue"]) {
         CreateTaskViewController *ctvc = segue.destinationViewController;
+        [ctvc setMode:1];
         [ctvc setTask:self.task]; // Pass along the task so that the Edit view controller can populate its fields with the correct data
     }
 }
