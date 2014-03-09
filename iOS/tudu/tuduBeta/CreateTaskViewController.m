@@ -97,6 +97,8 @@
 
 - (IBAction)addBtnPressed:(id)sender {
     
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
     if(self.mode ==0){
         // Create a new Task object
         Task * newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
@@ -139,23 +141,28 @@
         
         newTask.deadline = self.deadlineDatePicker.date;
         
-        // Save the task to the CoreData database
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
-        
         // Clear the data entry fields
         self.taskNameField.text = @"";
         
         // Exit editing mode (Dismiss Keyboard)
         [self.view endEditing:YES];
         
-        // Perform the segue to the TasksViewController
-        [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
     }
     
     if(self.mode ==1){
+        NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
+        if ([self.durationSegmentedControlBar isHidden]) {
+            // We are taking the duration value from the duration slider
+            int durVal = self.durationSlider.value;
+            if (durVal == 0) {
+                self.task.duration = [NSNumber numberWithInt:(5*60)]; // 5 minutes, converted to seconds
+            } else {
+                self.task.duration = [NSNumber numberWithInt:(durVal * 15 * 60)]; // stores increments of 15 minutes, convert to seconds
+            }
+        } else {
+            // We are taking the duration value from the duration segmented control
+            self.task.duration = [NSNumber numberWithInteger:[self getSecondsValueFromDurationSegmentedControlBar:durationIndex]];
+        }
         self.task.name = self.taskNameField.text;
         
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
@@ -167,9 +174,18 @@
         
         self.task.deadline = self.deadlineDatePicker.date;
         
-        // Perform the segue to the TasksViewController
-        [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
     }
+    
+    // Save the task to the CoreData database
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    
+    // Perform the segue to the TasksViewController
+    [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
