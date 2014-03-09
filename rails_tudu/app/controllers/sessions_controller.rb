@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-  	user = User.find_by(email: params[:email])
-  	if user and user.authenticate(params[:password])
-  		session[:user_id] = user.id
+  	@user = User.find_by(email: params[:email])
+  	if @user and @user.authenticate(params[:password])
+  		session[:user_id] = @user.id
 
       if request.format == :json
-        render json: user
+        render :template => "users/show"
         return
       end
   		redirect_to home_path
