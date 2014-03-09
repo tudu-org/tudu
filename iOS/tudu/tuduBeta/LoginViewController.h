@@ -10,8 +10,12 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "WebBackEndManager.h"
+#import "BackEndManager.h"
+#import "LoginCommunicator.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <BackEndManagerDelegate> {
+    BackEndManager *manager;
+}
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) IBOutlet UIButton *signUpBtn;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;

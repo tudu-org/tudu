@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+#import "HUD.h"
 
 @interface WebBackEndManager : NSObject <NSURLConnectionDelegate>
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSMutableData* _receivedData;
 -(void) userLogin:(NSString *)userEmail withPass:(NSString*)password;
 

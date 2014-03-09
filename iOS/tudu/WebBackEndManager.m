@@ -8,12 +8,30 @@
 
 #import "WebBackEndManager.h"
 
+#define CREATE_USER 1
 #define USER_LOGIN 2
+#define GET_EVENTS 3
+#define CREATE_EVENT 4
+#define MODIFY_EVENT 5
+#define DELETE_EVENT 6
+#define CREATE_TASK 7
+#define GET_TASKS 8
+#define UPDATE_TASK 9
+#define DELETE_TASK 10
+#define SCHEDULE_TASKS 11
+#define GET_SCHEDULE 12
 
 @implementation WebBackEndManager
-@synthesize _receivedData;
+@synthesize _receivedData, managedObjectContext;
+
 int operationID = 0;
 -(void) userLogin:(NSString *)userEmail withPass:(NSString*)password {
+    // CoreData Setup:
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.managedObjectContext;
+
+    // Show the spinning activity indicator:
+    [HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
     operationID = USER_LOGIN;
     NSString *queryString = @"http://localhost:3000/login.json";
     NSMutableURLRequest *theRequest=[NSMutableURLRequest
@@ -81,6 +99,8 @@ int operationID = 0;
      * and parsing the returned data accordingly. */
     
     if (operationID == USER_LOGIN) {
+        [HUD hideUIBlockingIndicator];
+
         // Now create a NSDictionary from the JSON data
         NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:0 error:nil];
 
