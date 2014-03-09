@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *weekView;
 @property (weak, nonatomic) IBOutlet UIButton *monthView;
 @property(strong, nonatomic) EKCalendar *defaultCalendar;
+@property (nonatomic, strong) NSMutableDictionary *data;
+
 
 @end
 
@@ -58,8 +60,13 @@
     // 4. Present the calendar
     [[self calendarView] addSubview:self.calendar];
     
+    
+    
     //Add events to calendar
     [self addEventsToCalendar:self.defaultCalendar];
+    
+    [[self calendar] setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] animated:NO];
+    [[self calendar] setDisplayMode:CKCalendarViewModeMonth animated:NO];
 
 }
 
@@ -73,7 +80,16 @@
     NSCalendar *gregorian = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *date = [gregorian dateFromComponents:comps];
+    
     [[self dataSource] calendarView:self.calendar eventsForDate:date];
+}
+
+
+#pragma mark - CKCalendarViewDataSource
+
+- (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date
+{
+    return [self data][date];
 }
 
 #pragma mark - Toolbar Items
@@ -94,15 +110,15 @@
     
 }
 
-#pragma mark - CKCalendarViewDataSource
-
-- (NSArray *)calendarView:(CKCalendarView *)CalendarView eventsForDate:(NSDate *)date
-{
-    if ([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)]) {
-        return [[self dataSource] calendarView:CalendarView eventsForDate:date];
-    }
-    return nil;
-}
+//#pragma mark - CKCalendarViewDataSource
+//
+//- (NSArray *)calendarView:(CKCalendarView *)CalendarView eventsForDate:(NSDate *)date
+//{
+//    if ([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)]) {
+//        return [[self dataSource] calendarView:CalendarView eventsForDate:date];
+//    }
+//    return nil;
+//}
 
 #pragma mark - CKCalendarViewDelegate
 

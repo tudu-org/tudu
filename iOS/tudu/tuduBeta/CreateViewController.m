@@ -7,6 +7,7 @@
 //
 
 #import "CreateViewController.h"
+#import "CreateTaskViewController.h"
 
 @interface CreateViewController ()
 
@@ -33,6 +34,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"createTaskSegue"]) {
+        CreateTaskViewController *cvc = [[CreateTaskViewController alloc]init];
+        cvc.mode = 0;
+        cvc = segue.destinationViewController;
+    }
+    
 }
 
 @end
