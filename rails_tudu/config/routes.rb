@@ -5,9 +5,9 @@ Tudu::Application.routes.draw do
   # You can have the root of your site routed with "root"
   
 
-  get "users" => "users#index" #remove in prod
-  get "new_user" => "users#new"
-  post "new_user" => "users#create"
+  # get "users" => "users#index" #remove in prod
+  # get "new_user" => "users#new"
+  # post "new_user" => "users#create"
   
   controller :sessions do
      get 'login' => :new
@@ -18,6 +18,26 @@ Tudu::Application.routes.draw do
   
   get "sessions/create"
   get "sessions/destroy"
+
+  # Repeated routes for logged in users
+  get "schedule" => "users#schedule"
+
+  resources :events do
+    collection do
+      get "in_range"
+    end
+  end
+
+  resources :tasks do
+    collection do
+      post "schedule"
+    end
+  end
+
+  get "home" => "home#index"
+  get "task" => "home#task"
+
+  # end repeated routes for logged in users
 
   resources :users do
     get "schedule"
@@ -37,11 +57,9 @@ Tudu::Application.routes.draw do
       end
     end
 
+    get "calendar" => "calendar#index"
     resources :recurring_events
   end
-
-  get "home" => "home#index"
-  get "task" => "home#task"
 
   resources :calendar
 

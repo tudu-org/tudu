@@ -11,8 +11,7 @@
  *= require_self
  *= require fullcalendar
  *= require fullcalendar.print
- @import "twitter/bootstrap"
- *= require twitter/bootstrap
+ *= require bootstrap
  *= require home
  *= require signin
  *= require task

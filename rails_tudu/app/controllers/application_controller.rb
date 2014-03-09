@@ -6,23 +6,26 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   helper_method :current_user
 
+  def current_user
+    user = User.find_by(id: session[:user_id])
+    if not user
+      user = User.find_by(auth_token: params[:auth_token])
+    end
+
+    user
+  end
 
   protected
     def authorize
-      if request.format == :json
-        if User.find_by(id: session[:user_id])
+      unless User.find_by(id: session[:user_id])
+        unless params[:auth_token] && User.find_by(auth_token: params[:auth_token])
+          if request.format == "json"
+            render json: 'Bad credentials (auth_token needed)', status: 401
+            return
+          end
+        else
           return
         end
-
-        unless params[:auth_token] && User.find_by(auth_token: params[:auth_token])
-          render json: 'Bad credentials (auth_token param needed)', status: 401
-        end
-
-        # early return to say that we are finished
-        return
-      end
-
-      unless User.find_by(id: session[:user_id])
         redirect_to login_path, notice: "Please Log In"
       end
     end

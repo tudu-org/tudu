@@ -7,8 +7,8 @@ gem 'protected_attributes' #remove this after 351 and do it right
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-gem "anjlab-bootstrap-rails", :require=> 'bootstrap-rails'
+gem 'sass-rails', '>= 3.2'
+gem 'bootstrap-sass', '~> 3.1.1'
 				
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -17,10 +17,15 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'coffee-rails', '~> 4.0.0' #Alex doesn't know how to use CoffeeScript
 gem 'bcrypt-ruby', :require=>'bcrypt'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+
+# Use JsRoutes so named routes in Rails are available in JS
+gem 'js-routes'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
+gem 'fullcalendar-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

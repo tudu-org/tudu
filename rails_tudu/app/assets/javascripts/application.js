@@ -12,12 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.min
-//= require jquery-ui.custom.min
-//= require calendarJQuery
+//= require jquery.ui.all
+//= require bootstrap
+
 //= require gcal
-//= require twitter/bootstrap
-//= require turbolinks
 //= require fullcalendar
-//= require fullcalendar.min
+
 //= require_tree .
