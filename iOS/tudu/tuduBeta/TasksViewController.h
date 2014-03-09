@@ -11,8 +11,12 @@
 #import "Task.h"
 #import "AppDelegate.h"
 #import "TaskDetailViewController.h"
+#import "BackEndManager.h"
+#import "User.h"
 
-@interface TasksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TasksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TasksManagerDelegate> {
+    BackEndManager *manager;
+}
 
 @property (nonatomic,strong)NSArray* fetchedTasksArray;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

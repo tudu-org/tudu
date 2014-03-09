@@ -1,5 +1,5 @@
 //
-//  LoginCommunicatorDelegate.h
+//  BackEndCommunicatorDelegate.h
 //  tuduBeta
 //
 //  Created by Ryan Cleary on 3/8/14.
@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol LoginCommunicatorDelegate <NSObject>
+@protocol BackEndCommunicatorDelegate <NSObject>
 - (void)successfulUserLogin:(NSData *)objectNotation;
 - (void)fetchingLoginFailedWithError:(NSError *)error;
+
+- (void)successfullyFetchedUserTasks:(NSData *)objectNotation;
+- (void)fetchingUserTasksFailedWithError:(NSError *)error;
 @end

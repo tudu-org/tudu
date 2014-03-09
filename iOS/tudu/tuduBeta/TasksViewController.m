@@ -15,7 +15,7 @@
 
 @implementation TasksViewController
 @synthesize fetchedTasksArray;
-
+BOOL in_server_mode = TRUE;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,52 +32,68 @@
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
 
+    
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.tmDelegate = self;
+    
+    
     // Show the Login View Controller if necessary
 //    bool login = false; // Need to change this (use core data to establish need)
 //    if (!login) {
 //        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
-//    }    
+//    }
     
-    // Fetching Records and saving it in "fetchedRecordsArray" object
-    self.fetchedTasksArray = [appDelegate getAllTaskRecords];
-    [self.tableView reloadData];
+    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
+    User *user = [fetchedUserRecordsArray objectAtIndex:0]; /* TODO: Fix this, but use it for now. */
     
-    
-    // Test this code for events:
-    
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        // handle access here
-    }];
-
-    // Get the appropriate calendar
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    
-    // Create the start date components
-    NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
-    oneDayAgoComponents.day = -1;
-    NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
-                                                  toDate:[NSDate date]
-                                                 options:0];
-    
-    // Create the end date components
-    NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
-    oneYearFromNowComponents.year = 1;
-    NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
-                                                       toDate:[NSDate date]
-                                                      options:0];
-    
-    // Create the predicate from the event store's instance method
-    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:oneDayAgo
-                                                            endDate:oneYearFromNow
-                                                          calendars:nil];
-    
-    // Fetch all events that match the predicate
-    NSArray *events = [eventStore eventsMatchingPredicate:predicate];
-    NSLog(@"CALENDAR = %@",calendar);
-    for (EKEvent *event in events) {
-        NSLog(@"---> %@ <---", event.title);
+    if (in_server_mode) {
+        [manager getUserTasks:user.user_id withAuth:user.auth_token];
+        
+    } else { // LOCAL PERSISTENCE STORAGE MODE
+        
+        // Fetching Records and saving it in "fetchedRecordsArray" object
+        self.fetchedTasksArray = [appDelegate getAllTaskRecords];
+        [self.tableView reloadData];
     }
+    
+//    // Test this code for events:
+//    
+//    EKEventStore *eventStore = [[EKEventStore alloc] init];
+//    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+//        // handle access here
+//    }];
+//
+//    // Get the appropriate calendar
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    
+//    // Create the start date components
+//    NSDateComponents *oneDayAgoComponents = [[NSDateComponents alloc] init];
+//    oneDayAgoComponents.day = -1;
+//    NSDate *oneDayAgo = [calendar dateByAddingComponents:oneDayAgoComponents
+//                                                  toDate:[NSDate date]
+//                                                 options:0];
+//    
+//    // Create the end date components
+//    NSDateComponents *oneYearFromNowComponents = [[NSDateComponents alloc] init];
+//    oneYearFromNowComponents.year = 1;
+//    NSDate *oneYearFromNow = [calendar dateByAddingComponents:oneYearFromNowComponents
+//                                                       toDate:[NSDate date]
+//                                                      options:0];
+//    
+//    // Create the predicate from the event store's instance method
+//    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:oneDayAgo
+//                                                            endDate:oneYearFromNow
+//                                                          calendars:nil];
+//    
+//    // Fetch all events that match the predicate
+//    NSArray *events = [eventStore eventsMatchingPredicate:predicate];
+//    NSLog(@"CALENDAR = %@",calendar);
+//    for (EKEvent *event in events) {
+//        NSLog(@"---> %@ <---", event.title);
+//    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -122,7 +138,7 @@
 {
     static NSString *CellIdentifier = @"standardIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    Task * task = [self.fetchedTasksArray objectAtIndex:indexPath.row];
+    Task * task = [[self.fetchedTasksArray objectAtIndex:indexPath.row] convertToTaskObject];
     cell.textLabel.text = [NSString stringWithString:task.name];
     return cell;
 }
@@ -154,5 +170,13 @@
         [tableView endUpdates];
     }
 }
+
+
+#pragma mark BackEndManagerDelegate methods
+- (void) didReceiveTasksArray:(NSArray *)tasksArray {
+    self.fetchedTasksArray = tasksArray;
+    [self.tableView reloadData];
+}
+
 
 @end

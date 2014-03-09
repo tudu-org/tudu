@@ -19,10 +19,12 @@
 		5BDAE60618CBF15B002E2AE7 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDAE60018CBF15B002E2AE7 /* btnCheck@2x.png */; };
 		5BDAE60718CBF15B002E2AE7 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60218CBF15B002E2AE7 /* HUD.m */; };
 		5BDAE60818CBF15B002E2AE7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60418CBF15B002E2AE7 /* MBProgressHUD.m */; };
-		5BDAE60D18CC0893002E2AE7 /* LoginCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60C18CC0893002E2AE7 /* LoginCommunicator.m */; };
+		5BDAE60D18CC0893002E2AE7 /* BackEndCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60C18CC0893002E2AE7 /* BackEndCommunicator.m */; };
 		5BDAE61018CC0C27002E2AE7 /* UserBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60F18CC0C27002E2AE7 /* UserBuilder.m */; };
 		5BDAE61418CC10E8002E2AE7 /* BackEndManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE61318CC10E8002E2AE7 /* BackEndManager.m */; };
 		5BDAE61718CC1D83002E2AE7 /* UserJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE61618CC1D83002E2AE7 /* UserJSON.m */; };
+		5BDAE61A18CC3463002E2AE7 /* TasksBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE61918CC3463002E2AE7 /* TasksBuilder.m */; };
+		5BDAE61D18CC348F002E2AE7 /* TaskJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE61C18CC348F002E2AE7 /* TaskJSON.m */; };
 		5BF3916018BE686B00159970 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3915F18BE686B00159970 /* LoginViewController.m */; };
 		5BF3916318BE71B300159970 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3916218BE71B300159970 /* User.m */; };
 		E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57018A2C10200A51CA9 /* NSCalendar+Components.m */; };
@@ -98,9 +100,9 @@
 		5BDAE60218CBF15B002E2AE7 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
 		5BDAE60318CBF15B002E2AE7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5BDAE60418CBF15B002E2AE7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		5BDAE60A18CC0859002E2AE7 /* LoginCommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCommunicatorDelegate.h; sourceTree = "<group>"; };
-		5BDAE60B18CC0893002E2AE7 /* LoginCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCommunicator.h; sourceTree = "<group>"; };
-		5BDAE60C18CC0893002E2AE7 /* LoginCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCommunicator.m; sourceTree = "<group>"; };
+		5BDAE60A18CC0859002E2AE7 /* BackEndCommunicatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndCommunicatorDelegate.h; sourceTree = "<group>"; };
+		5BDAE60B18CC0893002E2AE7 /* BackEndCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndCommunicator.h; sourceTree = "<group>"; };
+		5BDAE60C18CC0893002E2AE7 /* BackEndCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackEndCommunicator.m; sourceTree = "<group>"; };
 		5BDAE60E18CC0C27002E2AE7 /* UserBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBuilder.h; sourceTree = "<group>"; };
 		5BDAE60F18CC0C27002E2AE7 /* UserBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBuilder.m; sourceTree = "<group>"; };
 		5BDAE61118CC108F002E2AE7 /* BackEndManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackEndManagerDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +110,11 @@
 		5BDAE61318CC10E8002E2AE7 /* BackEndManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackEndManager.m; sourceTree = "<group>"; };
 		5BDAE61518CC1D83002E2AE7 /* UserJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserJSON.h; sourceTree = "<group>"; };
 		5BDAE61618CC1D83002E2AE7 /* UserJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserJSON.m; sourceTree = "<group>"; };
+		5BDAE61818CC3462002E2AE7 /* TasksBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksBuilder.h; sourceTree = "<group>"; };
+		5BDAE61918CC3463002E2AE7 /* TasksBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksBuilder.m; sourceTree = "<group>"; };
+		5BDAE61B18CC348F002E2AE7 /* TaskJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskJSON.h; sourceTree = "<group>"; };
+		5BDAE61C18CC348F002E2AE7 /* TaskJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskJSON.m; sourceTree = "<group>"; };
+		5BDAE61E18CC425F002E2AE7 /* TasksManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksManagerDelegate.h; sourceTree = "<group>"; };
 		5BF3915E18BE686B00159970 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5BF3915F18BE686B00159970 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5BF3916118BE71B300159970 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -235,12 +242,17 @@
 		5BDAE60918CC055C002E2AE7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				5BDAE60A18CC0859002E2AE7 /* LoginCommunicatorDelegate.h */,
-				5BDAE60B18CC0893002E2AE7 /* LoginCommunicator.h */,
-				5BDAE60C18CC0893002E2AE7 /* LoginCommunicator.m */,
+				5BDAE60A18CC0859002E2AE7 /* BackEndCommunicatorDelegate.h */,
+				5BDAE60B18CC0893002E2AE7 /* BackEndCommunicator.h */,
+				5BDAE60C18CC0893002E2AE7 /* BackEndCommunicator.m */,
 				5BDAE61118CC108F002E2AE7 /* BackEndManagerDelegate.h */,
 				5BDAE61218CC10E8002E2AE7 /* BackEndManager.h */,
 				5BDAE61318CC10E8002E2AE7 /* BackEndManager.m */,
+				5BDAE61E18CC425F002E2AE7 /* TasksManagerDelegate.h */,
+				5BDAE61818CC3462002E2AE7 /* TasksBuilder.h */,
+				5BDAE61918CC3463002E2AE7 /* TasksBuilder.m */,
+				5BDAE61B18CC348F002E2AE7 /* TaskJSON.h */,
+				5BDAE61C18CC348F002E2AE7 /* TaskJSON.m */,
 				5BDAE60E18CC0C27002E2AE7 /* UserBuilder.h */,
 				5BDAE60F18CC0C27002E2AE7 /* UserBuilder.m */,
 				5BDAE61518CC1D83002E2AE7 /* UserJSON.h */,
@@ -581,8 +593,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BDAE60D18CC0893002E2AE7 /* LoginCommunicator.m in Sources */,
+				5BDAE60D18CC0893002E2AE7 /* BackEndCommunicator.m in Sources */,
 				E239C5B018A2C10200A51CA9 /* CKCalendarHeaderView.m in Sources */,
+				5BDAE61D18CC348F002E2AE7 /* TaskJSON.m in Sources */,
 				E239C5AC18A2C10200A51CA9 /* UIView+AnimatedFrame.m in Sources */,
 				E239C5B118A2C10200A51CA9 /* CKCalendarView.m in Sources */,
 				E29C2B2A1894489F00F986EC /* RightNowViewController.m in Sources */,
@@ -611,6 +624,7 @@
 				E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */,
 				5BDAE61718CC1D83002E2AE7 /* UserJSON.m in Sources */,
 				E239C5A418A2C10200A51CA9 /* NSCalendar+DateManipulation.m in Sources */,
+				5BDAE61A18CC3463002E2AE7 /* TasksBuilder.m in Sources */,
 				5BDAE5FD18CBCFC6002E2AE7 /* WebBackEndManager.m in Sources */,
 				E239C5B318A2C10200A51CA9 /* CKCalendarViewController.m in Sources */,
 				E298982B18905E9F0011D027 /* main.m in Sources */,

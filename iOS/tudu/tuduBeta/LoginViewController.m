@@ -67,9 +67,9 @@ bool alreadyLoggedIn;
 
     // Set up the BackEndManager
     manager = [[BackEndManager alloc] init];
-    manager.communicator = [[LoginCommunicator alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
     manager.communicator.delegate = manager;
-    manager.delegate = self;
+    manager.bemDelegate = self;
     
     // Visuals:
     [self.activityIndicator setHidden:TRUE];
@@ -148,7 +148,6 @@ bool alreadyLoggedIn;
         }
     }
     */
-    
     [self performSegueWithIdentifier:@"LoginSegue" sender:self];
 
     
@@ -167,7 +166,8 @@ bool alreadyLoggedIn;
 {
     if ([segue.identifier isEqualToString:@"LoginSegue"]) {
         [HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
-        [manager userLogin:self.emailField.text withPass:self.passwordField.text];
+        //[manager userLogin:self.emailField.text withPass:self.passwordField.text]; // temporary for testing
+        [manager getUserTasks:[NSNumber numberWithInt:2] withAuth:@"53657a57b67a163e44fddc721842dda0"];
     }
 }
 

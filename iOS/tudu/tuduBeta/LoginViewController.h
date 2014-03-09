@@ -11,7 +11,7 @@
 #import "User.h"
 #import "WebBackEndManager.h"
 #import "BackEndManager.h"
-#import "LoginCommunicator.h"
+#import "BackEndCommunicator.h"
 
 @interface LoginViewController : UIViewController <BackEndManagerDelegate> {
     BackEndManager *manager;

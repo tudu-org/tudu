@@ -12,4 +12,5 @@
 @protocol BackEndManagerDelegate <NSObject>
 - (void)didReceiveLoggedInUser:(UserJSON *)userJSON;
 - (void)userLoginFailedWithError:(NSError *)error;
+
 @end

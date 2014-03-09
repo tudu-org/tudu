@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "BackEndManagerDelegate.h"
-#import "LoginCommunicatorDelegate.h"
-#import "LoginCommunicator.h"
+#import "TasksManagerDelegate.h"
+#import "BackEndCommunicatorDelegate.h"
+#import "BackEndCommunicator.h"
 #import "UserBuilder.h"
+#import "TasksBuilder.h"
 
-@interface BackEndManager : NSObject<LoginCommunicatorDelegate>
-@property (strong, nonatomic) LoginCommunicator *communicator;
-@property (weak, nonatomic) id<BackEndManagerDelegate> delegate;
+@interface BackEndManager : NSObject<BackEndCommunicatorDelegate>
+@property (strong, nonatomic) BackEndCommunicator *communicator;
+@property (weak, nonatomic) id<BackEndManagerDelegate> bemDelegate;
+@property (weak, nonatomic) id<TasksManagerDelegate> tmDelegate;
 
 - (void)userLogin:(NSString*)email withPass:(NSString*)password;
+- (void)getUserTasks:(NSNumber*)user_id withAuth:(NSString *)auth_token;
 
 @end
