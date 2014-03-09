@@ -15,6 +15,10 @@
 		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
 		5B9ECDCE18A2DD91001A324E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCD18A2DD91001A324E /* Task.m */; };
 		5BDAE5FD18CBCFC6002E2AE7 /* WebBackEndManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */; };
+		5BDAE60518CBF15B002E2AE7 /* btnCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDAE5FF18CBF15B002E2AE7 /* btnCheck.png */; };
+		5BDAE60618CBF15B002E2AE7 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDAE60018CBF15B002E2AE7 /* btnCheck@2x.png */; };
+		5BDAE60718CBF15B002E2AE7 /* HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60218CBF15B002E2AE7 /* HUD.m */; };
+		5BDAE60818CBF15B002E2AE7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE60418CBF15B002E2AE7 /* MBProgressHUD.m */; };
 		5BF3916018BE686B00159970 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3915F18BE686B00159970 /* LoginViewController.m */; };
 		5BF3916318BE71B300159970 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF3916218BE71B300159970 /* User.m */; };
 		E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */ = {isa = PBXBuildFile; fileRef = E239C57018A2C10200A51CA9 /* NSCalendar+Components.m */; };
@@ -84,6 +88,12 @@
 		5B9ECDCD18A2DD91001A324E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		5BDAE5FB18CBCFC6002E2AE7 /* WebBackEndManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebBackEndManager.h; path = ../WebBackEndManager.h; sourceTree = "<group>"; };
 		5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebBackEndManager.m; path = ../WebBackEndManager.m; sourceTree = "<group>"; };
+		5BDAE5FF18CBF15B002E2AE7 /* btnCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCheck.png; sourceTree = "<group>"; };
+		5BDAE60018CBF15B002E2AE7 /* btnCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCheck@2x.png"; sourceTree = "<group>"; };
+		5BDAE60118CBF15B002E2AE7 /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
+		5BDAE60218CBF15B002E2AE7 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
+		5BDAE60318CBF15B002E2AE7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		5BDAE60418CBF15B002E2AE7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5BF3915E18BE686B00159970 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5BF3915F18BE686B00159970 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		5BF3916118BE71B300159970 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -195,6 +205,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5BDAE5FE18CBF15A002E2AE7 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				5BDAE5FF18CBF15B002E2AE7 /* btnCheck.png */,
+				5BDAE60018CBF15B002E2AE7 /* btnCheck@2x.png */,
+				5BDAE60118CBF15B002E2AE7 /* HUD.h */,
+				5BDAE60218CBF15B002E2AE7 /* HUD.m */,
+				5BDAE60318CBF15B002E2AE7 /* MBProgressHUD.h */,
+				5BDAE60418CBF15B002E2AE7 /* MBProgressHUD.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 		E239C56A18A2C10200A51CA9 /* CalendarKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +379,7 @@
 		E298982418905E9F0011D027 /* tuduBeta */ = {
 			isa = PBXGroup;
 			children = (
+				E298983018905E9F0011D027 /* Main.storyboard */,
 				5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */,
 				5B9ECDC918A2DD85001A324E /* Event.h */,
 				5B9ECDCA18A2DD85001A324E /* Event.m */,
@@ -365,7 +389,6 @@
 				5B9ECDCD18A2DD91001A324E /* Task.m */,
 				E298982D18905E9F0011D027 /* AppDelegate.h */,
 				E298982E18905E9F0011D027 /* AppDelegate.m */,
-				E298983018905E9F0011D027 /* Main.storyboard */,
 				5BF3915E18BE686B00159970 /* LoginViewController.h */,
 				5BF3915F18BE686B00159970 /* LoginViewController.m */,
 				5B05630E189D810200BEA3AE /* RootTabBarController.h */,
@@ -397,6 +420,7 @@
 		E298982518905E9F0011D027 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5BDAE5FE18CBF15A002E2AE7 /* HUD */,
 				5BDAE5FB18CBCFC6002E2AE7 /* WebBackEndManager.h */,
 				5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */,
 				5B05630D189D7CEC00BEA3AE /* Constants.h */,
@@ -502,7 +526,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BDAE60618CBF15B002E2AE7 /* btnCheck@2x.png in Resources */,
 				E298983A18905E9F0011D027 /* Images.xcassets in Resources */,
+				5BDAE60518CBF15B002E2AE7 /* btnCheck.png in Resources */,
 				E298982918905E9F0011D027 /* InfoPlist.strings in Resources */,
 				E298983218905E9F0011D027 /* Main.storyboard in Resources */,
 			);
@@ -536,6 +562,7 @@
 				E298982F18905E9F0011D027 /* AppDelegate.m in Sources */,
 				5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */,
 				E239C5A518A2C10200A51CA9 /* NSCalendar+Juncture.m in Sources */,
+				5BDAE60718CBF15B002E2AE7 /* HUD.m in Sources */,
 				E239C5AB18A2C10200A51CA9 /* UIColor+HexString.m in Sources */,
 				E29C2B2D189448E500F986EC /* ScheduleViewController.m in Sources */,
 				5BF3916318BE71B300159970 /* User.m in Sources */,
@@ -544,6 +571,7 @@
 				E239C5AD18A2C10200A51CA9 /* UIView+Border.m in Sources */,
 				E239C5B218A2C10200A51CA9 /* MBPolygonView.m in Sources */,
 				E29C2B3318944BDF00F986EC /* CreateViewController.m in Sources */,
+				5BDAE60818CBF15B002E2AE7 /* MBProgressHUD.m in Sources */,
 				E239C5AE18A2C10200A51CA9 /* CKCalendarCell.m in Sources */,
 				E29C2B3018944B8D00F986EC /* SettingsViewController.m in Sources */,
 				E239C5A418A2C10200A51CA9 /* NSCalendar+DateManipulation.m in Sources */,

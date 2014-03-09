@@ -13,7 +13,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize managedObjectContext;
+@synthesize managedObjectContext, activityIndicator;
 bool alreadyLoggedIn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,7 +29,10 @@ bool alreadyLoggedIn;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
+    // Visuals:
+    [self.activityIndicator setHidden:TRUE];
+
     // CoreData Setup:
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -56,13 +59,14 @@ bool alreadyLoggedIn;
         [message show];
     }
     
-    if (alreadyLoggedIn == true) {
+    /* TODO: Get this figured out and cleared up. */
+    /*if (alreadyLoggedIn == true) {
         if ([self verifyUserLogin:user.email withPassword:user.password_hash]) {
             //[self dismissViewControllerAnimated:YES completion:nil];
         } else {
             [self alertInvalidLogin];
         }
-    }
+    }*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,8 +113,10 @@ bool alreadyLoggedIn;
 
 - (bool) verifyUserLogin:(NSString*)email withPassword:(NSString*)password {
     WebBackEndManager *wbem = [[WebBackEndManager alloc] init];
-    [wbem getData]; /* TODO: Move this somewhere else! */
-    return true; /* TODO: Connect this to the back-end for valid user login verification. */
+
+    /* For now, we are only logging in using username=user1@gmail.com, pw=password. */
+    [wbem userLogin:email withPass:password];
+    return true; /* TODO: Figure out how to check httpResponse error codes to see if it was a valid login. */
 }
 
 -(void) alertInvalidLogin {
