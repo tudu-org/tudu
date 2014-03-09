@@ -8,9 +8,13 @@
 
 #import "WebBackEndManager.h"
 
+#define USER_LOGIN 2
+
 @implementation WebBackEndManager
 @synthesize _receivedData;
--(void) getData {
+int operationID = 0;
+-(void) userLogin:(NSString *)userEmail withPass:(NSString*)password {
+    operationID = USER_LOGIN;
     NSString *queryString = @"http://localhost:3000/login.json";
     NSMutableURLRequest *theRequest=[NSMutableURLRequest
                                      requestWithURL:[NSURL URLWithString:
@@ -18,8 +22,8 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     NSDictionary* jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"user1@gmail.com", @"email",
-                                    @"password1", @"password",
+                                    userEmail, @"email",
+                                    password, @"password",
                                     nil];
     NSError *error;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
@@ -70,9 +74,23 @@
     
     NSString *newLineStr = @"\n";
     responseText = [responseText stringByReplacingOccurrencesOfString:@"<br />" withString:newLineStr];
+
     
-    //[self.lblData setText:responseText];
+    /* This is very important- we have multiple methods in this class using the same NSUrlConnectionDelegate.
+     * Each method sets the 'operationID' of the class object, so here we are checking which method is being called
+     * and parsing the returned data accordingly. */
+    
+    if (operationID == USER_LOGIN) {
+        // Now create a NSDictionary from the JSON data
+        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:0 error:nil];
+
+        NSLog(@"User's id = %@",[jsonDictionary objectForKey:@"id"]);
+        NSLog(@"User's auth_token = %@",[jsonDictionary objectForKey:@"auth_token"]);
+    }
 }
 
 
 @end
+
+
+

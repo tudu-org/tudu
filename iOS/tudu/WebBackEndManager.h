@@ -10,6 +10,6 @@
 
 @interface WebBackEndManager : NSObject <NSURLConnectionDelegate>
 @property (strong,nonatomic) NSMutableData* _receivedData;
--(void) getData;
+-(void) userLogin:(NSString *)userEmail withPass:(NSString*)password;
 
 @end
