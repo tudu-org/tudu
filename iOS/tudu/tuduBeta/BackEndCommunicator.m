@@ -10,7 +10,7 @@
 #import "BackEndCommunicatorDelegate.h"
 #import "HUD.h"
 
-#define SERVER_STRING @"http://192.168.70.104:3000"
+#define SERVER_STRING @"http://afternoon-cove-9264.herokuapp.com"
 #define USER_LOGIN_PATH @"/login.json"
 
 @implementation BackEndCommunicator

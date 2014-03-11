@@ -17,5 +17,6 @@
 
 -(NSArray*)getAllTaskRecords;
 -(NSArray*)getAllUserRecords;
+-(void)deleteAllUserRecords;
 
 @end
