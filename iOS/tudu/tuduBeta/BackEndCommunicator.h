@@ -14,6 +14,9 @@
 @property (weak, nonatomic) id<BackEndCommunicatorDelegate> delegate;
 
 - (void) fetchUserLogin:(NSString *)userEmail withPass:(NSString*)password;
+- (void) synchFetchUserLogin:(NSString *)userEmail withPass:(NSString*)password;
+
 - (void) fetchUserTasks:(NSNumber*)user_id withAuth:(NSString*)auth_token;
+- (void)synchFetchUserTasks:(NSNumber*)user_id withAuth:(NSString*)auth_token;
 
 @end

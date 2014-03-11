@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
+#import "HUD.h"
 #import "Task.h"
 #import "AppDelegate.h"
 #import "TaskDetailViewController.h"

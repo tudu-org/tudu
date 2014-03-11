@@ -26,8 +26,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.tmDelegate = self;
  
-        
+    
     // CoreData Setup:
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;

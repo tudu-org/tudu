@@ -57,7 +57,7 @@ bool alreadyLoggedIn;
     [HUD hideUIBlockingIndicator];
     
     // Show an informative alert
-    [self alertInvalidLogin];
+    //[self alertInvalidLogin]; /* TODO: show this */
 }
 
 - (void)viewDidLoad
@@ -148,8 +148,14 @@ bool alreadyLoggedIn;
         }
     }
     */
-    [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+    
+    // VERIFY USER LOGIN
+    //[HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
+    //[manager userLogin:@"user1@gmail.com" withPass:@"password1"];
+    //[HUD hideUIBlockingIndicator];
 
+    // PULL USER TASKS :
+    [self performSegueWithIdentifier:@"LoginSegue" sender:self];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(loginComplete:)
@@ -166,8 +172,9 @@ bool alreadyLoggedIn;
 {
     if ([segue.identifier isEqualToString:@"LoginSegue"]) {
         [HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
-        //[manager userLogin:self.emailField.text withPass:self.passwordField.text]; // temporary for testing
-        [manager getUserTasks:[NSNumber numberWithInt:2] withAuth:@"53657a57b67a163e44fddc721842dda0"];
+        [manager userLogin:self.emailField.text withPass:self.passwordField.text]; // temporary for testing
+        //[manager getUserTasks:[NSNumber numberWithInt:1] withAuth:@"3c24c586e316c4d4b02bab8a1925e039"];
+        [HUD hideUIBlockingIndicator];
     }
 }
 

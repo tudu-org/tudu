@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Task.h"
 
 @protocol TasksManagerDelegate <NSObject>
 - (void)didReceiveTasksArray:(NSArray *)tasksArray;
-
+- (void)pushTask:(Task*)task;
 @end

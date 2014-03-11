@@ -12,12 +12,14 @@
 @synthesize communicator;
 - (void)userLogin:(NSString*)email withPass:(NSString*)password;
 {
-    [self.communicator fetchUserLogin:email withPass:password];
+    //[self.communicator fetchUserLogin:email withPass:password]; //ASYNCH
+    [self.communicator synchFetchUserLogin:email withPass:password]; //SYNCH
 }
 
 - (void)getUserTasks:(NSNumber*)user_id withAuth:(NSString*)auth_token
 {
-    [self.communicator fetchUserTasks:user_id withAuth:auth_token];
+    //[self.communicator fetchUserTasks:user_id withAuth:auth_token];
+    [self.communicator synchFetchUserTasks:user_id withAuth:auth_token];
 }
 
 #pragma mark - BackEndCommunicatorDelegate

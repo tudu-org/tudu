@@ -46,12 +46,16 @@ BOOL in_server_mode = TRUE;
 //        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
 //    }
     
-    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
-    User *user = [fetchedUserRecordsArray objectAtIndex:0]; /* TODO: Fix this, but use it for now. */
+    
+    // THIS WAS YER OLD CODE YA
+    
+    //NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
+    //User *user = [fetchedUserRecordsArray objectAtIndex:0];
+    //self.fetchedTasksArray = [[NSMutableArray alloc] init]; // does this need to be initialized??
     
     if (in_server_mode) {
-        [manager getUserTasks:user.user_id withAuth:user.auth_token];
-        
+        [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
+        [manager getUserTasks:[NSNumber numberWithInt:1] withAuth:@"3c24c586e316c4d4b02bab8a1925e039"];
     } else { // LOCAL PERSISTENCE STORAGE MODE
         
         // Fetching Records and saving it in "fetchedRecordsArray" object
@@ -59,6 +63,7 @@ BOOL in_server_mode = TRUE;
         [self.tableView reloadData];
     }
     
+     
 //    // Test this code for events:
 //    
 //    EKEventStore *eventStore = [[EKEventStore alloc] init];
@@ -172,11 +177,19 @@ BOOL in_server_mode = TRUE;
 }
 
 
-#pragma mark BackEndManagerDelegate methods
+#pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
     self.fetchedTasksArray = tasksArray;
     [self.tableView reloadData];
+    [HUD hideUIBlockingIndicator];
 }
 
 
 @end
+
+
+
+
+
+
+

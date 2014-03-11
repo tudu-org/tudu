@@ -30,12 +30,12 @@
         [task setTask_id:task_id];
     }
     
-    if (start_time != [NSNull null]) {
+    if (start_time != NULL) {
         [task setStart_time:start_time];
     } else {
         [task setStart_time:NULL];
     }
-    if (end_time != [NSNull null]) {
+    if (end_time != NULL) {
         [task setEnd_time:end_time];
     } else {
         [task setEnd_time:NULL];
