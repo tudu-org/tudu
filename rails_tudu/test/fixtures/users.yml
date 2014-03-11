@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  password: MyString
-  password_confirmation: MyString
-  terms_of_service: false
+  email: one@example.com
+  password: onetwo
+  password_confirmation: onetwo
+  terms_of_service: true
 
 two:
   email: MyString

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 		respond_to do |format|
 			if @user.save
-				format.html { redirect_to :home,
+				format.html { redirect_to login_path,
 					notice: "User #{@user.email} was successfully created." }
 				format.json { render action: 'show', 
 					status: :created, location: @user }
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 	def update
 		respond_to do |format|
 			if @user.update(params[:user])
-				format.html { redirect_to :home,
+				format.html { redirect_to login_path,
 					notice: "User #{@user.email} was successfully updated." }
 				format.json { head :no_content }
 			else
