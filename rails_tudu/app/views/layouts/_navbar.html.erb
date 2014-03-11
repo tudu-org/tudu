@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<header class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,27 +9,17 @@
       </button>
       <%= link_to 'Tudu', home_path, :class => 'navbar-brand' %>
     </div>
-    <div class="navbar-collapse collapse">
+    <nav class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'Home', home_path %></li>
+        <li><%= link_to 'Home', home_path %></li>
         <li><%= link_to 'Calendar', calendar_index_path %></li>
-        <li><%= link_to 'Tasks', task_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Edit Tasks</a></li>
-            <li><a href="#">Edit Events</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Other Calendars</li>
-            <li><a href="#">Import</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-        </li>
+        <li><%= link_to 'Events', events_path %></li>
+        <li><%= link_to 'Tasks', tasks_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Logout",sessions_destroy_path %></li>
       </ul>
-    </div><!--/.nav-collapse -->
+    </nav><!--/.nav-collapse -->
   </div>
-</div>
+</header>
 <!--NAVBAR END-->
