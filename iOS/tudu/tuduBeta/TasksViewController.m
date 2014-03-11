@@ -46,16 +46,12 @@ BOOL in_server_mode = TRUE;
 //        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
 //    }
     
-    
-    // THIS WAS YER OLD CODE YA
-    
-    //NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
-    //User *user = [fetchedUserRecordsArray objectAtIndex:0];
-    //self.fetchedTasksArray = [[NSMutableArray alloc] init]; // does this need to be initialized??
+    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
+    User *user = [fetchedUserRecordsArray objectAtIndex:0];
     
     if (in_server_mode) {
         [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
-        [manager getUserTasks:[NSNumber numberWithInt:1] withAuth:@"3c24c586e316c4d4b02bab8a1925e039"];
+        [manager getUserTasks:user.user_id withAuth:user.auth_token];
     } else { // LOCAL PERSISTENCE STORAGE MODE
         
         // Fetching Records and saving it in "fetchedRecordsArray" object
@@ -179,9 +175,11 @@ BOOL in_server_mode = TRUE;
 
 #pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
-    self.fetchedTasksArray = tasksArray;
-    [self.tableView reloadData];
     [HUD hideUIBlockingIndicator];
+    self.fetchedTasksArray = tasksArray;
+    
+    // This must be used, otherwise the tableview data does not refresh until the user touches the view:
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
 
