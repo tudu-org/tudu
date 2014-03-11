@@ -12,8 +12,10 @@
  *= require fullcalendar
  *= require fullcalendar.print
  *= require bootstrap
+ *= require bootstrap-datetimepicker
  *= require home
  *= require signin
+ *= require segmentedcontrol
  *= require splash
  *= require task
  *= require docs

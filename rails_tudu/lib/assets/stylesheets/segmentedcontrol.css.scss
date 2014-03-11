@@ -1,0 +1,142 @@
+// Dark Plastic Segmented Control by Perceval McElhearn, http://prcvl.com/to/3
+
+.segmented-control {
+    list-style-type: none;
+    height: 25px;
+    padding: 1px;
+    margin: 0 auto;
+    
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+
+    cursor: pointer;
+    display: inline-block;
+}
+
+.segmented-control li {
+    background-color: #595959;
+    float: left;
+    border: 1px solid #000000;
+    border-left: none;
+}
+
+.segmented-control li,
+.segmented-control.alt li:target,
+.segmented-control.alt li:target:hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, .1)), to(rgba(255, 255, 255, 0)));
+    
+    background-image: -moz-linear-gradient(0 0 -90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
+}
+
+.segmented-control li, .segmented-control.alt li:target {
+    -webkit-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
+    -moz-box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .1);
+}
+
+.segmented-control li:first-child {
+    border-left: 1px solid #000000;
+    
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.segmented-control li:last-child {
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.segmented-control a {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 70px;
+    height: 25px;
+}
+
+.segmented-control a,
+.segmented-control.alt li:target a {
+    color: #262626;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .15);
+}
+
+.segmented-control li:hover {background-color: #525252;}
+
+.segmented-control li:hover,
+.segmented-control.alt li:target:hover {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
+                        inset 0 0 5px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
+                     inset 0 0 5px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, .15),
+                inset 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.segmented-control li:hover a,
+.segmented-control.alt li:hover a {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1);
+    position: relative;
+    top: 1px;
+}
+
+.segmented-control li:active a,
+.segmented-control.alt li:active a {
+    color: #EEE;
+    text-shadow: -1px 0 #333, 0 1px #333, 1px 0 #333, 0 -1px #333;
+}
+
+.segmented-control li:target {
+    background-image:
+        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .1))),
+        url(../images/demos/background-segmented-control-selected.png);
+    
+    background-image:
+        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .1)),
+        url(../images/demos/background-segmented-control-selected.png);
+    
+    background-color: #333;
+    
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
+                        inset 0 0 5px rgba(0, 0, 0, .15);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
+                     inset 0 0 5px rgba(0, 0, 0, .15);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1),
+                inset 0 0 5px rgba(0, 0, 0, .15);
+}
+
+.segmented-control.alt li:target {background-color: #4e4e4e;}
+
+.segmented-control li:target a {color: #fff; text-shadow: 0 1px 0 #000;}
+
+.segmented-control li:target:hover {
+    background-image:
+        -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, .05))),
+        url(../images/demos/background-segmented-control-selected.png);
+        
+    background-image:
+        -moz-linear-gradient(0% 0% -90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .05)),
+        url(../images/demos/background-segmented-control-selected.png);
+    
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
+                        inset 0 0 5px rgba(0, 0, 0, .15);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
+                     inset 0 0 5px rgba(0, 0, 0, .15);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15),
+                inset 0 0 5px rgba(0, 0, 0, .15);
+}

@@ -26,6 +26,10 @@ gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '~> 2.5.0'
+# Bootstrap timepicker uses Moment.js
+gem 'bootstrap3-datetimepicker-rails', '~> 2.1.30'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
