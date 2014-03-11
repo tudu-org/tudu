@@ -1,64 +1,67 @@
-$(function() {
+var updateEvent;
+var refactorJSON;
+var json = {
+  events: {},
+  tasks: {}
+};
 
-var date = new Date();
-var d = date.getDate();
-var m = date.getMonth();
-var y = date.getFullYear();
-
-  $('#calendar').fullCalendar({
-    header: 
-    {
-      left: 'today',
-      center: 'prev," ",title," ",next',
-      right: 'month,agendaWeek,agendaDay'
-    },
-    editable: true,
-    events: [
-      {
-        title: 'All Day Event',
-        start: new Date(y, m, 1)
+$.when(
+  $.getJSON(Routes.events_path(), function(data) {
+    refactorJSON(data);
+    json.events = data;
+  }), 
+  $.getJSON(Routes.tasks_path(), function(data) {
+    refactorJSON(data);
+    json.tasks = data;
+  }))
+.done(function() {
+  $(document).ready(function() {
+    var events = json.events.concat(json.tasks);
+    return $('#calendar').fullCalendar({
+      editable: true,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
       },
-      {
-        title: 'Hate Life During Finals',
-        start: new Date(y, m, 11),
-        end: new Date(y, m, 18)
+      defaultView: 'month',
+      height: 500,
+      slotMinutes: 30,
+      events: events,
+      timeFormat: 'h:mm t{ - h:mm t} ',
+      dragOpacity: "0.5",
+      eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+        return updateEvent(event);
       },
-      {
-      id: 999,
-        title: 'Party',
-        start: new Date(y, m, d-3, 22, 0),
-        allDay: false
-      },
-      {
-        id: 999,
-        title: 'Party',
-        start: new Date(y, m, d+4, 22, 0),
-        allDay: false
-      },
-      {
-        title: 'Work Out',
-        start: new Date(y, m, 4, 18, 00),
-        end: new Date(y, m, 4, 19, 00),
-        allDay: false
-      },
-      {
-        title: 'Present',
-        start: new Date(y, m, 4, 17, 00),
-        end: new Date(y, m, 4, 18, 30),
-        allDay: false
-      },
-      {
-        title: 'Birthday Party',
-        start: new Date(y, m, 4, 20, 00),
-        end: new Date(y, m, 4, 24, 00),
-        allDay: false
-      },
-      {
-        title: 'Snpw Globe',
-        start: new Date(y, m, 29),
-        end: new Date(y, m, 31),
-        url: 'http://www.snowglobemusicfestival.com/'
+      eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+        return updateEvent(event);
       }
-    ],
-  });
+    });
+  })
 });
+
+updateEvent = function(event) {
+  return $.update(Routes.events_path(event.id), {
+    event: {
+      title: event.title,
+      starts_at: "" + event.start,
+      ends_at: "" + event.end,
+      description: event.description
+    }
+  });
+};
+
+refactorJSON = function(json) {
+  for(var i = 0; i < json.length; i++) {
+    var obj = json[i];
+    obj.title = obj.name;
+    obj.start = new Date(obj.start_time);
+    obj.end = new Date(obj.end_time);
+    obj.allDay = false;
+
+    delete obj.name;
+    delete obj.start_time;
+    delete obj.end_time;
+  }
+  return json;
+};

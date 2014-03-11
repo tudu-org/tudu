@@ -1,3 +1,21 @@
-// Place all the styles related to the Events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#new_event {
+	.field, .actions{
+		float: left;
+		clear: left;
+		margin-bottom: 10px;
+
+		label {
+			width: 75px;
+			text-align: right;
+		}
+
+		input{
+			width: 200px;
+		}
+
+		input[type="submit"] {
+			margin-left: 80px;
+			width: 120px;
+		}
+	}
+}
