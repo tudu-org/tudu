@@ -4,7 +4,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.1'
 gem 'protected_attributes' #remove this after 351 and do it right
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+group :development do
+  gem 'sqlite3'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
