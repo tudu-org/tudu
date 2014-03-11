@@ -38,7 +38,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'tudusched', :path => '../prototypes/tudusched'
+# gem 'tudusched', :path => '../prototypes/tudusched'
 
 group :production do
   gem 'pg', '0.15.1'
