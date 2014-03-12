@@ -25,7 +25,7 @@
  "password": "mysupersecretpassword"
  }
 */
-- (void) fetchUserLogin:(NSString *)userEmail withPass:(NSString*)password {
+- (void) fetchUserLogin:(NSString *)user_email withPass:(NSString*)password {
     NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
     [queryString appendString:USER_LOGIN_PATH];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest
@@ -34,7 +34,7 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     NSDictionary* jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    userEmail, @"email",
+                                    user_email, @"email",
                                     password, @"password",
                                     nil];
     NSError *error;
@@ -89,8 +89,9 @@
 }
 
 
-/*
- SYNCH USER TASKS:
+/*  SYNCHRONOUS GET USER TASKS:
+
+    GET /users/$(userid)/tasks.json?auth_token=$(auth_token)
  */
 - (void)synchFetchUserTasks:(NSNumber*)user_id withAuth:(NSString*)auth_token {
     NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
@@ -125,11 +126,15 @@
 }
 
 
-/*
- SYNCHRONOUSLY
+/*  SYNCHRONOUS USER LOG IN
  
+    POST /login.json
+    {
+        "email": "foo@bar.com",
+        "password": "mysupersecretpassword"
+    }
 */
-- (void) synchFetchUserLogin:(NSString *)userEmail withPass:(NSString*)password {
+- (void) synchFetchUserLogin:(NSString *)user_email withPass:(NSString*)password {
     NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
     [queryString appendString:USER_LOGIN_PATH];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest
@@ -138,7 +143,7 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     NSDictionary* jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    userEmail, @"email",
+                                    user_email, @"email",
                                     password, @"password",
                                     nil];
     NSError *error;
@@ -166,6 +171,110 @@
         }
     });
 }
+
+
+
+/*  SYNCHRONOUS CREATE TASK
+ 
+    POST /users/$(userid)/tasks.json
+    {
+        "auth_token": "2b770a48ef008c185ea20cd6237fcfab",
+        "task":{
+        "name":"Cool New Task!",
+        "description":"It even has a description, wow!",
+        "priority":8,
+        "deadline":"2014-03-27T10:18:00.000Z"
+        }
+    }
+*/
+- (void) synchCreateUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/tasks.json",user_id]];
+     NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                      requestWithURL:[NSURL URLWithString:
+                                                      queryString]
+                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                      timeoutInterval:60.0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-ddEEEEEhh:mm:SSSSS"];   //2014-03-10T18:29:00.000Z     is this correct?
+    
+     NSDictionary *taskDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     task.name, @"name",
+                                     task.description, @"description",
+                                     task.priority, @"priority",
+                                     [dateFormatter stringFromDate:task.deadline], @"deadline", // Is it necessary to cast to a string?
+                                     nil];
+     NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     auth_token, @"auth_token",
+                                     taskDictionary, @"task", // Nest the task inside this dictionary
+                                     nil];
+     NSError *error;
+     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                        options:NSJSONWritingPrettyPrinted error:&error];
+     [theRequest setHTTPMethod:@"POST"];
+     [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // should check for and handle errors here but we aren't
+    [theRequest setHTTPBody:jsonData];
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+
+        if (error) {
+            [self.delegate createTaskFailedWithError:error];
+        } else {
+            [self.delegate successfullyCreatedTask:receivedData];
+        }
+    });
+}
+
+
+/*  SYNCHRONOUSLY DELETE TASK
+    DELETE /users/$(userid)/tasks/$(taskid).json?auth_token=2b770a48ef008c185ea20cd6237fcfab
+*/
+- (void) synchDeleteUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/tasks/%@.json?auth_token=%@",user_id,task.task_id,auth_token]];
+    
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    
+    [theRequest setHTTPMethod:@"DELETE"];
+    [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+        
+        // We send the data to the delegate for further processing:
+        if (error) {
+            /* TODO: Implement error-checking. */
+            //[self.delegate fetchingUserTasksFailedWithError:error];
+        } else {
+            [self.delegate successfullyDeletedUserTasks:receivedData];
+        }
+    });
+}
+
+
+ 
 
 @end
 

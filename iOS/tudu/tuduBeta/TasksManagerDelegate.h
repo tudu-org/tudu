@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Task.h"
+#import "TaskJSON.h"
 
 @protocol TasksManagerDelegate <NSObject>
 - (void)didReceiveTasksArray:(NSArray *)tasksArray;
 - (void)pushTask:(Task*)task;
+- (void)didCreateTask:(Task*)task;
+- (void)didDeleteTask;
+
 @end

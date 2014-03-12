@@ -15,7 +15,7 @@
 
 @implementation TasksViewController
 @synthesize fetchedTasksArray;
-BOOL in_server_mode = TRUE;
+BOOL SERVER_MODE = TRUE;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,7 +49,7 @@ BOOL in_server_mode = TRUE;
     NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
     User *user = [fetchedUserRecordsArray objectAtIndex:0];
     
-    if (in_server_mode) {
+    if (SERVER_MODE) {
         [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
         [manager getUserTasks:user.user_id withAuth:user.auth_token];
     } else { // LOCAL PERSISTENCE STORAGE MODE
@@ -159,14 +159,20 @@ BOOL in_server_mode = TRUE;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // 3
-        [self.managedObjectContext deleteObject:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        if (SERVER_MODE) {
+            
+        } else {
+            [self.managedObjectContext deleteObject:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
+            NSError *error;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
-        // 4
-        AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-        self.fetchedTasksArray = [appDelegate getAllTaskRecords];
+            
+            // 4
+            AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+            self.fetchedTasksArray = [appDelegate getAllTaskRecords];
+        }
+        
         // 5
         [tableView endUpdates];
     }
@@ -175,11 +181,17 @@ BOOL in_server_mode = TRUE;
 
 #pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
-    [HUD hideUIBlockingIndicator];
     self.fetchedTasksArray = tasksArray;
-    
+
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+
     // This must be used, otherwise the tableview data does not refresh until the user touches the view:
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
+
+- (void) didDeleteTask {
+    [HUD performSelectorOnMainThread:@selector(showUIBlockingIndicatorWithText:) withObject:@"Task Deleted" waitUntilDone:NO];
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
 }
 
 

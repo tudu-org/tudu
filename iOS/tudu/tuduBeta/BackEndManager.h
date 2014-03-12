@@ -21,5 +21,7 @@
 
 - (void)userLogin:(NSString*)email withPass:(NSString*)password;
 - (void)getUserTasks:(NSNumber*)user_id withAuth:(NSString *)auth_token;
+- (void)createUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token;
+- (void)deleteUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token;
 
 @end

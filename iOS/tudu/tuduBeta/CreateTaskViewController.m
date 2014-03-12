@@ -11,6 +11,7 @@
 
 @implementation CreateTaskViewController
 
+bool SERVER_MODE = TRUE;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -19,6 +20,16 @@
         // Custom initialization
     }
     return self;
+}
+
+#pragma mark TaskManagerDelegate methods
+- (void)didCreateTask:(Task*)task
+{
+    /* TODO: Do this optimization in the future. */
+    // Since we have the task, we can save time by simply INSERTING
+    // the new task into the tableview instead of RELOADING it entirely
+    // e.g. tableView beginUpdates, tableView insertRowsAtIndexPaths, tableView endUpdates
+    [HUD hideUIBlockingIndicator];
 }
 
 - (void)viewDidLoad
@@ -38,6 +49,7 @@
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     
+   
     // Hide the Duration Slider items (we only want them to appear after tapping 'Custom')
     [self.durationSlider setHidden:TRUE];
     [self.durationValueLabel setHidden:TRUE];
@@ -151,9 +163,17 @@
         
         // Exit editing mode (Dismiss Keyboard)
         [self.view endEditing:YES];
-        
-    }
     
+        if (SERVER_MODE) {
+            // Do any additional setup after loading the view.
+            AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+            NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
+            User *user = [fetchedUserRecordsArray objectAtIndex:0];
+            
+            [HUD showUIBlockingIndicatorWithText:@"Creating Task"];
+            [manager createUserTask:newTask withUserID:user.user_id withAuth:user.auth_token];
+        }
+    }
     if(self.mode ==1){
         NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
         if ([self.durationSegmentedControlBar isHidden]) {
@@ -176,11 +196,13 @@
         
     }
     
+    
     // Save the task to the CoreData database
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    
     
     
     // Perform the segue to the TasksViewController

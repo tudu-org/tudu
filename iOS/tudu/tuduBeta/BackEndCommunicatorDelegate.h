@@ -14,4 +14,10 @@
 
 - (void)successfullyFetchedUserTasks:(NSData *)objectNotation;
 - (void)fetchingUserTasksFailedWithError:(NSError *)error;
+
+- (void)successfullyCreatedTask:(NSData *)objectNotation;
+- (void)createTaskFailedWithError:(NSError *)error;
+
+- (void)successfullyDeletedUserTasks:(NSData *)objectNotation;
+
 @end

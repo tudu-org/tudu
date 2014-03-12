@@ -10,6 +10,7 @@
 
 @implementation BackEndManager
 @synthesize communicator;
+
 - (void)userLogin:(NSString*)email withPass:(NSString*)password;
 {
     //[self.communicator fetchUserLogin:email withPass:password]; //ASYNCH
@@ -21,6 +22,22 @@
     //[self.communicator fetchUserTasks:user_id withAuth:auth_token];
     [self.communicator synchFetchUserTasks:user_id withAuth:auth_token];
 }
+
+- (void)createUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token
+{
+    [self.communicator synchCreateUserTask:task withUserID:user_id withAuth:auth_token];
+}
+
+- (void)deleteUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token
+{
+    [self.communicator synchDeleteUserTask:task withUserID:user_id withAuth:auth_token];
+}
+
+
+
+
+
+
 
 #pragma mark - BackEndCommunicatorDelegate
 // These are the methods that are returned once the actual NSData has been received.
@@ -60,10 +77,23 @@
         [self.tmDelegate didReceiveTasksArray:tasks];
     }
 }
+
 - (void)fetchingUserTasksFailedWithError:(NSError *)error {
     
 }
 
+- (void)successfullyCreatedTask:(NSData *)objectNotation {
+    NSError *error = nil;
+    [self.tmDelegate didCreateTask:[TasksBuilder taskFromJSON:objectNotation error:&error]];
+}
+
+- (void)createTaskFailedWithError:(NSError *)error {
+    
+}
+
+- (void)successfullyDeletedUserTasks:(NSData *)objectNotation {
+    [self.tmDelegate didDeleteTask];
+}
 
 @end
 
