@@ -14,6 +14,8 @@
 		5B8439E018B298820082F088 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8439DF18B298820082F088 /* EventKit.framework */; };
 		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
 		5B9ECDCE18A2DD91001A324E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCD18A2DD91001A324E /* Task.m */; };
+		5BBEB5CE18D2450E001602D1 /* EventJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBEB5CD18D2450E001602D1 /* EventJSON.m */; };
+		5BBEB5D118D247EA001602D1 /* EventsBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BBEB5D018D247EA001602D1 /* EventsBuilder.m */; };
 		5BDAE5FD18CBCFC6002E2AE7 /* WebBackEndManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */; };
 		5BDAE60518CBF15B002E2AE7 /* btnCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDAE5FF18CBF15B002E2AE7 /* btnCheck.png */; };
 		5BDAE60618CBF15B002E2AE7 /* btnCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDAE60018CBF15B002E2AE7 /* btnCheck@2x.png */; };
@@ -92,6 +94,11 @@
 		5B9ECDCA18A2DD85001A324E /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		5B9ECDCC18A2DD91001A324E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		5B9ECDCD18A2DD91001A324E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		5BBEB5CB18D15589001602D1 /* EventsManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsManagerDelegate.h; sourceTree = "<group>"; };
+		5BBEB5CC18D2450E001602D1 /* EventJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventJSON.h; sourceTree = "<group>"; };
+		5BBEB5CD18D2450E001602D1 /* EventJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventJSON.m; sourceTree = "<group>"; };
+		5BBEB5CF18D247EA001602D1 /* EventsBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsBuilder.h; sourceTree = "<group>"; };
+		5BBEB5D018D247EA001602D1 /* EventsBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsBuilder.m; sourceTree = "<group>"; };
 		5BDAE5FB18CBCFC6002E2AE7 /* WebBackEndManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebBackEndManager.h; path = ../WebBackEndManager.h; sourceTree = "<group>"; };
 		5BDAE5FC18CBCFC6002E2AE7 /* WebBackEndManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebBackEndManager.m; path = ../WebBackEndManager.m; sourceTree = "<group>"; };
 		5BDAE5FF18CBF15B002E2AE7 /* btnCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnCheck.png; sourceTree = "<group>"; };
@@ -257,6 +264,11 @@
 				5BDAE60F18CC0C27002E2AE7 /* UserBuilder.m */,
 				5BDAE61518CC1D83002E2AE7 /* UserJSON.h */,
 				5BDAE61618CC1D83002E2AE7 /* UserJSON.m */,
+				5BBEB5CB18D15589001602D1 /* EventsManagerDelegate.h */,
+				5BBEB5CF18D247EA001602D1 /* EventsBuilder.h */,
+				5BBEB5D018D247EA001602D1 /* EventsBuilder.m */,
+				5BBEB5CC18D2450E001602D1 /* EventJSON.h */,
+				5BBEB5CD18D2450E001602D1 /* EventJSON.m */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -606,6 +618,7 @@
 				E239C5B418A2C10200A51CA9 /* CKCalendarViewControllerInternal.m in Sources */,
 				E239C5A218A2C10200A51CA9 /* NSCalendar+Components.m in Sources */,
 				E239C5A718A2C10200A51CA9 /* NSDate+Components.m in Sources */,
+				5BBEB5D118D247EA001602D1 /* EventsBuilder.m in Sources */,
 				E27A85FE189D749E00EE1B56 /* CreateEventViewController.m in Sources */,
 				E239C5A318A2C10200A51CA9 /* NSCalendar+DateComparison.m in Sources */,
 				E298982F18905E9F0011D027 /* AppDelegate.m in Sources */,
@@ -618,6 +631,7 @@
 				5B68991018C7B4780095C8FE /* RNTaskDetailViewController.m in Sources */,
 				5BDAE61018CC0C27002E2AE7 /* UserBuilder.m in Sources */,
 				5BDAE61418CC10E8002E2AE7 /* BackEndManager.m in Sources */,
+				5BBEB5CE18D2450E001602D1 /* EventJSON.m in Sources */,
 				E29C2B3918944EEC00F986EC /* CreateTaskViewController.m in Sources */,
 				E239C5AD18A2C10200A51CA9 /* UIView+Border.m in Sources */,
 				E239C5B218A2C10200A51CA9 /* MBPolygonView.m in Sources */,

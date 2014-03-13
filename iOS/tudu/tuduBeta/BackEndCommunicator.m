@@ -274,7 +274,69 @@
 }
 
 
- 
+
+/*  SYCHRONOUSLY CREATE EVENT
+    POST /users/$(userid)/events.json
+
+    {
+        "auth_token": "2b770a48ef008c185ea20cd6237fcfab",
+        "event": {
+            "start_time": "2014-02-09T00:53:43.793Z",
+            "end_time": "2014-02-09T02:53:55.500Z",
+            "name": "my event",
+            "description": "Event description.\nThis can even have newlines in it"
+        }
+    }
+ */
+-(void) synchCreateUserEvent:(EventJSON*)eventJSON withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/events.json",user_id]];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-ddEEEEEhh:mm:SSSSS"];   //2014-03-10T18:29:00.000Z     is this correct?
+    
+    NSDictionary *eventDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [dateFormatter stringFromDate:eventJSON.start_time], @"start_time",
+                                    [dateFormatter stringFromDate:eventJSON.end_time], @"end_time",
+                                    eventJSON.name, @"name",
+                                    eventJSON.event_description, @"description",
+                                    nil];
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    auth_token, @"auth_token",
+                                    eventDictionary, @"event", // Nest the event inside this dictionary
+                                    nil];
+    NSError *error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // should check for and handle errors here but we aren't
+    [theRequest setHTTPBody:jsonData];
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+        
+        if (error) {
+            [self.delegate createEventFailedWithError:error];
+        } else {
+            [self.delegate successfullyCreatedEvent:receivedData];
+        }
+    });
+}
+
 
 @end
 

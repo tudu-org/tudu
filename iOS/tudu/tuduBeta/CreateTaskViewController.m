@@ -116,9 +116,7 @@
 }
 
 - (IBAction)addBtnPressed:(id)sender {
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
+        
     if(self.mode ==0){
         // Create a new Task object
         Task * newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
@@ -168,13 +166,8 @@
         [self.view endEditing:YES];
     
         if (SERVER_MODE) {
-            // Do any additional setup after loading the view.
-            AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-            NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
-            User *user = [fetchedUserRecordsArray objectAtIndex:0];
-            
             [HUD showUIBlockingIndicatorWithText:@"Creating Task"];
-            [manager createUserTask:newTask withUserID:user.user_id withAuth:user.auth_token];
+            [manager createUserTask:newTask];
         }
     }
     if(self.mode ==1){

@@ -20,4 +20,8 @@
 
 - (void)successfullyDeletedUserTasks:(NSData *)objectNotation;
 
+
+- (void)successfullyCreatedEvent:(NSData *)objectNotation;
+- (void)createEventFailedWithError:(NSError *)error;
+
 @end

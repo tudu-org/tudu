@@ -16,7 +16,7 @@
 @implementation TasksViewController {
     bool SERVER_MODE;
 }
-@synthesize fetchedTasksArray, user, userJSON;
+@synthesize fetchedTasksArray, user;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -40,19 +40,6 @@
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
 
-    // SET THE USER INFO (ONCE)
-    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
-    user = [fetchedUserRecordsArray objectAtIndex:0];
-    NSLog(@"beginnnn USERID=%@",user.user_id);
-    NSLog(@"beginnnn AUTHTOKEN=%@",user.auth_token);
-    NSLog(@"beginnnn USEREMAIL=%@",user.email);
-    NSLog(@"beginnnn USERPASS=%@",user.password_hash);
-    
-    userJSON = [[UserJSON alloc] init];
-    [userJSON setUser_id:user.user_id];
-    [userJSON setAuth_token:user.auth_token];
-
-    
     // Set up the BackEndManager
     manager = [[BackEndManager alloc] init];
     manager.communicator = [[BackEndCommunicator alloc] init];
@@ -70,7 +57,7 @@
     
     if (SERVER_MODE) {
         [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
-        [manager getUserTasks:user.user_id withAuth:user.auth_token];
+        [manager getUserTasks];
     } else { // LOCAL PERSISTENCE STORAGE MODE
         
         // Fetching Records and saving it in "fetchedRecordsArray" object
@@ -183,7 +170,7 @@
             [HUD showUIBlockingIndicatorWithText:@"Deleting Task"];
             
             // Update the Back-End with JSON call:
-            [manager deleteUserTask:[self.fetchedTasksArray objectAtIndex:indexPath.row] withUserID:userJSON.user_id withAuth:userJSON.auth_token];
+            [manager deleteUserTask:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
             
             // Update the local (non-persistence) tableview data source array:
             [self.fetchedTasksArray removeObjectAtIndex:indexPath.row];

@@ -21,7 +21,6 @@
 
 @property (nonatomic,strong) NSMutableArray* fetchedTasksArray;
 @property (nonatomic,strong) User *user; // So that we can store User info ONCE instead of having to pull it out of persistence every time
-@property (nonatomic,strong) UserJSON *userJSON; 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

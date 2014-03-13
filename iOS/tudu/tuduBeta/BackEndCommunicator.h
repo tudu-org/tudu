@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Task.h"
+#import "EventJSON.h"
 
 @protocol BackEndCommunicatorDelegate;
 
@@ -22,5 +23,7 @@
 
 - (void) synchCreateUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token;
 - (void) synchDeleteUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token;
+
+-(void) synchCreateUserEvent:(EventJSON*)eventJSON withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token;
 
 @end
