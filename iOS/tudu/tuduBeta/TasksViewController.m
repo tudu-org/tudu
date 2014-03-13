@@ -13,9 +13,10 @@
 
 @end
 
-@implementation TasksViewController
-@synthesize fetchedTasksArray;
-BOOL SERVER_MODE = TRUE;
+@implementation TasksViewController {
+    bool SERVER_MODE;
+}
+@synthesize fetchedTasksArray, user, userJSON;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,8 +30,27 @@ BOOL SERVER_MODE = TRUE;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
+    // Set the iPhone to be in server mode (no local storage of events & tasks)
+    SERVER_MODE = true;
+    
+    
+    // Set up the Persistence storage, for the user info
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
+
+    // SET THE USER INFO (ONCE)
+    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
+    user = [fetchedUserRecordsArray objectAtIndex:0];
+    NSLog(@"beginnnn USERID=%@",user.user_id);
+    NSLog(@"beginnnn AUTHTOKEN=%@",user.auth_token);
+    NSLog(@"beginnnn USEREMAIL=%@",user.email);
+    NSLog(@"beginnnn USERPASS=%@",user.password_hash);
+    
+    userJSON = [[UserJSON alloc] init];
+    [userJSON setUser_id:user.user_id];
+    [userJSON setAuth_token:user.auth_token];
 
     
     // Set up the BackEndManager
@@ -46,8 +66,7 @@ BOOL SERVER_MODE = TRUE;
 //        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
 //    }
     
-    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
-    User *user = [fetchedUserRecordsArray objectAtIndex:0];
+   
     
     if (SERVER_MODE) {
         [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
@@ -139,7 +158,7 @@ BOOL SERVER_MODE = TRUE;
 {
     static NSString *CellIdentifier = @"standardIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    Task * task = [[self.fetchedTasksArray objectAtIndex:indexPath.row] convertToTaskObject];
+    Task * task = [self.fetchedTasksArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithString:task.name];
     return cell;
 }
@@ -160,7 +179,17 @@ BOOL SERVER_MODE = TRUE;
         
         // 3
         if (SERVER_MODE) {
+            // Visual Notification:
+            [HUD showUIBlockingIndicatorWithText:@"Deleting Task"];
             
+            // Update the Back-End with JSON call:
+            [manager deleteUserTask:[self.fetchedTasksArray objectAtIndex:indexPath.row] withUserID:userJSON.user_id withAuth:userJSON.auth_token];
+            
+            // Update the local (non-persistence) tableview data source array:
+            [self.fetchedTasksArray removeObjectAtIndex:indexPath.row];
+            
+            // Update the tableview 'view' itself
+            [self.tableView endUpdates];
         } else {
             [self.managedObjectContext deleteObject:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
             NSError *error;
@@ -171,10 +200,9 @@ BOOL SERVER_MODE = TRUE;
             // 4
             AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
             self.fetchedTasksArray = [appDelegate getAllTaskRecords];
-        }
-        
-        // 5
-        [tableView endUpdates];
+            
+            [tableView endUpdates];
+        }        
     }
 }
 
@@ -190,7 +218,6 @@ BOOL SERVER_MODE = TRUE;
 }
 
 - (void) didDeleteTask {
-    [HUD performSelectorOnMainThread:@selector(showUIBlockingIndicatorWithText:) withObject:@"Task Deleted" waitUntilDone:NO];
     [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
 }
 

@@ -9,9 +9,9 @@
 #import "CreateTaskViewController.h"
 
 
-@implementation CreateTaskViewController
-
-bool SERVER_MODE = TRUE;
+@implementation CreateTaskViewController {
+    bool SERVER_MODE;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +36,9 @@ bool SERVER_MODE = TRUE;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // set up iphone to only store tasks & events on the back-end (no local storage)
+    SERVER_MODE = TRUE;
     
     
     // Set up the BackEndManager
