@@ -59,13 +59,13 @@
         [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
         [manager getUserTasks];
     } else { // LOCAL PERSISTENCE STORAGE MODE
-        
         // Fetching Records and saving it in "fetchedRecordsArray" object
-        self.fetchedTasksArray = [appDelegate getAllTaskRecords];
-        [self.tableView reloadData];
+        self.fetchedTasksArray = [[[appDelegate getAllTaskRecords] reverseObjectEnumerator] allObjects];
     }
+    [self.tableView reloadData];
+
     
-     
+    
 //    // Test this code for events:
 //    
 //    EKEventStore *eventStore = [[EKEventStore alloc] init];
@@ -196,8 +196,9 @@
 
 #pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
-    self.fetchedTasksArray = tasksArray;
-
+    // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
+    self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
+    
     [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
 
     // This must be used, otherwise the tableview data does not refresh until the user touches the view:

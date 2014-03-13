@@ -26,6 +26,14 @@
     return self;
 }
 
+#pragma mark EventsManagerDelegate methods
+- (void)didCreateEvent:(EventJSON*)eventJSON {
+    [HUD hideUIBlockingIndicator];
+    NSLog(@"EVENT CREATED.");
+    NSLog(@"event_name=%@",eventJSON.name);
+    NSLog(@"event_id=%@",eventJSON.event_id);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -94,7 +102,7 @@
         eventJSON.name = self.eventNameField.text;
         eventJSON.event_description = self.eventLocationField.text;
         
-        [HUD showUIBlockingIndicatorWithText:@"Creating Task"];
+        [HUD showUIBlockingIndicatorWithText:@"Creating Event"];
         [manager createUserEvent:eventJSON];
     }
     
