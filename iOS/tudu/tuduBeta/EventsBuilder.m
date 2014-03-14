@@ -61,17 +61,24 @@
 }*/
 + (EventJSON*) eventFromDictionary:(NSDictionary*)eventDictionary {
     EventJSON *eventJSON = [[EventJSON alloc] init];
-    
+
+    // Set up the ISO 8601 Date Formatter
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-ddEEEEEhh:mm:SSSSS"];   //2014-03-10T18:29:00.000Z     is this correct?
+    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [df setLocale:enUSPOSIXLocale];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"]; // This is correct !
     
     
     if ([eventDictionary objectForKey:start_time_key] != NULL && [eventDictionary objectForKey:start_time_key] != [NSNull null]) {
-        [eventJSON setStart_time:[df dateFromString:[eventDictionary objectForKey:start_time_key]]];
+        NSString *startTimeStr = [eventDictionary objectForKey:start_time_key];
+        NSDate *startTime = [df dateFromString:startTimeStr];
+        [eventJSON setStart_time:startTime];
     }
     
     if ([eventDictionary objectForKey:end_time_key] != NULL && [eventDictionary objectForKey:end_time_key] != [NSNull null]) {
-        [eventJSON setEnd_time:[df dateFromString:[eventDictionary objectForKey:end_time_key]]];
+        NSString *endTimeStr = [eventDictionary objectForKey:end_time_key];
+        NSDate *endTime = [df dateFromString:endTimeStr];
+        [eventJSON setEnd_time:endTime];
     }
     
     if ([eventDictionary objectForKey:id_key] != NULL && [eventDictionary objectForKey:id_key] != [NSNull null]) {

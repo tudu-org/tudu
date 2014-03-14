@@ -53,15 +53,19 @@
     TaskJSON *taskJSON = [[TaskJSON alloc] init];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-ddEEEEEhh:mm:SSSSS"];   //2014-03-10T18:29:00.000Z     is this correct?
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"]; // This is correct !
     
     
     if ([taskDictionary objectForKey:start_time_key] != NULL && [taskDictionary objectForKey:start_time_key] != [NSNull null]) {
-        [taskJSON setStart_time:[df dateFromString:[taskDictionary objectForKey:start_time_key]]];
+        NSString *startTimeStr = [taskDictionary objectForKey:start_time_key];
+        NSDate *startTime = [df dateFromString:startTimeStr];
+        [taskJSON setStart_time:startTime];
     }
     
     if ([taskDictionary objectForKey:end_time_key] != NULL && [taskDictionary objectForKey:end_time_key] != [NSNull null]) {
-        [taskJSON setEnd_time:[df dateFromString:[taskDictionary objectForKey:end_time_key]]];
+        NSString *endTimeStr = [taskDictionary objectForKey:end_time_key];
+        NSDate *endTime = [df dateFromString:endTimeStr];
+        [taskJSON setEnd_time:endTime];
     }
     
     if ([taskDictionary objectForKey:id_key] != NULL && [taskDictionary objectForKey:id_key] != [NSNull null]) {
