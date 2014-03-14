@@ -34,4 +34,6 @@
 - (void)createUserTask:(Task*)task;
 - (void)deleteUserTask:(Task*)task;
 - (void)createUserEvent:(EventJSON*)eventJSON;
+- (void)getUserEvents;
+
 @end

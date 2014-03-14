@@ -15,6 +15,27 @@
 
 @implementation EventsBuilder
 
+
++ (NSArray *) eventsFromJSON:(NSData *)objectNotation error:(NSError  **)error {
+    NSError *localError = nil;
+    NSMutableArray *eventsArray = [[NSMutableArray alloc] init];
+    NSArray *parsedObjectArray = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
+    
+    if (localError != nil) {
+        *error = localError;
+        return nil;
+    }
+    
+    
+    for (int i = 0; i < [parsedObjectArray count]; i++) {
+        NSDictionary *eventDictionary = [parsedObjectArray objectAtIndex:i];
+        [eventsArray addObject:[self eventFromDictionary:eventDictionary]];
+    }
+    
+    return eventsArray;
+}
+
+
 + (EventJSON*) eventFromJSON:(NSData *)objectNotation error:(NSError **)error {
     NSError *localError = nil;
     NSDictionary *parsedObjectDictionary = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];

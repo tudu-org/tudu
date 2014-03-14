@@ -24,4 +24,8 @@
 - (void)successfullyCreatedEvent:(NSData *)objectNotation;
 - (void)createEventFailedWithError:(NSError *)error;
 
+- (void)successfullyFetchedUserEvents:(NSData *)objectNotation;
+- (void)fetchingUserEventsFailedWithError:(NSError *)error;
+
+
 @end

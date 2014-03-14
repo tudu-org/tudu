@@ -65,6 +65,10 @@
     [self.communicator synchCreateUserEvent:eventJSON withUserID:userID withAuth:userAuthToken];
 }
 
+- (void)getUserEvents
+{
+    [self.communicator synchFetchUserEvents:userID withAuth:userAuthToken];
+}
 
 
 
@@ -111,7 +115,7 @@
 }
 
 - (void)fetchingUserTasksFailedWithError:(NSError *)error {
-    
+    /* TODO: implement later.*/
 }
 
 - (void)successfullyCreatedTask:(NSData *)objectNotation {
@@ -133,8 +137,28 @@
 }
 
 - (void)createEventFailedWithError:(NSError *)error {
-    
+    /* TODO: implement later. */
 }
+
+- (void) fetchingUserEventsFailedWithError:(NSError *)error {
+    /* TODO: implement later.*/
+}
+
+- (void)successfullyFetchedUserEvents:(NSData *)objectNotation {
+    
+    NSError *error = nil;
+    NSArray *events = [EventsBuilder eventsFromJSON:objectNotation error:&error];
+    
+    // These methods call into the BackEndManagerDelegate, which
+    // is implemented in the various ViewControllers of this app
+    if (error != nil) {
+        /* TODO: implement later. */
+        //[self.tmDelegate userLoginFailedWithError:error];
+    } else {
+        [self.emDelegate didReceiveEventsArray:events];
+    }
+}
+
 
 
 @end

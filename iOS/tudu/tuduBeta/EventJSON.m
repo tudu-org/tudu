@@ -10,4 +10,14 @@
 
 @implementation EventJSON
 @synthesize event_id, start_time, end_time, name, event_description;
+
+-(void)printEvent {
+    NSLog(@"==========Event==========");
+    NSLog(@"id=%@",event_id);
+    NSLog(@"start_time=%@",start_time);
+    NSLog(@"end_time=%@",end_time);
+    NSLog(@"name=%@",name);
+    NSLog(@"description=%@",event_description);
+}
+
 @end

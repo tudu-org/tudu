@@ -26,4 +26,6 @@
 
 -(void) synchCreateUserEvent:(EventJSON*)eventJSON withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token;
 
+- (void) synchFetchUserEvents:(NSNumber*)user_id withAuth:(NSString*)auth_token;
+
 @end

@@ -14,4 +14,6 @@
 @property (nonatomic, retain) NSDate * end_time;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * event_description;
+
+-(void)printEvent;
 @end

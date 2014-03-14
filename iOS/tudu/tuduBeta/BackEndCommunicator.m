@@ -338,6 +338,53 @@
 }
 
 
+
+/*  SYNCHRONOUSLY GET USER'S EVENTS
+    GET /users/$(userid)/events.json?auth_token=$(auth_token)
+    [
+        {
+            "id":6,
+            "start_time":"2014-02-09T00:53:43.793Z",
+            "end_time":"2014-02-09T02:53:55.500Z",
+            "name":"my event",
+            "description":null
+        }, {...}, {...} 
+    ]
+ */
+- (void)synchFetchUserEvents:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/events.json?auth_token=%@",user_id,auth_token]];
+    
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    
+    [theRequest setHTTPMethod:@"GET"];
+    [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+        
+        // We send the data to the delegate for further processing:
+        if (error) {
+            [self.delegate fetchingUserEventsFailedWithError:error];
+        } else {
+            [self.delegate successfullyFetchedUserEvents:receivedData];
+        }
+    });
+}
+ 
+
+
 @end
 
 

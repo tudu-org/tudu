@@ -11,6 +11,7 @@
 
 @interface EventsBuilder : NSObject
 
++ (NSArray*) eventsFromJSON:(NSData *)objectNotation error:(NSError **)error;
 + (EventJSON*) eventFromJSON:(NSData *)objectNotation error:(NSError **)error;
 + (EventJSON*) eventFromDictionary:(NSDictionary*)eventDictionary;
 
