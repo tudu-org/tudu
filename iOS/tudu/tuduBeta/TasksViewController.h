@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
+#import "HUD.h"
 #import "Task.h"
 #import "AppDelegate.h"
 #import "TaskDetailViewController.h"
@@ -18,7 +19,8 @@
     BackEndManager *manager;
 }
 
-@property (nonatomic,strong)NSArray* fetchedTasksArray;
+@property (nonatomic,strong) NSMutableArray* fetchedTasksArray;
+@property (nonatomic,strong) User *user; // So that we can store User info ONCE instead of having to pull it out of persistence every time
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

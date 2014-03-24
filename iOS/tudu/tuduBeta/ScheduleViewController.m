@@ -38,6 +38,16 @@
 	// Do any additional setup after loading the view.
     //Set up buttons
     
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.emDelegate = self;
+
+    // Pull the events from the JSON back-end
+    [self helpMePullEvents];
+
+    
     [self.dayView addTarget:self action:@selector(viewTypeButtonPushed:) forControlEvents:UIControlEventTouchUpInside];
     [self.weekView addTarget:self action:@selector(viewTypeButtonPushed:) forControlEvents:UIControlEventTouchUpInside];
     [self.monthView addTarget:self action:@selector(viewTypeButtonPushed:) forControlEvents:UIControlEventTouchUpInside];
@@ -70,6 +80,12 @@
 
 }
 
+/* This doesnot need to be a separate function, I am just doing this 
+    so it can be used more easily by you, Johnny, later. */
+-(void)helpMePullEvents {
+    [HUD showUIBlockingIndicatorWithText:@"Downloading Events"];
+    [manager getUserEvents];
+}
 
 -(void)addEventsToCalendar:(EKCalendar*)cal{
     //SAMPLE CALENDAR VIEW
@@ -82,6 +98,20 @@
     NSDate *date = [gregorian dateFromComponents:comps];
     
     [[self dataSource] calendarView:self.calendar eventsForDate:date];
+}
+
+
+
+
+#pragma mark - EventsManagerDelegate methods
+
+-(void) didReceiveEventsArray:(NSArray *)eventsArray {
+    NSLog(@"------RECEIVED EVENTS-------");
+    for (int i=0;i<[eventsArray count]; i++) {
+        EventJSON *eventJSON = [eventsArray objectAtIndex:i];
+        [eventJSON printEvent];
+    }
+    [HUD hideUIBlockingIndicator];
 }
 
 

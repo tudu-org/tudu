@@ -9,8 +9,9 @@
 #import "CreateTaskViewController.h"
 
 
-@implementation CreateTaskViewController
-
+@implementation CreateTaskViewController {
+    bool SERVER_MODE;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -21,17 +22,37 @@
     return self;
 }
 
+#pragma mark TaskManagerDelegate methods
+- (void)didCreateTask:(Task*)task
+{
+    /* TODO: Do this optimization in the future. */
+    // Since we have the task, we can save time by simply INSERTING
+    // the new task into the tableview instead of RELOADING it entirely
+    // e.g. tableView beginUpdates, tableView insertRowsAtIndexPaths, tableView endUpdates
+    [HUD hideUIBlockingIndicator];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // set up iphone to only store tasks & events on the back-end (no local storage)
+    SERVER_MODE = TRUE;
+    
+    
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.tmDelegate = self;
  
-        
+    
     // CoreData Setup:
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     
+   
     // Hide the Duration Slider items (we only want them to appear after tapping 'Custom')
     [self.durationSlider setHidden:TRUE];
     [self.durationValueLabel setHidden:TRUE];
@@ -95,9 +116,7 @@
 }
 
 - (IBAction)addBtnPressed:(id)sender {
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
+        
     if(self.mode ==0){
         // Create a new Task object
         Task * newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task"
@@ -145,9 +164,12 @@
         
         // Exit editing mode (Dismiss Keyboard)
         [self.view endEditing:YES];
-        
-    }
     
+        if (SERVER_MODE) {
+            [HUD showUIBlockingIndicatorWithText:@"Creating Task"];
+            [manager createUserTask:newTask];
+        }
+    }
     if(self.mode ==1){
         NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
         if ([self.durationSegmentedControlBar isHidden]) {
@@ -170,11 +192,13 @@
         
     }
     
+    
     // Save the task to the CoreData database
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    
     
     
     // Perform the segue to the TasksViewController

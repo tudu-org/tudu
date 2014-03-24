@@ -12,5 +12,7 @@
 @interface TasksBuilder : NSObject
 
 + (NSArray *) tasksFromJSON:(NSData *)objectNotation error:(NSError **)error;
++ (Task*) taskFromJSON:(NSData *)objectNotation error:(NSError **)error;
++ (Task*) taskFromDictionary:(NSDictionary*)taskDictionary;
 
 @end

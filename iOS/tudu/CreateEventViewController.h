@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
 #import "Constants.h"
+#import "EventsManagerDelegate.h"
+#import "BackEndManager.h"
+#import "HUD.h"
+#import "EventJSON.h"
 
-@interface CreateEventViewController : UIViewController
+@interface CreateEventViewController : UIViewController <EventsManagerDelegate> {
+    BackEndManager *manager;
+}
+
 @property (strong, nonatomic) IBOutlet UITextField *eventNameField;
 @property (strong, nonatomic) IBOutlet UITextField *eventLocationField;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *eventSegmentedControlBar;

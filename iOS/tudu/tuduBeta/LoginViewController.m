@@ -28,6 +28,13 @@ bool alreadyLoggedIn;
 #pragma mark BackEndManagerDelegate protocol methods
 - (void)didReceiveLoggedInUser:(UserJSON *)userJSON
 {
+    // We only want to have ONE user stored per device at a time, so we must delete all the user records before saving this one
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate deleteAllUserRecords];
+
+    
+    /* TODO: Optimize this code by placing the CoreData portion elsewhere.
+     * We don't need to update every time, if it is the same login info. */
     User *_user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                inManagedObjectContext:self.managedObjectContext];
     // Set the fields received from JSON:
@@ -38,6 +45,7 @@ bool alreadyLoggedIn;
     [_user setEmail:self.emailField.text];
     [_user setPassword_hash:self.passwordField.text]; /* TODO: Hash this password. */
     
+    
     // Save the User to the CoreData database
     NSError *error;
     if (![self.managedObjectContext save:&error]) {
@@ -47,8 +55,6 @@ bool alreadyLoggedIn;
     NSLog(@"email = %@, password= %@, id=%@, auth_token=%@", _user.email, _user.password_hash, _user.user_id, _user.auth_token);
     // Hide the activity monitor spinner
     [HUD hideUIBlockingIndicator];
-
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"kDidReceiveLoggedInUser" object:self];
 }
 
 - (void)userLoginFailedWithError:(NSError *)error
@@ -57,7 +63,7 @@ bool alreadyLoggedIn;
     [HUD hideUIBlockingIndicator];
     
     // Show an informative alert
-    [self alertInvalidLogin];
+    [self alertInvalidLogin]; /* TODO: show this */
 }
 
 - (void)viewDidLoad
@@ -90,16 +96,17 @@ bool alreadyLoggedIn;
         [self.emailField setText:user.email];
         [self.passwordField setText:user.password_hash]; /* TODO: Decrypt this. */
         alreadyLoggedIn = true;
-        NSLog(@"email=%@, password=%@",user.email, user.password_hash);
     }
-    /*else if (numUsers > 1) { // This needs to be handled differently in the future (multiple accounts?)
+    else if (numUsers > 1) { // This needs to be handled differently in the future (multiple accounts?)
+        [appDelegate deleteAllUserRecords];
+
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                          message:@"Too many user accounts. Should only have 1 per device."
+                                                          message:@"Too many user accounts. Should only have 1 per device. We have deleted your other accounts now."
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
         [message show];
-    }*/
+    }
     
     /* TODO: Get this figured out and cleared up. */
     /*if (alreadyLoggedIn == true) {
@@ -148,8 +155,15 @@ bool alreadyLoggedIn;
         }
     }
     */
+    
+    // VERIFY USER LOGIN
+    [HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
+    [manager userLogin:self.emailField.text withPass:self.passwordField.text];
     [self performSegueWithIdentifier:@"LoginSegue" sender:self];
+    
+    //[HUD hideUIBlockingIndicator];
 
+    // PULL USER TASKS :
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(loginComplete:)
@@ -165,9 +179,10 @@ bool alreadyLoggedIn;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"LoginSegue"]) {
-        [HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
+        //[HUD showUIBlockingIndicatorWithText:@"Verifying Login Info"];
         //[manager userLogin:self.emailField.text withPass:self.passwordField.text]; // temporary for testing
-        [manager getUserTasks:[NSNumber numberWithInt:2] withAuth:@"53657a57b67a163e44fddc721842dda0"];
+        //[manager getUserTasks:[NSNumber numberWithInt:1] withAuth:@"3c24c586e316c4d4b02bab8a1925e039"];
+        //[HUD hideUIBlockingIndicator];
     }
 }
 

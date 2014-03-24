@@ -7,19 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 #import "BackEndManagerDelegate.h"
 #import "TasksManagerDelegate.h"
+#import "EventsManagerDelegate.h"
 #import "BackEndCommunicatorDelegate.h"
 #import "BackEndCommunicator.h"
 #import "UserBuilder.h"
 #import "TasksBuilder.h"
+#import "EventsBuilder.h"
+#import "User.h"
 
-@interface BackEndManager : NSObject<BackEndCommunicatorDelegate>
+@interface BackEndManager : NSObject<BackEndCommunicatorDelegate> {
+    NSNumber *userID;
+    NSString *userAuthToken;
+}
 @property (strong, nonatomic) BackEndCommunicator *communicator;
 @property (weak, nonatomic) id<BackEndManagerDelegate> bemDelegate;
 @property (weak, nonatomic) id<TasksManagerDelegate> tmDelegate;
+@property (weak, nonatomic) id<EventsManagerDelegate> emDelegate;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
 
 - (void)userLogin:(NSString*)email withPass:(NSString*)password;
-- (void)getUserTasks:(NSNumber*)user_id withAuth:(NSString *)auth_token;
+- (void)getUserTasks;
+- (void)createUserTask:(Task*)task;
+- (void)deleteUserTask:(Task*)task;
+- (void)createUserEvent:(EventJSON*)eventJSON;
+- (void)getUserEvents;
 
 @end

@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "HUD.h"
 #import "Task.h"
+#import "User.h"
 #import "AppDelegate.h"
+#import "TasksManagerDelegate.h"
+#import "BackEndManager.h"
 
-@interface CreateTaskViewController : UIViewController
+@interface CreateTaskViewController : UIViewController <TasksManagerDelegate> {
+    BackEndManager *manager;
+}
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)durationValueChanged:(id)sender;

@@ -13,9 +13,10 @@
 
 @end
 
-@implementation TasksViewController
-@synthesize fetchedTasksArray;
-BOOL in_server_mode = TRUE;
+@implementation TasksViewController {
+    bool SERVER_MODE;
+}
+@synthesize fetchedTasksArray, user;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,10 +30,16 @@ BOOL in_server_mode = TRUE;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    
+    // Set the iPhone to be in server mode (no local storage of events & tasks)
+    SERVER_MODE = true;
+    
+    
+    // Set up the Persistence storage, for the user info
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
 
-    
     // Set up the BackEndManager
     manager = [[BackEndManager alloc] init];
     manager.communicator = [[BackEndCommunicator alloc] init];
@@ -46,18 +53,18 @@ BOOL in_server_mode = TRUE;
 //        [self performSegueWithIdentifier:@"LoginSegue" sender:self];
 //    }
     
-    NSArray *fetchedUserRecordsArray = [appDelegate getAllUserRecords];
-    User *user = [fetchedUserRecordsArray objectAtIndex:0]; /* TODO: Fix this, but use it for now. */
+   
     
-    if (in_server_mode) {
-        [manager getUserTasks:user.user_id withAuth:user.auth_token];
-        
+    if (SERVER_MODE) {
+        [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
+        [manager getUserTasks];
     } else { // LOCAL PERSISTENCE STORAGE MODE
-        
         // Fetching Records and saving it in "fetchedRecordsArray" object
-        self.fetchedTasksArray = [appDelegate getAllTaskRecords];
-        [self.tableView reloadData];
+        self.fetchedTasksArray = [[[appDelegate getAllTaskRecords] reverseObjectEnumerator] allObjects];
     }
+    [self.tableView reloadData];
+
+    
     
 //    // Test this code for events:
 //    
@@ -138,7 +145,7 @@ BOOL in_server_mode = TRUE;
 {
     static NSString *CellIdentifier = @"standardIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    Task * task = [[self.fetchedTasksArray objectAtIndex:indexPath.row] convertToTaskObject];
+    Task * task = [self.fetchedTasksArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithString:task.name];
     return cell;
 }
@@ -158,25 +165,55 @@ BOOL in_server_mode = TRUE;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         // 3
-        [self.managedObjectContext deleteObject:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        if (SERVER_MODE) {
+            // Visual Notification:
+            [HUD showUIBlockingIndicatorWithText:@"Deleting Task"];
+            
+            // Update the Back-End with JSON call:
+            [manager deleteUserTask:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
+            
+            // Update the local (non-persistence) tableview data source array:
+            [self.fetchedTasksArray removeObjectAtIndex:indexPath.row];
+            
+            // Update the tableview 'view' itself
+            [self.tableView endUpdates];
+        } else {
+            [self.managedObjectContext deleteObject:[self.fetchedTasksArray objectAtIndex:indexPath.row]];
+            NSError *error;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             }
-        // 4
-        AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-        self.fetchedTasksArray = [appDelegate getAllTaskRecords];
-        // 5
-        [tableView endUpdates];
+            
+            // 4
+            AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+            self.fetchedTasksArray = [appDelegate getAllTaskRecords];
+            
+            [tableView endUpdates];
+        }        
     }
 }
 
 
-#pragma mark BackEndManagerDelegate methods
+#pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
-    self.fetchedTasksArray = tasksArray;
-    [self.tableView reloadData];
+    // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
+    self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
+    
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+
+    // This must be used, otherwise the tableview data does not refresh until the user touches the view:
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
+- (void) didDeleteTask {
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+}
 
 @end
+
+
+
+
+
+
+

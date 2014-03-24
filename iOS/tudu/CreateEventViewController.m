@@ -10,10 +10,11 @@
 
 @interface CreateEventViewController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addEventBtn;
-
 @end
 
-@implementation CreateEventViewController
+@implementation CreateEventViewController {
+    bool SERVER_MODE;
+}
 @synthesize startTime, endTime, dateFormatter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,10 +26,26 @@
     return self;
 }
 
+#pragma mark EventsManagerDelegate methods
+- (void)didCreateEvent:(EventJSON*)eventJSON {
+    [HUD hideUIBlockingIndicator];
+    NSLog(@"EVENT CREATED.");
+    NSLog(@"event_name=%@",eventJSON.name);
+    NSLog(@"event_id=%@",eventJSON.event_id);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    SERVER_MODE = true;
+    
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.emDelegate = self;
     
     // Set up the EventDatePicker
     NSDate * now = [[NSDate alloc] init];
@@ -77,6 +94,17 @@
     myEvent.location = self.eventLocationField.text;
     myEvent.calendar = defaultCalendar; // Does this work ?
     [eventStore saveEvent:myEvent span:EKSpanThisEvent commit:YES error:&error];
+    
+    if (SERVER_MODE) {
+        EventJSON *eventJSON = [[EventJSON alloc] init];
+        eventJSON.start_time = startTime;
+        eventJSON.end_time = endTime;
+        eventJSON.name = self.eventNameField.text;
+        eventJSON.event_description = self.eventLocationField.text;
+        
+        [HUD showUIBlockingIndicatorWithText:@"Creating Event"];
+        [manager createUserEvent:eventJSON];
+    }
     
     if (!error) {
         NSLog(@"the event saved and committed correctly with identifier %@", myEvent.eventIdentifier);

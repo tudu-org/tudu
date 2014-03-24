@@ -14,4 +14,18 @@
 
 - (void)successfullyFetchedUserTasks:(NSData *)objectNotation;
 - (void)fetchingUserTasksFailedWithError:(NSError *)error;
+
+- (void)successfullyCreatedTask:(NSData *)objectNotation;
+- (void)createTaskFailedWithError:(NSError *)error;
+
+- (void)successfullyDeletedUserTasks:(NSData *)objectNotation;
+
+
+- (void)successfullyCreatedEvent:(NSData *)objectNotation;
+- (void)createEventFailedWithError:(NSError *)error;
+
+- (void)successfullyFetchedUserEvents:(NSData *)objectNotation;
+- (void)fetchingUserEventsFailedWithError:(NSError *)error;
+
+
 @end
