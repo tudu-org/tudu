@@ -10,6 +10,7 @@
 #import "RNTaskDetailViewController.h"
 
 @interface RightNowViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UIView *taskContainer;
 @property (strong, nonatomic) IBOutlet UIButton *rightArrowBtn;
 @property (strong, nonatomic) IBOutlet UIButton *leftArrowBtn;

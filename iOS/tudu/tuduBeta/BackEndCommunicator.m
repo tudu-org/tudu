@@ -447,6 +447,59 @@
         }
     });
 }
+
+/*
+ TELL THE BACK-END TO SCHEDULE THE USER'S TASKS
+ POST /users/$(userid)/tasks/schedule.json
+ 
+ {
+    "auth_token": "2b770a48ef008c185ea20cd6237fcfab"
+ }
+ 
+ */
+- (void) synchScheduleTasks:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/tasks/schedule.json",user_id]];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-ddEEEEEhh:mm:SSSSS"];   //2014-03-10T18:29:00.000Z     is this correct?
+ 
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    auth_token, @"auth_token",
+                                    nil];
+    NSError *error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // should check for and handle errors here but we aren't
+    [theRequest setHTTPBody:jsonData];
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+        
+        if (error) {
+            /* TODO: Implement error checking. */
+            [self.delegate schedulingTasksFailedWithError:error];
+        } else {
+            [self.delegate successfullyScheduledTasks:receivedData];
+        }
+    });
+}
+
  
 
 

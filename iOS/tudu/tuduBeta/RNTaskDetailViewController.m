@@ -31,19 +31,42 @@ int currentTaskIndex = 0;
 
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext = appDelegate.managedObjectContext;
+#pragma mark TasksManagerDelegate methods
+- (void) didReceiveTasksArray:(NSArray *)tasksArray {
+    // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
+    self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
     
-    // Fetching Records and saving it in "fetchedRecordsArray" object
-    self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
-    if ([self.fetchedRecordsArray count] == 0) {
+    if ([self.fetchedTasksArray count] == 0) {
         [self.titleLabel setText:@"You don't have any tasks!"];
         [self.durationLabel setText:@""];
         [self.deadlineLabel setText:@""];
     } else {
-        [self populateView:[self.fetchedRecordsArray objectAtIndex:0]];
+        [self populateView:[self.fetchedTasksArray objectAtIndex:0]];
     }
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+   
+    
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.tmDelegate = self;
+    
+    /* AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+     self.managedObjectContext = appDelegate.managedObjectContext;*/
+    
+    // Pull the latest tasks
+    
+    [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
+    [manager getUserTasks];
+    
+    // Fetching Records and saving it in "fetchedRecordsArray" object
+    //self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,14 +99,14 @@ int currentTaskIndex = 0;
 }
 
 -(void) showNextTask {
-    if (currentTaskIndex+1 < [self.fetchedRecordsArray count]) { // Array bounds checking
-        [self populateView:[self.fetchedRecordsArray objectAtIndex:++currentTaskIndex]];
+    if (currentTaskIndex+1 < [self.fetchedTasksArray count]) { // Array bounds checking
+        [self populateView:[self.fetchedTasksArray objectAtIndex:++currentTaskIndex]];
     }
 }
 
 -(void) showPreviousTask {
     if (currentTaskIndex-1 >= 0) { // Array bounds checking
-        [self populateView:[self.fetchedRecordsArray objectAtIndex:--currentTaskIndex]];
+        [self populateView:[self.fetchedTasksArray objectAtIndex:--currentTaskIndex]];
     }
 }
 

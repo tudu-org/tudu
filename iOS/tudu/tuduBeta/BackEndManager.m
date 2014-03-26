@@ -75,7 +75,10 @@
     [self.communicator synchFetchUserEvents:userID withAuth:userAuthToken];
 }
 
-
+- (void)scheduleTasks
+{
+    [self.communicator synchScheduleTasks:userID withAuth:userAuthToken];
+}
 
 
 
@@ -166,6 +169,15 @@
     } else {
         [self.emDelegate didReceiveEventsArray:events];
     }
+}
+
+- (void) schedulingTasksFailedWithError:(NSError *)error {
+    /* TODO: implement later.*/
+}
+
+
+- (void)successfullyScheduledTasks:(NSData *)objectNotation {
+    
 }
 
 

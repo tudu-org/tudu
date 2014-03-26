@@ -36,5 +36,6 @@
 - (void)updateUserTask:(Task*)task;
 - (void)createUserEvent:(EventJSON*)eventJSON;
 - (void)getUserEvents;
+- (void)scheduleTasks;
 
 @end

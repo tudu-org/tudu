@@ -27,5 +27,7 @@
 - (void)successfullyFetchedUserEvents:(NSData *)objectNotation;
 - (void)fetchingUserEventsFailedWithError:(NSError *)error;
 
+- (void)schedulingTasksFailedWithError:(NSError *)error;
+- (void)successfullyScheduledTasks:(NSData*)objectNotation;
 
 @end
