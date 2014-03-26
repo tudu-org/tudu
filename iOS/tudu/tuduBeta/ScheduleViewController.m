@@ -8,6 +8,8 @@
 
 #import "ScheduleViewController.h"
 #import "CalendarKit/CalendarKit.h"
+#import "NSDate+Description.h"
+#import "NSDate+Components.h"
 
 @interface ScheduleViewController ()
 @property (weak, nonatomic) IBOutlet UIView *calendarView;
@@ -16,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *monthView;
 @property(strong, nonatomic) EKCalendar *defaultCalendar;
 @property (nonatomic, strong) NSMutableDictionary *data;
-
+@property (strong, nonatomic) NSMutableDictionary *eventsDict;
 
 @end
 
@@ -73,10 +75,44 @@
     
     
     //Add events to calendar
-    [self addEventsToCalendar:self.defaultCalendar];
+    //[self addEventsToCalendar:self.defaultCalendar];
     
     [[self calendar] setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] animated:NO];
     [[self calendar] setDisplayMode:CKCalendarViewModeMonth animated:NO];
+    
+    //sample events
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"MM/dd/yyyy HH:mm"];
+    
+    // NSMutableDictionary* eventsDict = [[NSMutableDictionary alloc] init];
+    _eventsDict = [[NSMutableDictionary alloc] init];
+    NSMutableArray* eventsArray = [[NSMutableArray alloc] init];
+    
+    CKCalendarEvent* aCKCalendarEvent = [[CKCalendarEvent alloc] init];
+    aCKCalendarEvent.date = [dateformatter dateFromString: @"05/04/2014 07:15"];
+    aCKCalendarEvent.title = @"iOS Meeting";
+    [eventsArray addObject: aCKCalendarEvent];
+    [self.eventsDict setObject: eventsArray forKey: [NSDate dateWithDay:04 month:05 year:2014]];
+    
+    eventsArray = [[NSMutableArray alloc] init];
+    aCKCalendarEvent = [[CKCalendarEvent alloc] init];
+    aCKCalendarEvent.date = [dateformatter dateFromString: @"05/05/2014 12:00"];
+    aCKCalendarEvent.title = @"iOS Meeting";
+    [eventsArray addObject: aCKCalendarEvent];
+    [self.eventsDict setObject: eventsArray forKey: [NSDate dateWithDay:05 month:05 year:2014]];
+    
+    aCKCalendarEvent = [[CKCalendarEvent alloc] init];
+    aCKCalendarEvent.date = [dateformatter dateFromString: @"05/05/2014 13:00"];
+    aCKCalendarEvent.title = @"Part 2";
+    [eventsArray addObject: aCKCalendarEvent];
+    [self.eventsDict setObject: eventsArray forKey: [NSDate dateWithDay:05 month:05 year:2014]];
+    
+    eventsArray = [[NSMutableArray alloc] init];
+    aCKCalendarEvent = [[CKCalendarEvent alloc] init];
+    aCKCalendarEvent.date = [NSDate dateWithDay:06 month:05 year: 2014];
+    aCKCalendarEvent.title = @"iOS Meeting";
+    [eventsArray addObject: aCKCalendarEvent];
+    [self.eventsDict setObject:eventsArray forKey:aCKCalendarEvent.date];
 
 }
 
@@ -86,21 +122,6 @@
     [HUD showUIBlockingIndicatorWithText:@"Downloading Events"];
     [manager getUserEvents];
 }
-
--(void)addEventsToCalendar:(EKCalendar*)cal{
-    //SAMPLE CALENDAR VIEW
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:8];
-    [comps setMonth:3];
-    [comps setYear:2014];
-    NSCalendar *gregorian = [[NSCalendar alloc]
-                             initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate *date = [gregorian dateFromComponents:comps];
-    
-    [[self dataSource] calendarView:self.calendar eventsForDate:date];
-}
-
-
 
 
 #pragma mark - EventsManagerDelegate methods
@@ -120,6 +141,8 @@
 - (NSArray *)calendarView:(CKCalendarView *)calendarView eventsForDate:(NSDate *)date
 {
     return [self data][date];
+    return [ self eventsDict][date];
+
 }
 
 #pragma mark - Toolbar Items
@@ -139,16 +162,6 @@
     }
     
 }
-
-//#pragma mark - CKCalendarViewDataSource
-//
-//- (NSArray *)calendarView:(CKCalendarView *)CalendarView eventsForDate:(NSDate *)date
-//{
-//    if ([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)]) {
-//        return [[self dataSource] calendarView:CalendarView eventsForDate:date];
-//    }
-//    return nil;
-//}
 
 #pragma mark - CKCalendarViewDelegate
 
