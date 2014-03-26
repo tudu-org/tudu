@@ -5,7 +5,7 @@ class tudu-dev {
   }
 
   exec {'apt-update':
-    command => '/usr/bin/apt-get update',
+    command => '/usr/bin/apt-get update || true',
     require => File['/etc/apt/sources.list'],
   }
 
@@ -30,6 +30,16 @@ class tudu-dev {
   }
 
   package {'vim':
+    ensure => 'installed',
+    require => Exec['apt-update'],
+  }
+
+  package {'postgresql':
+    ensure => 'installed',
+    require => Exec['apt-update'],
+  }
+
+  package {'postgresql-client':
     ensure => 'installed',
     require => Exec['apt-update'],
   }
