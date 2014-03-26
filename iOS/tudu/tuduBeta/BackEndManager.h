@@ -33,6 +33,7 @@
 - (void)getUserTasks;
 - (void)createUserTask:(Task*)task;
 - (void)deleteUserTask:(Task*)task;
+- (void)updateUserTask:(Task*)task;
 - (void)createUserEvent:(EventJSON*)eventJSON;
 - (void)getUserEvents;
 

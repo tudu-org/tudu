@@ -273,6 +273,71 @@
     });
 }
 
+/*  SYNCHRONOUS UPDATE TASK
+ 
+ PATCH /users/$(userid)/tasks/$(taskid).json
+ 
+ {
+ "auth_token": "2b770a48ef008c185ea20cd6237fcfab",
+ "task":{
+ "name":"I changed the task's name!",
+ "description":"It even has a description, wow!",
+ "priority":8,
+ "deadline":"2014-03-27T10:18:00.000Z"
+ }
+ }
+ */
+- (void) synchUpdateUserTask:(Task*)task withUserID:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/tasks/%@.json",user_id,task.task_id]];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-ddEEEEEhh:mm:SSSSS"];   //2014-03-10T18:29:00.000Z     is this correct?
+    
+    NSDictionary *taskDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    task.name, @"name",
+                                    task.description, @"description",
+                                    task.priority, @"priority",
+                                    [dateFormatter stringFromDate:task.deadline], @"deadline", // Is it necessary to cast to a string?
+                                    nil];
+    NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    auth_token, @"auth_token",
+                                    taskDictionary, @"task", // Nest the task inside this dictionary
+                                    nil];
+    NSError *error;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    [theRequest setHTTPMethod:@"PATCH"];
+    [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // should check for and handle errors here but we aren't
+    [theRequest setHTTPBody:jsonData];
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        // The receivedData will be null for a successful request
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+        
+        if (error) {
+            /* TODO: Implement error-checking. */
+            //[self.delegate updateTaskFailedWithError:error];
+        } else {
+            [self.delegate successfullyUpdatedUserTask:receivedData];
+        }
+    });
+}
+
 
 
 /*  SYCHRONOUSLY CREATE EVENT

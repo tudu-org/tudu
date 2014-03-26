@@ -19,7 +19,7 @@
 - (void)createTaskFailedWithError:(NSError *)error;
 
 - (void)successfullyDeletedUserTasks:(NSData *)objectNotation;
-
+- (void)successfullyUpdatedUserTask:(NSData *)objectNotation;
 
 - (void)successfullyCreatedEvent:(NSData *)objectNotation;
 - (void)createEventFailedWithError:(NSError *)error;

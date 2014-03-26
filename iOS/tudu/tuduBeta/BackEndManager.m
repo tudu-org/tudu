@@ -61,6 +61,11 @@
     [self.communicator synchDeleteUserTask:task withUserID:userID withAuth:userAuthToken];
 }
 
+- (void)updateUserTask:(Task *)task
+{
+    [self.communicator synchUpdateUserTask:task withUserID:userID withAuth:userAuthToken];
+}
+
 - (void)createUserEvent:(EventJSON*)eventJSON {
     [self.communicator synchCreateUserEvent:eventJSON withUserID:userID withAuth:userAuthToken];
 }
@@ -129,6 +134,10 @@
 
 - (void)successfullyDeletedUserTasks:(NSData *)objectNotation {
     [self.tmDelegate didDeleteTask];
+}
+
+- (void)successfullyUpdatedUserTask:(NSData *)objectNotation {
+    [self.tmDelegate didUpdateTask];
 }
 
 - (void)successfullyCreatedEvent:(NSData *)objectNotation {

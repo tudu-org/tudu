@@ -37,4 +37,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property int mode; // if mode = 0 then it is add mode; if mode = 1 then it is edit mode
 
+
 @end
