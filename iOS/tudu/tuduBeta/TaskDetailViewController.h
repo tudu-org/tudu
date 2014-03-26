@@ -15,4 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *priorityLabel;
 @property (strong, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property (strong, nonatomic) Task *task;
+
+- (IBAction)unwindToTaskDetailViewController:(UIStoryboardSegue *)segue;
+
 @end

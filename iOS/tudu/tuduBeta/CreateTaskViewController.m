@@ -32,6 +32,13 @@
     [HUD hideUIBlockingIndicator];
 }
 
+- (void) didUpdateTask {
+    // Perform the segue back to the TaskDetailViewController
+    //[self performSegueWithIdentifier:@"UnwindToTaskDetailSegue" sender:self];
+    //[HUD hideUIBlockingIndicator];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -169,8 +176,13 @@
             [HUD showUIBlockingIndicatorWithText:@"Creating Task"];
             [manager createUserTask:newTask];
         }
-    }
-    if(self.mode ==1){
+        
+        // Perform the segue to the TasksViewController
+        [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
+        
+        
+    }  else if(self.mode ==1){
+        // Edit Task Object
         NSInteger durationIndex = self.durationSegmentedControlBar.selectedSegmentIndex;
         if ([self.durationSegmentedControlBar isHidden]) {
             // We are taking the duration value from the duration slider
@@ -190,20 +202,22 @@
         
         self.task.deadline = self.deadlineDatePicker.date;
         
+        if (SERVER_MODE) {
+            [HUD showUIBlockingIndicatorWithText:@"Updating Task"];
+            [manager updateUserTask:self.task];
+        }
+        
+        // Perform the segue to the TasksViewController
+        [self performSegueWithIdentifier:@"AddTaskSegue" sender:self];
     }
-    
-    
-    // Save the task to the CoreData database
-    NSError *error;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    
-    
-    
-    // Perform the segue to the TasksViewController
-    [self performSegueWithIdentifier:@"AddTaskSegue" sender:sender];
-    
+//    
+//    if (!SERVER_MODE) {
+//        // Save the task to the CoreData database
+//        NSError *error;
+//        if (![self.managedObjectContext save:&error]) {
+//            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//        }
+//    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -295,7 +309,6 @@
     }
     [super touchesBegan:touches withEvent:event];
 }
-
 
 @end
 

@@ -28,10 +28,29 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",self.task.duration]];
-    [self.priorityLabel setText:[NSString stringWithFormat:@"Priority: %@",self.task.priority]];
-    [self.deadlineLabel setText:[NSString stringWithFormat:@"Deadline: %@",self.task.deadline]];
     [self setTitle:self.task.name];
+    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",self.task.duration]];
+    [self.deadlineLabel setText:[NSString stringWithFormat:@"Deadline: %@",self.task.deadline]];
+    
+    int prio = [self.task.priority intValue];
+    
+    switch (prio) {
+        case 0:
+            [self.priorityLabel setText:@"Low Priority"];
+            [self.priorityLabel setTextColor:[UIColor greenColor]];
+            break;
+        case 1:
+            [self.priorityLabel setText:@"Medium Priority"];
+            [self.priorityLabel setTextColor:[UIColor yellowColor]];
+            break;
+        case 2:
+            [self.priorityLabel setText:@"High Priority"];
+            [self.priorityLabel setTextColor:[UIColor redColor]];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -42,6 +61,12 @@
         [ctvc setTask:self.task]; // Pass along the task so that the Edit view controller can populate its fields with the correct data
     }
 }
+
+
+- (IBAction)unwindToTaskDetailViewController:(UIStoryboardSegue *)segue {
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning

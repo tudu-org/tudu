@@ -14,4 +14,5 @@
 - (void)didReceiveTasksArray:(NSArray *)tasksArray;
 - (void)didCreateTask:(Task*)task;
 - (void)didDeleteTask;
+- (void)didUpdateTask;
 @end
