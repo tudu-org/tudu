@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Priority</th>
+      <th>Duration</th>
       <th>Deadline</th>
       <th></th>
       <th></th>
@@ -23,6 +24,7 @@
         <td><%= task.name %></td>
         <td><%= task.description %></td>
         <td><%= task.priority %></td>
+        <td><%= task.duration %></td>
         <td><%= task.deadline %></td>
         <td><%= link_to 'Show', [@user, task] %></td>
         <td><%= link_to 'Edit', edit_user_task_path(@user, task) %></td>
