@@ -7,6 +7,9 @@
 deb http://mirrors.usc.edu/pub/linux/distributions/debian/ wheezy main
 deb-src http://mirrors.usc.edu/pub/linux/distributions/debian/ wheezy main
 
+deb ftp://ftp.us.debian.org/debian/ wheezy main
+deb-src ftp://ftp.us.debian.org/debian/ wheezy main
+
 deb http://security.debian.org/ wheezy/updates main
 deb-src http://security.debian.org/ wheezy/updates main
 
@@ -14,5 +17,9 @@ deb-src http://security.debian.org/ wheezy/updates main
 deb http://mirrors.usc.edu/pub/linux/distributions/debian/ wheezy-updates main
 deb-src http://mirrors.usc.edu/pub/linux/distributions/debian/ wheezy-updates main
 
+deb ftp://ftp.us.debian.org/debian/ wheezy-updates main
+deb-src ftp://ftp.us.debian.org/debian/ wheezy-updates main
+
 # backports
 deb http://mirrors.usc.edu/pub/linux/distributions/debian/ wheezy-backports main
+deb ftp://ftp.us.debian.org/debian/ wheezy-backports main

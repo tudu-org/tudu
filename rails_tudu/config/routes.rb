@@ -1,4 +1,5 @@
 Tudu::Application.routes.draw do
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   
@@ -25,12 +26,15 @@ Tudu::Application.routes.draw do
   resources :events do
     collection do
       get "in_range"
+	  get "today"
     end
   end
 
   resources :tasks do
     collection do
       post "schedule"
+	  get "in_range"
+	  get "today"
     end
   end
 
@@ -48,12 +52,15 @@ Tudu::Application.routes.draw do
     resources :events do
       collection do
         get "in_range"
+		get "today"
       end
     end
 
     resources :tasks do
       collection do
         post "schedule"
+		get "in_range"
+		get "today"
       end
     end
 

@@ -73,6 +73,38 @@ class TasksController < ApplicationController
       end
     end
   end
+  
+  # GET /tasks/today
+  # GET /tasks/today.json
+  def today
+    today = Time.now.to_a
+	today[0] = today[1] = today[2] = 0
+	start_time = Time.local(*today)
+	end_time = start_time + 86400 #24 Hours in seconds
+
+    @tasks = @user.tasks
+    @tasks = @tasks.where(start_time: (start_time..end_time))
+
+    respond_to do |format|
+      format.html { render text: "Unimplemented" }
+      format.json { render json: @tasks }
+    end	
+  end
+
+  # GET /tasks/in_range?start=datetime&end=datetime
+  # GET /tasks/in_range.json?start=datetime&end=datetime
+  def in_range
+    start_time = DateTime.parse params[:start]
+    end_time = DateTime.parse params[:end]
+
+    @tasks = @user.tasks
+    @tasks = @tasks.where(start_time: (start_time..end_time))
+
+    respond_to do |format|
+      format.html { render text: "Unimplemented" }
+      format.json { render json: @tasks }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
