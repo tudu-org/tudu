@@ -75,6 +75,11 @@ GEM
       retriable (>= 1.4)
       signet (>= 0.5.0)
       uuidtools (>= 2.1.0)
+    handlebars_assets (0.15)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -182,6 +187,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   bootstrap3-datetimepicker-rails (~> 2.1.30)
   fullcalendar-rails
+  handlebars_assets
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails

@@ -16,8 +16,9 @@
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
-
 //= require js-routes
+//= require handlebars.runtime
+//= require handlebars
 
 //= require gcal
 //= require fullcalendar
