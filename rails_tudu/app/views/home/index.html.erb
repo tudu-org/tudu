@@ -1,0 +1,10 @@
+<div data-controller="<%= controller_name %>" data-action="<% action_name %>">
+	<div id="today"></div>
+
+	<ul id="list_events"></ul>
+</div>
+<script type="template" id="schedule-template">
+	<li>
+		{{startFormatted}} | {{title}}
+	</li>
+</script>
