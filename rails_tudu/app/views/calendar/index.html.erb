@@ -1,1 +1,4 @@
-<div id='calendar'></div>
+<div id='calendar' data-controller="<%= controller_name %>" data-action="<%= action_name %>"></div>
+<script type="template" id="show-event-template">
+	<%= render "events/show" %>
+</script>
