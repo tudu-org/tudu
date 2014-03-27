@@ -15,7 +15,10 @@
 	<%= yield %>
 <% else %>
 	<%= render "layouts/navbar" %>
-	<%= yield %>
+	<%= render "layouts/sidebar" %>
+	<div class="pull-left">
+		<%= yield %>
+	</div>
 <% end %>
 </body>
 </html>
