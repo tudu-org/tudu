@@ -20,7 +20,17 @@
 //= require handlebars.runtime
 //= require handlebars
 
+//= require_self
+
 //= require gcal
 //= require fullcalendar
 
 //= require_tree .
+
+var TUDU = TUDU || {
+    common: {
+        init: function () {
+        // application-wide code
+        }
+    }
+};
