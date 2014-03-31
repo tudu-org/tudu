@@ -1,4 +1,5 @@
 *.DS_Store
+*.vp
 Gemfile.lock
 .gitignore
 .vagrant

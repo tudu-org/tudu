@@ -1,0 +1,10 @@
+<aside id="sidebar" data-controller="sidebar" data-action>
+	<%
+		@user = current_user
+		@event = @user.events.new
+		@task = @user.tasks.new
+	%>
+	<button id="switchForm">Switch</button>
+	<%= render "events/form" %>
+	<%= render "tasks/form" %>
+</aside>

@@ -16,10 +16,21 @@
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
-
 //= require js-routes
+//= require handlebars.runtime
+//= require handlebars
+
+//= require_self
 
 //= require gcal
 //= require fullcalendar
 
 //= require_tree .
+
+var TUDU = TUDU || {
+    common: {
+        init: function () {
+        // application-wide code
+        }
+    }
+};

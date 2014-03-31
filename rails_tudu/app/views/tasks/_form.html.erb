@@ -1,41 +1,45 @@
-<%= form_for([@user, @task]) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= form_for ([@user, @task]) do |f| %>
+    <% if @task.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% @task.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <h4>New Task</h4>
+    <div class="field">
+        <%= label_tag 'Title' %>
+        <%= f.text_field :name, :placeholder => "Untitled task" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :priority %><br>
-    <%= f.number_field :priority %>
-  </div>
-  <div class="field">
-    <%= f.label :deadline %><br>
-    <%= f.datetime_select :deadline %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+        <%= label_tag 'Deadline' %>
+        <%= f.text_field :deadline, :id => "deadline_picker", :placeholder => DateTime.current().to_formatted_s(:custom) %>
+    </div>
+    <div class="field">
+        <%= label_tag 'Priority' %>
+        <!-- <ul class="segmented-control">
+            <button data-value="0"><a>Low</a></button>
+            <button data-value="1"><a>Normal</a></button>
+            <button data-value="2"><a>High</a></button>
+        </ul> -->
+        <%= f.select(:priority, options_for_select([['Low', 0], ['Normal', 1], ['High', 2]])) %>
+    </div>
+    <div class="field">
+        <%= label_tag 'Time' %>
+        <div id="duration_slider"></div>
+        <%= f.hidden_field :duration, :value => 900 %>
+        <span id="duration_value">15m</span> 
+    </div>
+    <div class="field">
+        <%= label_tag 'Description' %>
+        <%= f.text_area :description %>
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
 <% end %>

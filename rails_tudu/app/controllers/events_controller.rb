@@ -64,6 +64,24 @@ class EventsController < ApplicationController
     end
   end
 
+  # GET /events/today
+  # GET /events/today.json
+  def today
+    today = Time.now.to_a
+	today[0] = today[1] = today[2] = 0
+	start_time = Time.local(*today)
+	end_time = start_time + 86400 #24 Hours in seconds
+	
+	@events = @user.events
+    @events = @events.where(start_time: (start_time..end_time))
+
+    respond_to do |format|
+      format.html { render text: "Unimplemented" }
+      format.json { render json: @events }
+    end
+	
+  end
+
   # GET /events/in_range?start=datetime&end=datetime
   # GET /events/in_range.json?start=datetime&end=datetime
   def in_range

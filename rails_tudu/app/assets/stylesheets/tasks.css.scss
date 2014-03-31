@@ -1,3 +1,16 @@
-// Place all the styles related to the tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#new_task {
+	.field, .actions{
+		float: left;
+		clear: left;
+		margin-bottom: 10px;
+
+		label {
+			width: 75px;
+			text-align: right;
+		}
+	}
+}
+
+#duration_slider {
+	
+}
