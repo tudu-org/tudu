@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
+
+//= require js-routes
 
 //= require gcal
 //= require fullcalendar

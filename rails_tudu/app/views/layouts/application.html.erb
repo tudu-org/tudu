@@ -11,7 +11,11 @@
 <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
 
-<%= render "layouts/navbar" %>
-<%= yield %>
+<% if (@splash) %>
+	<%= yield %>
+<% else %>
+	<%= render "layouts/navbar" %>
+	<%= yield %>
+<% end %>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top" role="navigation">
+<header class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,11 +9,10 @@
       </button>
       <%= link_to 'Tudu', home_path, :class => 'navbar-brand' %>
     </div>
-    <div class="navbar-collapse collapse">
+    <nav class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'Home', home_path %></li>
+        <li><%= link_to 'Home', home_path %></li>
         <li><%= link_to 'Calendar', calendar_index_path %></li>
-        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Edit <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -29,7 +28,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Logout",sessions_destroy_path %></li>
       </ul>
-    </div><!--/.nav-collapse -->
+    </nav><!--/.nav-collapse -->
   </div>
-</div>
+</header>
 <!--NAVBAR END-->
