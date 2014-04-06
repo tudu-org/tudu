@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_user
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :finished]
 
   # GET /tasks
   # GET /tasks.json
@@ -106,10 +106,33 @@ class TasksController < ApplicationController
     end
   end
 
+  # PUT /tasks/1/finished
+  # PUT /users/1/tasks/1/finished
+  # PUT /tasks/1/finished.json
+  # PUT /users/1/tasks/1/finished.json
+  def finished
+    @task.finished = true
+
+    respond_to do |format|
+      if @task.save
+        format.html { render text: "Unimplemented" }
+        format.json { head :no_content }
+      else
+        format.html { render text: "Unimplemented" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      task_id = params[:id]
+      if params[:task_id]
+        task_id = params[:task_id]
+      end
+
+      @task = Task.find(task_id)
     end
 
     # Use callbacks to share common setup or constraints between actions.
