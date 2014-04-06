@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_user
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :finished]
 
   # GET /tasks
   # GET /tasks.json
@@ -29,6 +29,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        @user.schedule_tasks
         format.html { redirect_to [@user, @task], notice: 'Task was successfully created.' }
         format.json { render action: 'show', status: :created, location: [@user, @task] }
       else
@@ -43,6 +44,8 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        @user.schedule_tasks
+
         format.html { redirect_to [@user, @task], notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
@@ -56,6 +59,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task.destroy
+    @user.schedule_tasks
     respond_to do |format|
       format.html { redirect_to user_tasks_url(@user) }
       format.json { head :no_content }
@@ -106,10 +110,33 @@ class TasksController < ApplicationController
     end
   end
 
+  # PUT /tasks/1/finished
+  # PUT /users/1/tasks/1/finished
+  # PUT /tasks/1/finished.json
+  # PUT /users/1/tasks/1/finished.json
+  def finished
+    @task.finished = true
+
+    respond_to do |format|
+      if @task.save
+        format.html { render text: "Unimplemented" }
+        format.json { head :no_content }
+      else
+        format.html { render text: "Unimplemented" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      task_id = params[:id]
+      if params[:task_id]
+        task_id = params[:task_id]
+      end
+
+      @task = Task.find(task_id)
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -123,6 +150,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:start_time, :end_time, :name, :description, :priority, :deadline, :duration)
+      params.require(:task).permit(:start_time, :end_time, :name, :description, :priority, :deadline, :duration, :finished)
     end
 end
