@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *rightArrowBtn;
 @property (strong, nonatomic) IBOutlet UIButton *leftArrowBtn;
 @property (strong, nonatomic) RNTaskDetailViewController *rntdViewController;
+@property (strong, nonatomic) IBOutlet UISlider *freeTimeSlider;
+@property (strong, nonatomic) IBOutlet UILabel *freeTimeValueLabel;
 
 - (IBAction)showNextTask:(id)sender;
 - (IBAction)showPreviousTask:(id)sender;

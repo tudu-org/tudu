@@ -28,10 +28,30 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Task Title
     [self setTitle:self.task.name];
     
-    // Duration
-    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",self.task.duration]];
+    // Task Duration
+    NSString *durationDisplayString;
+    NSString *suffixStr;
+    int val = [self.task.duration intValue];
+    int hr = val / 3600; // 3600 seconds in an hour
+    int min = (val - (hr*3600)) / 60; // 60 seconds in a minute
+    if (hr == 0) {
+        durationDisplayString = [NSString stringWithFormat:@"%i minutes", min];
+    } else {
+        if (hr > 1) {
+            suffixStr = @"s";
+        } else {
+            suffixStr = @"";
+        }
+        if (min == 0) {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@", hr, suffixStr];
+        } else {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@ and %i min", hr, suffixStr, min];
+        }
+    }
+    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",durationDisplayString]];
   
     // Deadline
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

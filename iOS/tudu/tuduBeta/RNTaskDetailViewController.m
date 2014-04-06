@@ -34,8 +34,13 @@ int currentTaskIndex = 0;
 #pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
     // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
-    self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
-    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+    //self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
+
+    // Sort the tasks, showing the tasks with ASCENDING Duration values
+    NSSortDescriptor *sortByDuration = [NSSortDescriptor sortDescriptorWithKey:@"duration"
+                                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByDuration];
+    self.fetchedTasksArray = [NSMutableArray arrayWithArray:[self.fetchedTasksArray sortedArrayUsingDescriptors:sortDescriptors]];
     
     if ([self.fetchedTasksArray count] == 0) {
         [self.titleLabel setText:@"You don't have any tasks!"];
@@ -44,6 +49,8 @@ int currentTaskIndex = 0;
     } else {
         [self populateView:[self.fetchedTasksArray objectAtIndex:0]];
     }
+
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -76,19 +83,43 @@ int currentTaskIndex = 0;
 }
 
 -(void) populateView:(Task *)task {
+    
     // Task Title
     [self.titleLabel setText:task.name];
     
+    
     // Task Duration
-    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",task.duration]];
+    NSString *durationDisplayString;
+    NSString *suffixStr;
+    int val = [task.duration intValue];
+    int hr = val / 3600; // 3600 seconds in an hour
+    int min = (val - (hr*3600)) / 60; // 60 seconds in a minute
+    if (hr == 0) {
+        durationDisplayString = [NSString stringWithFormat:@"%i minutes", min];
+    } else {
+        if (hr > 1) {
+            suffixStr = @"s";
+        } else {
+            suffixStr = @"";
+        }
+        if (min == 0) {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@", hr, suffixStr];
+        } else {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@ and %i min", hr, suffixStr, min];
+        }
+    }
+    [self.durationLabel setText:durationDisplayString];
+    
     
     // Task Deadline
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
     [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
-    NSString *deadlineString = [NSString stringWithFormat:@"Deadline: %@",[dateFormatter stringFromDate:task.deadline]];
+    NSString *deadlineString = [dateFormatter stringFromDate:task.deadline];
     [self.deadlineLabel setText:deadlineString];
     
+    
+    // Task Background Coloring
     int prio = [task.priority intValue];
     switch (prio) {
             /* TODO: Make these Constants and store them in Constants.h */
