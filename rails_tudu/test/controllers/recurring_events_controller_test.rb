@@ -4,17 +4,18 @@ class RecurringEventsControllerTest < ActionController::TestCase
   setup do
     @recurring_event = recurring_events(:one)
     @user = users(:one)
+    session[:user_id] = @user.id
   end
 
   test "should get index" do
     get :index
-    assert_response :success
+    assert_redirected_to user_recurring_events_path(session[:user_id])
     assert_not_nil assigns(:recurring_events)
   end
 
   test "should get new" do
     get :new, user_id: @user.id
-    assert_response :success
+    assert_redirected_to new_user_recurring_event_path(session[:user_id])
   end
 
   test "should create recurring_event" do
@@ -27,7 +28,7 @@ class RecurringEventsControllerTest < ActionController::TestCase
 
   test "should show recurring_event" do
     get :show, user_id: @user.id, id: @recurring_event
-    assert_response :success
+    assert_redirected_to user_recurring_event_path(assigns(:recurring_event))
   end
 
   test "should get edit" do
@@ -42,7 +43,7 @@ class RecurringEventsControllerTest < ActionController::TestCase
 
   test "should destroy recurring_event" do
     assert_difference('RecurringEvent.count', -1) do
-      delete :destroy, user_id: @user.id, id: @recurring_event
+      delete :destroy, user_id: @user.id, id: @recurring_event.id
     end
 
     assert_redirected_to user_recurring_events_path

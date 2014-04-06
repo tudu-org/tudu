@@ -4,6 +4,7 @@ class TasksControllerTest < ActionController::TestCase
   setup do
     @task = tasks(:one)
     @user = users(:one)
+    session[:user_id] = @user.id
   end
 
   test "should get index" do
@@ -22,7 +23,7 @@ class TasksControllerTest < ActionController::TestCase
       post :create, user_id: @user.id, task: { deadline: @task.deadline, description: @task.description, end_time: @task.end_time, name: @task.name, priority: @task.priority, start_time: @task.start_time }
     end
 
-    assert_redirected_to user_task_path(assigns(:task))
+    assert_redirected_to user_task_path(session[:user_id],assigns(:task))
   end
 
   test "should show task" do
@@ -37,7 +38,7 @@ class TasksControllerTest < ActionController::TestCase
 
   test "should update task" do
     patch :update, user_id: @user.id, id: @task, task: { deadline: @task.deadline, description: @task.description, end_time: @task.end_time, name: @task.name, priority: @task.priority, start_time: @task.start_time }
-    assert_redirected_to user_task_path(assigns(:task), user_id: @user.id,id: @task)
+    assert_redirected_to user_task_path( user_id: @user.id,id: @task)
   end
 
   test "should destroy task" do

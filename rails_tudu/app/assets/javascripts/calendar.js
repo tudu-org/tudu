@@ -13,7 +13,7 @@ TUDU.calendar = {
      * synchronously after JSON response
      */
     init: function () {
-        $.getJSON(Routes.user_schedule_path(3, {format:'json'}), function (data) {
+        $.getJSON(Routes.user_schedule_path(10, {format:'json'}), function (data) {
             // console.log(data.events);
             TUDU.calendar.eventsJSON = UTIL.refactorJSON(data.events);
             console.log(data.tasks);

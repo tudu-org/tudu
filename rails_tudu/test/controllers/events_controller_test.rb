@@ -4,6 +4,7 @@ class EventsControllerTest < ActionController::TestCase
   setup do
     @event = events(:one)
     @user = users(:one)
+    session[:user_id] = @user.id
   end
 
   test "should get index" do
@@ -21,8 +22,6 @@ class EventsControllerTest < ActionController::TestCase
     assert_difference('Event.count') do
       post :create, user_id: @user.id, event: { description: @event.description, end_time: @event.end_time, name: @event.name, start_time: @event.start_time }
     end
-
-    assert_redirected_to user_event_path(assigns(:event))
   end
 
   test "should show event" do
@@ -38,7 +37,7 @@ class EventsControllerTest < ActionController::TestCase
   test "should update event" do
     assert_not_nil @user.id
     patch :update, user_id: @user.id, id: @event, event: { description: @event.description, end_time: @event.end_time, name: @event.name, start_time: @event.start_time }
-    assert_redirected_to user_event_path(assigns(:event),user_id: @user.id, id: @event)
+    assert_redirected_to user_event_path(user_id: @user.id, id: @event)
   end
 
   test "should destroy event" do
