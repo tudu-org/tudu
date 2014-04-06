@@ -29,6 +29,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        @user.schedule_tasks
         format.html { redirect_to [@user, @task], notice: 'Task was successfully created.' }
         format.json { render action: 'show', status: :created, location: [@user, @task] }
       else
@@ -43,6 +44,8 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
+        @user.schedule_tasks
+
         format.html { redirect_to [@user, @task], notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
@@ -56,6 +59,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task.destroy
+    @user.schedule_tasks
     respond_to do |format|
       format.html { redirect_to user_tasks_url(@user) }
       format.json { head :no_content }

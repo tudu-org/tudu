@@ -121,4 +121,8 @@ class User < ActiveRecord::Base
 	def test_make_schedule
 		make_schedule Time.now - 5.weeks, Time.now + 5.weeks
 	end
+
+	def schedule_tasks
+		
+	end
 end
