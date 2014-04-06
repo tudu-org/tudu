@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "RNTaskDetailViewController.h"
 
-@interface RightNowViewController : UIViewController
-
+@interface RightNowViewController : UIViewController <TasksManagerDelegate> {
+    BackEndManager *manager;
+}
+@property (nonatomic,strong) NSMutableArray *fetchedTasksArray;
+@property (nonatomic,strong) NSMutableArray *filteredTasksArray;
 @property (strong, nonatomic) IBOutlet UIView *taskContainer;
 @property (strong, nonatomic) IBOutlet UIButton *rightArrowBtn;
 @property (strong, nonatomic) IBOutlet UIButton *leftArrowBtn;

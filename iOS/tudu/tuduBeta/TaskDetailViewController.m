@@ -7,6 +7,10 @@
 //
 
 #import "TaskDetailViewController.h"
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface TaskDetailViewController ()
 
@@ -66,15 +70,15 @@
     switch (prio) {
         case 0:
             [self.priorityLabel setText:@"Low Priority"];
-            [self.priorityLabel setTextColor:[UIColor greenColor]];
+            [self.priorityLabel setTextColor:UIColorFromRGB(0x3BDA00)];
             break;
         case 1:
             [self.priorityLabel setText:@"Medium Priority"];
-            [self.priorityLabel setTextColor:[UIColor orangeColor]];
+            [self.priorityLabel setTextColor:UIColorFromRGB(0xFFCA00)];
             break;
         case 2:
             [self.priorityLabel setText:@"High Priority"];
-            [self.priorityLabel setTextColor:[UIColor redColor]];
+            [self.priorityLabel setTextColor:UIColorFromRGB(0xF10026)];
             break;
             
         default:

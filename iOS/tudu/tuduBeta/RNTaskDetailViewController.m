@@ -7,6 +7,11 @@
 //
 
 #import "RNTaskDetailViewController.h"
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 
 @interface RNTaskDetailViewController ()
 
@@ -28,47 +33,20 @@ int currentTaskIndex = 0;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
-}
-
-#pragma mark TasksManagerDelegate methods
-- (void) didReceiveTasksArray:(NSArray *)tasksArray {
-    // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
-    //self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
-
-    // Sort the tasks, showing the tasks with ASCENDING Duration values
-    NSSortDescriptor *sortByDuration = [NSSortDescriptor sortDescriptorWithKey:@"duration"
-                                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByDuration];
-    self.fetchedTasksArray = [NSMutableArray arrayWithArray:[self.fetchedTasksArray sortedArrayUsingDescriptors:sortDescriptors]];
     
-    if ([self.fetchedTasksArray count] == 0) {
-        [self.titleLabel setText:@"You don't have any tasks!"];
-        [self.durationLabel setText:@""];
-        [self.deadlineLabel setText:@""];
-    } else {
-        [self populateView:[self.fetchedTasksArray objectAtIndex:0]];
-    }
-
-    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+    
 }
+
 
 -(void) viewDidAppear:(BOOL)animated {
    
     
-    // Set up the BackEndManager
-    manager = [[BackEndManager alloc] init];
-    manager.communicator = [[BackEndCommunicator alloc] init];
-    manager.communicator.delegate = manager;
-    manager.tmDelegate = self;
     
     /* AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
      self.managedObjectContext = appDelegate.managedObjectContext;*/
     
     // Pull the latest tasks
     
-    [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
-    [manager getUserTasks];
     
     // Fetching Records and saving it in "fetchedRecordsArray" object
     //self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
@@ -124,13 +102,13 @@ int currentTaskIndex = 0;
     switch (prio) {
             /* TODO: Make these Constants and store them in Constants.h */
         case 0:
-            [self.view setBackgroundColor:[UIColor greenColor]];
+            [self.view setBackgroundColor:UIColorFromRGB(0x3BDA00)];
             break;
         case 1:
-            [self.view setBackgroundColor:[UIColor orangeColor]];
+            [self.view setBackgroundColor:UIColorFromRGB(0xFFCA00)];
             break;
         case 2:
-            [self.view setBackgroundColor:[UIColor redColor]];
+            [self.view setBackgroundColor:UIColorFromRGB(0xF10026)];
             break;
             
         default:
@@ -139,17 +117,6 @@ int currentTaskIndex = 0;
     }
 }
 
--(void) showNextTask {
-    if (currentTaskIndex+1 < [self.fetchedTasksArray count]) { // Array bounds checking
-        [self populateView:[self.fetchedTasksArray objectAtIndex:++currentTaskIndex]];
-    }
-}
-
--(void) showPreviousTask {
-    if (currentTaskIndex-1 >= 0) { // Array bounds checking
-        [self populateView:[self.fetchedTasksArray objectAtIndex:--currentTaskIndex]];
-    }
-}
 
 
 @end

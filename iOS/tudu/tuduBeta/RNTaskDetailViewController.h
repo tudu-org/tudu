@@ -11,17 +11,14 @@
 #import "CreateTaskViewController.h"
 #import "Task.h"
 
-@interface RNTaskDetailViewController : UIViewController<TasksManagerDelegate> {
-    BackEndManager *manager;
-}
+@interface RNTaskDetailViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UILabel *durationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *deadlineLabel;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) Task *task;
-@property (nonatomic,strong) NSMutableArray* fetchedTasksArray;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
--(void) showNextTask;
--(void) showPreviousTask;
+-(void) populateView:(Task *)task;
 
 @end
