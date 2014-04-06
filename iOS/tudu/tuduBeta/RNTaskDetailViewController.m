@@ -76,9 +76,19 @@ int currentTaskIndex = 0;
 }
 
 -(void) populateView:(Task *)task {
+    // Task Title
     [self.titleLabel setText:task.name];
+    
+    // Task Duration
     [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",task.duration]];
-    [self.deadlineLabel setText:[NSString stringWithFormat:@"%@",task.deadline]];
+    
+    // Task Deadline
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+    NSString *deadlineString = [NSString stringWithFormat:@"Deadline: %@",[dateFormatter stringFromDate:task.deadline]];
+    [self.deadlineLabel setText:deadlineString];
+    
     int prio = [task.priority intValue];
     switch (prio) {
             /* TODO: Make these Constants and store them in Constants.h */
@@ -86,14 +96,14 @@ int currentTaskIndex = 0;
             [self.view setBackgroundColor:[UIColor greenColor]];
             break;
         case 1:
-            [self.view setBackgroundColor:[UIColor yellowColor]];
+            [self.view setBackgroundColor:[UIColor orangeColor]];
             break;
         case 2:
             [self.view setBackgroundColor:[UIColor redColor]];
             break;
             
         default:
-            [self.view setBackgroundColor:[UIColor orangeColor]];
+            [self.view setBackgroundColor:[UIColor grayColor]];
             break;
     }
 }

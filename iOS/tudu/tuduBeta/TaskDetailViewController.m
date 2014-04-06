@@ -29,8 +29,17 @@
 	// Do any additional setup after loading the view.
     
     [self setTitle:self.task.name];
+    
+    // Duration
     [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",self.task.duration]];
-    [self.deadlineLabel setText:[NSString stringWithFormat:@"Deadline: %@",self.task.deadline]];
+  
+    // Deadline
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+    NSString *deadlineString = [NSString stringWithFormat:@"Deadline: %@",[dateFormatter stringFromDate:self.task.deadline]];
+    [self.deadlineLabel setText:deadlineString];
+
     
     int prio = [self.task.priority intValue];
     
@@ -41,7 +50,7 @@
             break;
         case 1:
             [self.priorityLabel setText:@"Medium Priority"];
-            [self.priorityLabel setTextColor:[UIColor yellowColor]];
+            [self.priorityLabel setTextColor:[UIColor orangeColor]];
             break;
         case 2:
             [self.priorityLabel setText:@"High Priority"];
