@@ -11,6 +11,8 @@
 #define id_key @"id"
 #define start_time_key @"start_time"
 #define end_time_key @"end_time"
+#define created_at_key @"created_at"
+#define updated_at_key @"updated_at"
 #define name_key @"name"
 #define description_key @"description"
 #define priority_key @"priority"
@@ -68,6 +70,18 @@
         NSString *endTimeStr = [taskDictionary objectForKey:end_time_key];
         NSDate *endTime = [df dateFromString:endTimeStr];
         [taskJSON setEnd_time:endTime];
+    }
+    
+    if ([taskDictionary objectForKey:created_at_key] != NULL && [taskDictionary objectForKey:created_at_key] != [NSNull null]) {
+        NSString *createdAtStr = [taskDictionary objectForKey:created_at_key];
+        NSDate *createTime = [df dateFromString:createdAtStr];
+        [taskJSON setCreated_at:createTime];
+    }
+    
+    if ([taskDictionary objectForKey:updated_at_key] != NULL && [taskDictionary objectForKey:updated_at_key] != [NSNull null]) {
+        NSString *updatedAtStr = [taskDictionary objectForKey:updated_at_key];
+        NSDate *updateTime = [df dateFromString:updatedAtStr];
+        [taskJSON setUpdated_at:updateTime];
     }
     
     if ([taskDictionary objectForKey:id_key] != NULL && [taskDictionary objectForKey:id_key] != [NSNull null]) {

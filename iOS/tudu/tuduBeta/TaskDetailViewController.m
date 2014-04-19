@@ -31,7 +31,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    NSLog(@"DEETS_created_at = %@",self.task.created_at);
+    NSLog(@"DEETS_updated_at = %@",self.task.updated_at);
     // Task Title
     [self setTitle:self.task.name];
     

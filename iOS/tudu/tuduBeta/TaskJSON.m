@@ -14,6 +14,8 @@
 @synthesize task_id;
 @synthesize start_time;
 @synthesize end_time;
+@synthesize created_at;
+@synthesize updated_at;
 @synthesize name;
 @synthesize task_description;
 @synthesize priority;
@@ -40,7 +42,16 @@
     } else {
         [task setEnd_time:NULL];
     }
-
+    if (created_at != NULL) {
+        [task setCreated_at:created_at];
+    } else {
+        [task setCreated_at:NULL];
+    }
+    if (updated_at != NULL) {
+        [task setUpdated_at:updated_at];
+    } else {
+        [task setUpdated_at:NULL];
+    }
     if (name != NULL) {
         [task setName:name];
     }

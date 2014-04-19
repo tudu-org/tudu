@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSNumber * task_id;
 @property (nonatomic, retain) NSDate * start_time;
 @property (nonatomic, retain) NSDate * end_time;
+@property (nonatomic, retain) NSDate * created_at;
+@property (nonatomic, retain) NSDate * updated_at;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * task_description;
 @property (nonatomic, retain) NSNumber * priority;
