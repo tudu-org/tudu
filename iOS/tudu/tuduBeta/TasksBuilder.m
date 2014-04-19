@@ -72,7 +72,7 @@
         [taskJSON setEnd_time:endTime];
     }
     
-    if ([taskDictionary objectForKey:created_at_key] != NULL && [taskDictionary objectForKey:created_at_key] != [NSNull null]) {
+    /*if ([taskDictionary objectForKey:created_at_key] != NULL && [taskDictionary objectForKey:created_at_key] != [NSNull null]) {
         NSString *createdAtStr = [taskDictionary objectForKey:created_at_key];
         NSDate *createTime = [df dateFromString:createdAtStr];
         [taskJSON setCreated_at:createTime];
@@ -82,7 +82,7 @@
         NSString *updatedAtStr = [taskDictionary objectForKey:updated_at_key];
         NSDate *updateTime = [df dateFromString:updatedAtStr];
         [taskJSON setUpdated_at:updateTime];
-    }
+    }*/
     
     if ([taskDictionary objectForKey:id_key] != NULL && [taskDictionary objectForKey:id_key] != [NSNull null]) {
         [taskJSON setTask_id:[taskDictionary objectForKey:id_key]];
