@@ -53,7 +53,7 @@
     if (deadline != NULL) {
         [task setDeadline:deadline];
     }
-    if (duration != NULL  && start_time != nil) {
+    if (duration != NULL) {
         [task setDuration:duration];
     }
     

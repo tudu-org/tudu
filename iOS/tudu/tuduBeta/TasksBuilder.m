@@ -15,6 +15,8 @@
 #define description_key @"description"
 #define priority_key @"priority"
 #define deadline_key @"deadline"
+#define duration_key @"duration"
+
 
 @implementation TasksBuilder
 
@@ -87,6 +89,11 @@
     if ([taskDictionary objectForKey:deadline_key] != NULL && [taskDictionary objectForKey:deadline_key] != [NSNull null]) {
         [taskJSON setDeadline:[df dateFromString:[taskDictionary objectForKey:deadline_key]]];
     }
+    
+    if ([taskDictionary objectForKey:duration_key] != NULL && [taskDictionary objectForKey:duration_key] != [NSNull null]) {
+        [taskJSON setDuration:[taskDictionary objectForKey:duration_key]];
+    }
+    
     return [taskJSON convertToTaskObject];
 }
 

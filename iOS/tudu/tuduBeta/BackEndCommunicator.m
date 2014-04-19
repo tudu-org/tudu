@@ -183,7 +183,8 @@
         "name":"Cool New Task!",
         "description":"It even has a description, wow!",
         "priority":8,
-        "deadline":"2014-03-27T10:18:00.000Z"
+        "deadline":"2014-03-27T10:18:00.000Z",
+        "duration":55095
         }
     }
 */
@@ -205,6 +206,7 @@
                                      task.description, @"description",
                                      task.priority, @"priority",
                                      [dateFormatter stringFromDate:task.deadline], @"deadline", // Is it necessary to cast to a string?
+                                     task.duration,@"duration",
                                      nil];
      NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                      auth_token, @"auth_token",

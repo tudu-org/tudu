@@ -7,6 +7,11 @@
 //
 
 #import "RNTaskDetailViewController.h"
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 
 @interface RNTaskDetailViewController ()
 
@@ -28,40 +33,20 @@ int currentTaskIndex = 0;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-
-}
-
-#pragma mark TasksManagerDelegate methods
-- (void) didReceiveTasksArray:(NSArray *)tasksArray {
-    // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
-    self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
-    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
     
-    if ([self.fetchedTasksArray count] == 0) {
-        [self.titleLabel setText:@"You don't have any tasks!"];
-        [self.durationLabel setText:@""];
-        [self.deadlineLabel setText:@""];
-    } else {
-        [self populateView:[self.fetchedTasksArray objectAtIndex:0]];
-    }
+    
 }
+
 
 -(void) viewDidAppear:(BOOL)animated {
    
     
-    // Set up the BackEndManager
-    manager = [[BackEndManager alloc] init];
-    manager.communicator = [[BackEndCommunicator alloc] init];
-    manager.communicator.delegate = manager;
-    manager.tmDelegate = self;
     
     /* AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
      self.managedObjectContext = appDelegate.managedObjectContext;*/
     
     // Pull the latest tasks
     
-    [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
-    [manager getUserTasks];
     
     // Fetching Records and saving it in "fetchedRecordsArray" object
     //self.fetchedRecordsArray = [appDelegate getAllTaskRecords];
@@ -76,39 +61,62 @@ int currentTaskIndex = 0;
 }
 
 -(void) populateView:(Task *)task {
+    
+    // Task Title
     [self.titleLabel setText:task.name];
-    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",task.duration]];
-    [self.deadlineLabel setText:[NSString stringWithFormat:@"%@",task.deadline]];
+    
+    
+    // Task Duration
+    NSString *durationDisplayString;
+    NSString *suffixStr;
+    int val = [task.duration intValue];
+    int hr = val / 3600; // 3600 seconds in an hour
+    int min = (val - (hr*3600)) / 60; // 60 seconds in a minute
+    if (hr == 0) {
+        durationDisplayString = [NSString stringWithFormat:@"%i minutes", min];
+    } else {
+        if (hr > 1) {
+            suffixStr = @"s";
+        } else {
+            suffixStr = @"";
+        }
+        if (min == 0) {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@", hr, suffixStr];
+        } else {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@ and %i min", hr, suffixStr, min];
+        }
+    }
+    [self.durationLabel setText:durationDisplayString];
+    
+    
+    // Task Deadline
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+    NSString *deadlineString = [dateFormatter stringFromDate:task.deadline];
+    [self.deadlineLabel setText:deadlineString];
+    
+    
+    // Task Background Coloring
     int prio = [task.priority intValue];
     switch (prio) {
             /* TODO: Make these Constants and store them in Constants.h */
         case 0:
-            [self.view setBackgroundColor:[UIColor greenColor]];
+            [self.view setBackgroundColor:UIColorFromRGB(0x3BDA00)];
             break;
         case 1:
-            [self.view setBackgroundColor:[UIColor yellowColor]];
+            [self.view setBackgroundColor:UIColorFromRGB(0xFFCA00)];
             break;
         case 2:
-            [self.view setBackgroundColor:[UIColor redColor]];
+            [self.view setBackgroundColor:UIColorFromRGB(0xF10026)];
             break;
             
         default:
-            [self.view setBackgroundColor:[UIColor orangeColor]];
+            [self.view setBackgroundColor:[UIColor grayColor]];
             break;
     }
 }
 
--(void) showNextTask {
-    if (currentTaskIndex+1 < [self.fetchedTasksArray count]) { // Array bounds checking
-        [self populateView:[self.fetchedTasksArray objectAtIndex:++currentTaskIndex]];
-    }
-}
-
--(void) showPreviousTask {
-    if (currentTaskIndex-1 >= 0) { // Array bounds checking
-        [self populateView:[self.fetchedTasksArray objectAtIndex:--currentTaskIndex]];
-    }
-}
 
 
 @end

@@ -104,6 +104,7 @@
     so it can be used more easily by you, Johnny, later. */
 -(void)helpMePullEvents {
     [manager getUserEvents];
+    [manager getUserTasks];
 }
 #pragma mark - EventsManagerDelegate methods
 

@@ -7,6 +7,10 @@
 //
 
 #import "TaskDetailViewController.h"
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface TaskDetailViewController ()
 
@@ -28,24 +32,53 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Task Title
     [self setTitle:self.task.name];
-    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",self.task.duration]];
-    [self.deadlineLabel setText:[NSString stringWithFormat:@"Deadline: %@",self.task.deadline]];
+    
+    // Task Duration
+    NSString *durationDisplayString;
+    NSString *suffixStr;
+    int val = [self.task.duration intValue];
+    int hr = val / 3600; // 3600 seconds in an hour
+    int min = (val - (hr*3600)) / 60; // 60 seconds in a minute
+    if (hr == 0) {
+        durationDisplayString = [NSString stringWithFormat:@"%i minutes", min];
+    } else {
+        if (hr > 1) {
+            suffixStr = @"s";
+        } else {
+            suffixStr = @"";
+        }
+        if (min == 0) {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@", hr, suffixStr];
+        } else {
+            durationDisplayString = [NSString stringWithFormat:@"%i hour%@ and %i min", hr, suffixStr, min];
+        }
+    }
+    [self.durationLabel setText:[NSString stringWithFormat:@"Duration: %@",durationDisplayString]];
+  
+    // Deadline
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // Feb 17, 7:59 PM
+    NSString *deadlineString = [NSString stringWithFormat:@"Deadline: %@",[dateFormatter stringFromDate:self.task.deadline]];
+    [self.deadlineLabel setText:deadlineString];
+
     
     int prio = [self.task.priority intValue];
     
     switch (prio) {
         case 0:
             [self.priorityLabel setText:@"Low Priority"];
-            [self.priorityLabel setTextColor:[UIColor greenColor]];
+            [self.priorityLabel setTextColor:UIColorFromRGB(0x3BDA00)];
             break;
         case 1:
             [self.priorityLabel setText:@"Medium Priority"];
-            [self.priorityLabel setTextColor:[UIColor yellowColor]];
+            [self.priorityLabel setTextColor:UIColorFromRGB(0xFFCA00)];
             break;
         case 2:
             [self.priorityLabel setText:@"High Priority"];
-            [self.priorityLabel setTextColor:[UIColor redColor]];
+            [self.priorityLabel setTextColor:UIColorFromRGB(0xF10026)];
             break;
             
         default:

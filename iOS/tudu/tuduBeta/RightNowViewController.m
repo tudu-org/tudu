@@ -10,7 +10,10 @@
 
 @interface RightNowViewController ()
 @end
+
 @implementation RightNowViewController
+int currentTaskIndex;
+int amountFreeTime;
 @synthesize rntdViewController;
 
 
@@ -24,14 +27,54 @@
 }
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
    
+    currentTaskIndex = 0;
+    
+    // Set up the BackEndManager
+    manager = [[BackEndManager alloc] init];
+    manager.communicator = [[BackEndCommunicator alloc] init];
+    manager.communicator.delegate = manager;
+    manager.tmDelegate = self;
+    
+    // Set up the filtered tasks array
+    self.filteredTasksArray = [[NSMutableArray alloc] init];
+    
+    // Pull the latest tasks
+    [HUD showUIBlockingIndicatorWithText:@"Downloading Tasks"];
+    [manager getUserTasks];
 
+    
+    // Clear the label text
+    self.freeTimeValueLabel.text = @"2 hours";
+   
+    // Set up the slider to continuously update its value label text as it changes
+    [self.freeTimeSlider addTarget:self action:@selector(durationSliderChanged:) forControlEvents:UIControlEventValueChanged];
+
+}
+
+#pragma mark TasksManagerDelegate methods
+- (void) didReceiveTasksArray:(NSArray *)tasksArray {
+    // We reverse the array order because we do want tasks to be added at the TOP of the list and not the bottom
+    //self.fetchedTasksArray = [[tasksArray reverseObjectEnumerator] allObjects];
+    
+    self.fetchedTasksArray = [NSMutableArray arrayWithArray:tasksArray];
+    [self filterTasksByAmountOfFreeTime];
+    
+    /*if ([self.fetchedTasksArray count] == 0) {
+        [self.titleLabel setText:@"You don't have any tasks!"];
+        [self.durationLabel setText:@""];
+        [self.deadlineLabel setText:@""];
+    } else {
+        [self populateView:[self.fetchedTasksArray objectAtIndex:0]];
+    }*/
+    
+    [self.rntdViewController populateView:[self.fetchedTasksArray firstObject]];
+    //[HUD hideUIBlockingIndicator];
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -47,11 +90,74 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)filterTasksByAmountOfFreeTime {
+    // (1) Clear the filtered tasks array
+    [self.filteredTasksArray removeAllObjects];
+    
+    // (2) Sort the tasks, showing the tasks with ASCENDING Duration values
+    NSSortDescriptor *sortByDuration = [NSSortDescriptor sortDescriptorWithKey:@"duration" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByDuration];
+    self.fetchedTasksArray = [NSMutableArray arrayWithArray:[self.fetchedTasksArray sortedArrayUsingDescriptors:sortDescriptors]];
+
+    // (3) Add in the tasks that the user has time for right now
+    for (int i=0; i<self.fetchedTasksArray.count; i++) {
+        Task *t = [self.fetchedTasksArray objectAtIndex:i];
+        int taskDuration = [t.duration intValue];
+        if (taskDuration <= amountFreeTime) {
+            [self.filteredTasksArray addObject:[self.fetchedTasksArray objectAtIndex:i]];
+        } else {
+            break;
+        }
+    }
+}
+
+/* This method gets called as the Duration Slider Value changes. */
+- (void)durationSliderChanged:(UISlider *)slider {
+    NSString *displayString;
+    NSString *suffixStr;
+    int val = slider.value;
+    if (val == 0) { // The minimum value is set to 15 minutes in case users want to make a very small task
+        displayString = [NSString stringWithFormat:@"15 minutes"];
+        return;
+    }
+    int hr = val / 4; // the increment value of the slider is 15 minutes (4 per hour)
+    int min = val % 4; // the left over minutes
+    min *= 15; // To rightly represent minutes (they are gathered from the uislider as 4 per hour)
+    amountFreeTime = (hr * 3600) + (min * 60); // calculate how much free time you have in seconds
+    if (hr == 0) {
+        displayString = [NSString stringWithFormat:@"%i minutes", min];
+    } else {
+        if (hr > 1) {
+            suffixStr = @"s";
+        } else {
+            suffixStr = @"";
+        }
+        if (min == 0) {
+            displayString = [NSString stringWithFormat:@"%i hour%@", hr, suffixStr];
+        } else {
+            displayString = [NSString stringWithFormat:@"%i hour%@ and %i minutes", hr, suffixStr, min];
+        }
+    }
+    
+    self.freeTimeValueLabel.text = displayString;
+    [self filterTasksByAmountOfFreeTime];
+}
+
 - (IBAction)showNextTask:(id)sender {
-    [self.rntdViewController showNextTask];
+    if (currentTaskIndex+1 < [self.filteredTasksArray count]) { // Array bounds checking
+        [self.rntdViewController populateView:[self.filteredTasksArray objectAtIndex:++currentTaskIndex]];
+    }
 }
 
 - (IBAction)showPreviousTask:(id)sender {
-    [self.rntdViewController showPreviousTask];
+    if (currentTaskIndex-1 >= 0) { // Array bounds checking
+        [self.rntdViewController populateView:[self.filteredTasksArray objectAtIndex:--currentTaskIndex]];
+    }
 }
 @end
+
+
+
+
+
