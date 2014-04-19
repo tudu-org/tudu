@@ -55,7 +55,7 @@
 
 + (Task*) taskFromDictionary:(NSDictionary*)taskDictionary {
     TaskJSON *taskJSON = [[TaskJSON alloc] init];
-    
+
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"]; // This is correct !
     
@@ -71,6 +71,8 @@
         NSDate *endTime = [df dateFromString:endTimeStr];
         [taskJSON setEnd_time:endTime];
     }
+    
+    // This won't work until we fix the back-end call to add the created_at and updated_at fields:
     
     /*if ([taskDictionary objectForKey:created_at_key] != NULL && [taskDictionary objectForKey:created_at_key] != [NSNull null]) {
         NSString *createdAtStr = [taskDictionary objectForKey:created_at_key];
