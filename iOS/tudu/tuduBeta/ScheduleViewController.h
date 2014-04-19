@@ -13,7 +13,7 @@
 #import "BackEndManager.h"
 #import "HUD.h"
 
-@interface ScheduleViewController : UIViewController<EventsManagerDelegate, CKCalendarViewDelegate, CKCalendarViewDataSource> {
+@interface ScheduleViewController : UIViewController<EventsManagerDelegate, TasksManagerDelegate, CKCalendarViewDelegate, CKCalendarViewDataSource> {
     BackEndManager *manager;
 }
 @property (strong, nonatomic) CKCalendarView *calendar;
