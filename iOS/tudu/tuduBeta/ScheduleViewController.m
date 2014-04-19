@@ -104,7 +104,17 @@
     so it can be used more easily by you, Johnny, later. */
 -(void)helpMePullEvents {
     [manager getUserEvents];
+    [manager getUserTasks];
 }
+
+#pragma mark TasksManagerDelegate methods
+- (void) didReceiveTasksArray:(NSArray *)tasksArray {
+    /*TODO: Johnny, this is where you should implement code similar to didReceiveEventsArray: */
+    
+    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+}
+
+
 #pragma mark - EventsManagerDelegate methods
 
 -(void) didReceiveEventsArray:(NSArray *)eventsArray {
