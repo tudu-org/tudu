@@ -11,35 +11,35 @@
         </div>
     <% end %>
 
-    <h4>New Task</h4>
-    <div class="field">
+    <h4 class="form-group">New Task</h4>
+    <div class="form-group">
         <%= label_tag 'Title' %>
-        <%= f.text_field :name, :placeholder => "Untitled task" %>
+        <%= f.text_field :name, :class=>"form-control",:placeholder => "Untitled task" %>
     </div>
-    <div class="field">
+    <div class="form-group">
         <%= label_tag 'Deadline' %>
-        <%= f.text_field :deadline, :id => "deadline_picker", :placeholder => DateTime.current().to_formatted_s(:custom) %>
+        <%= f.text_field :deadline, :id => "deadline_picker", :class=>"form-control", :placeholder => DateTime.current().to_formatted_s(:custom) %>
     </div>
-    <div class="field">
+    <div class="form-group">
         <%= label_tag 'Priority' %>
         <!-- <ul class="segmented-control">
             <button data-value="0"><a>Low</a></button>
             <button data-value="1"><a>Normal</a></button>
             <button data-value="2"><a>High</a></button>
         </ul> -->
-        <%= f.select(:priority, options_for_select([['Low', 0], ['Normal', 1], ['High', 2]])) %>
+        <%= f.select(:priority, options_for_select([['Low', 0], ['Normal', 1], ['High', 2]]) ,{} ,{:class=>"form-control"}) %>
     </div>
-    <div class="field">
-        <%= label_tag 'Time' %>
+    <div class="form-group">
+        <%= label_tag 'Time' %><br>
         <div id="duration_slider"></div>
-        <%= f.hidden_field :duration, :value => 900 %>
+        <%= f.hidden_field :duration, :value => 900, :class=>"form-control" %><br>
         <span id="duration_value">15m</span> 
     </div>
-    <div class="field">
+    <div class="form-group">
         <%= label_tag 'Description' %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, :class=>"form-control" %>
     </div>
-    <div class="actions">
-        <%= f.submit %>
+    <div class="form-group">
+        <%= f.submit "Create Task", :class=>"form-control" %>
     </div>
 <% end %>

@@ -15,13 +15,13 @@
 }
 .form-group {
 	padding-left: 5%;
-	padding-top: 5%;
 }
-
 .form-group .form-control {
-	max-width: 75%;
-	display:inline;
+	max-width:95%;
 }
 #task_checkbox {
 	margin-top: -4px;
-		}
+}
+#event_description, #task_description {
+	resize: vertical;
+}
