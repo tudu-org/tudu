@@ -66,18 +66,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # POST /tasks/schedule
-  def schedule
-    # kludgey. rework how we schedule tasks
-    respond_to do |format|
-      if @user.make_schedule Time.now, Time.now + 1.year
-        format.json { render json: @user.tasks }
-      else
-        format.json { render json: "Failed to schedule tasks", status: 400}
-      end
-    end
-  end
-  
   # GET /tasks/today
   # GET /tasks/today.json
   def today

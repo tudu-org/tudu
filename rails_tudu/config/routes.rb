@@ -33,7 +33,6 @@ Tudu::Application.routes.draw do
   resources :tasks do
     put "finished" => "tasks#finished"
     collection do
-      post "schedule"
       get "in_range"
       get "today"
     end
@@ -60,7 +59,6 @@ Tudu::Application.routes.draw do
     resources :tasks do
       put "finished" => "tasks#finished"
       collection do
-        post "schedule"
         get "in_range"
         get "today"
       end
