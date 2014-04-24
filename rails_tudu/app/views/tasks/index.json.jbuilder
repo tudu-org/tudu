@@ -1,3 +1,3 @@
 json.array!(@tasks) do |task|
-  json.extract! task, :id, :start_time, :end_time, :name, :description, :priority, :deadline, :duration
+  json.extract! task, :id, :start_time, :end_time, :name, :description, :priority, :deadline, :created_at, :updated_at, :duration
 end
