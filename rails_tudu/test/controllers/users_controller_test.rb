@@ -10,7 +10,7 @@ class UsersControllerTest < ActionController::TestCase
   	end
   	test "should get index" do
   		get :index
-  		assert_response :success
+  		assert_response :302
   		assert_not_nil assigns(:users)
   	end
 	test "should create user" do 
@@ -26,17 +26,17 @@ class UsersControllerTest < ActionController::TestCase
 	end
 	test "should show" do
 		get :show, id: @user
-		assert_response :success
+		assert_response :302
 		assert_not_nil assigns(:users)
 	end
 	test "should find by email" do
 		get :by_email, id: @user
-		assert_response :success
+		assert_response :302
 		assert_not_nil assigns(:users)
 	end
 	test "should schedule" do
 		get :schedule, user_id: @user
-		assert_response :success
+		assert_response :302
 		assert_not_nil assigns(:users)
 	end
 end
