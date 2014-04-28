@@ -14,7 +14,7 @@
 @implementation RightNowViewController
 int currentTaskIndex;
 int amountFreeTime;
-@synthesize rntdViewController;
+@synthesize rntdViewController, swipeToTheRight, swipeToTheLeft;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,7 +31,35 @@ int amountFreeTime;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-   
+    
+    [self.taskContainer addGestureRecognizer:swipeToTheRight];
+    [self.taskContainer addGestureRecognizer:swipeToTheLeft];
+
+    // border radius
+    [self.taskContainer.layer setCornerRadius:30.0f];
+
+    
+    // border
+    //[self.taskContainer.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    //[self.taskContainer.layer setBorderWidth:1.5f];
+    
+    // drop shadow
+    [self.shadowView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [self.shadowView.layer setShadowOpacity:0.8];
+    [self.shadowView.layer setShadowRadius:100.0];
+    [self.shadowView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
+    CGRect tcRect = self.taskContainer.frame;
+    CGRect shadowRect = CGRectMake(tcRect.origin.x+3, tcRect.origin.y+3, tcRect.size.width, tcRect.size.height);
+    
+    UIView *cartoonShadow = [[UIView alloc] initWithFrame:shadowRect];
+    [cartoonShadow setBackgroundColor:[UIColor darkGrayColor]];
+    [cartoonShadow.layer setCornerRadius:30.0f];
+    //[cartoonShadow addSubview:self.taskContainer];
+    [self.view addSubview:cartoonShadow];
+    [self.view sendSubviewToBack:cartoonShadow];
+
+    
     currentTaskIndex = 0;
     
     // Set up the BackEndManager
@@ -142,6 +170,20 @@ int amountFreeTime;
     
     self.freeTimeValueLabel.text = displayString;
     [self filterTasksByAmountOfFreeTime];
+}
+
+- (IBAction)swipeRightRecognized:(id)sender {
+    NSLog(@"YOU SWIPED TO THE RIGHT");
+    if (currentTaskIndex-1 >= 0) { // Array bounds checking
+        [self.rntdViewController populateView:[self.filteredTasksArray objectAtIndex:--currentTaskIndex]];
+    }
+}
+
+- (IBAction)swipeLeftRecognized:(id)sender {
+    NSLog(@"YOU SWIPED TO THE LEFT");
+    if (currentTaskIndex+1 < [self.filteredTasksArray count]) { // Array bounds checking
+        [self.rntdViewController populateView:[self.filteredTasksArray objectAtIndex:++currentTaskIndex]];
+    }
 }
 
 - (IBAction)showNextTask:(id)sender {
