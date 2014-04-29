@@ -78,7 +78,11 @@ int amountFreeTime;
     
     // Clear the label text
     self.freeTimeValueLabel.text = @"2 hours";
-   
+    
+    // Show the very first task
+    amountFreeTime = (2 * 3600); // start with 2 free hours
+    [self filterTasksByAmountOfFreeTime];
+    
     // Set up the slider to continuously update its value label text as it changes
     [self.freeTimeSlider addTarget:self action:@selector(durationSliderChanged:) forControlEvents:UIControlEventValueChanged];
 
@@ -100,6 +104,7 @@ int amountFreeTime;
         [self populateView:[self.fetchedTasksArray objectAtIndex:0]];
     }*/
     
+    //[self.rntdViewController performSelectorOnMainThread:@selector(populateView) withObject:[self.fetchedTasksArray firstObject] waitUntilDone:NO];
     [self.rntdViewController populateView:[self.fetchedTasksArray firstObject]];
     //[HUD hideUIBlockingIndicator];
     [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
