@@ -30,4 +30,7 @@
 - (void)schedulingTasksFailedWithError:(NSError *)error;
 - (void)successfullyScheduledTasks:(NSData*)objectNotation;
 
+- (void)successfullyFetchedUserSchedule:(NSData *)objectNotation;
+- (void)fetchingUserScheduleFailedWithError:(NSError *)error;
+
 @end

@@ -49,6 +49,7 @@
     manager.communicator = [[BackEndCommunicator alloc] init];
     manager.communicator.delegate = manager;
     manager.emDelegate = self;
+    manager.tmDelegate = self;
 
     // Pull the events from the JSON back-end
     [self helpMePullEvents];
@@ -91,6 +92,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [manager scheduleTasks]; 
     [self helpMePullEvents];
     [self sortEventsArrayByDate];
 
@@ -111,6 +113,7 @@
 #pragma mark TasksManagerDelegate methods
 - (void) didReceiveTasksArray:(NSArray *)tasksArray {
     /*TODO: Johnny, this is where you should implement code similar to didReceiveEventsArray: */
+    /*TODO: I guess it would be best if you got them all at once... I will work on implementing that call now. */
     
     [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
 }
@@ -150,6 +153,47 @@
             [self.eventJSON printEvent];
             NSLog(@"Calendar Events Array: %@", _eventsDict);
         }
+}
+
+
+-(void) didReceiveScheduledEvents:(NSArray *)eventsArray andScheduledTasks:(NSArray *)tasksArray{
+    
+    /*TODO: Great work so far Johnny. I have added the code to do the combined JSON request call.  
+            I have reproduced the code you wrote for the events below.  All you have to do now is to add
+            the tasks into the mix. And we are still waiting on the back-end guys to make it so we can 
+            actually test it though.  The code that Mike wrote cannot be uploaded to the Heroku server
+            without breaking the front-end code. */
+    
+    if(_runOnce == 0){
+        _runOnce=1;
+        NSLog(@"------RECEIVED EVENTS-------");
+        NSMutableArray* tempEventsArray = [[NSMutableArray alloc] init];
+        CKCalendarEvent* aCKCalendarEvent = [[CKCalendarEvent alloc] init];
+        
+        for (int i=0;i<[eventsArray count]; i++) {
+            self.eventJSON = [eventsArray objectAtIndex:i];
+            
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.eventJSON.start_time];
+            
+            //define the calendar event
+            aCKCalendarEvent.date = [NSDate dateWithDay:[components day] month:[components month] year:[components year]];
+            
+            if(aCKCalendarEvent.date!=nil){
+                tempEventsArray = [[NSMutableArray alloc]init];
+                [tempEventsArray addObjectsFromArray:[_eventsDict objectForKey:aCKCalendarEvent.date]];
+                aCKCalendarEvent = [[CKCalendarEvent alloc]init];
+                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.eventJSON.start_time];
+                
+                //define the calendar event
+                aCKCalendarEvent.date = [NSDate dateWithDay:[components day] month:[components month] year:[components year]];
+                aCKCalendarEvent.title = self.eventJSON.name;
+                [tempEventsArray addObject:aCKCalendarEvent];
+                [_eventsDict setObject:tempEventsArray forKey:aCKCalendarEvent.date];
+            }
+        }
+        [self.eventJSON printEvent];
+        NSLog(@"Calendar Events Array: %@", _eventsDict);
+    }
 }
 
 

@@ -31,6 +31,8 @@
 
 - (void) synchScheduleTasks:(NSNumber*)user_id withAuth:(NSString*)auth_token;
 
+- (void) synchFetchSchedule:(NSNumber*)user_id withAuth:(NSString*)auth_token;
+
 
 
 @end

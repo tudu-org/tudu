@@ -16,6 +16,7 @@
 #import "UserBuilder.h"
 #import "TasksBuilder.h"
 #import "EventsBuilder.h"
+#import "ScheduleBuilder.h"
 #import "User.h"
 
 @interface BackEndManager : NSObject<BackEndCommunicatorDelegate> {

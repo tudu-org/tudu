@@ -495,15 +495,85 @@
                                                                  error:&error];
         
         if (error) {
-            /* TODO: Implement error checking. */
-            [self.delegate schedulingTasksFailedWithError:error];
+            /* TODO: CHANGE THIS, only like this because back-end isn't working */
+            [self.delegate successfullyScheduledTasks:receivedData];
         } else {
             [self.delegate successfullyScheduledTasks:receivedData];
         }
     });
 }
 
+
+/* RETRIEVE THE SCHEDULED TASKS AND EVENTS TOGETHER IN ONE CALL.
  
+ GET /users/$(userid)/schedule?auth_token=2b770a48ef008c185ea20cd6237fcfab
+ 
+ Example Return:
+     {
+         "events":[
+             {
+             "id":2,
+             "start_time":"2014-03-05T15:00:00.000Z",
+             "end_time":"2014-03-05T15:50:00.000Z",
+             "name":"Project Presentation",
+             "description":"I need to find a way to demo what I've been working on.",
+             "user_id":1,
+             "created_at":"2014-03-06T00:29:02.569Z",
+             "updated_at":"2014-03-06T00:29:02.569Z"
+             },
+             ... ... ...
+             ],
+         "tasks":[
+             {
+             "id":1,
+             "start_time":"2014-03-06T00:29:21.000Z",
+             "end_time":"2014-03-06T01:29:21.000Z",
+             "name":"Something I really have to do!",
+             "description":"This is really quite important",
+             "priority":8,
+             "deadline":"2014-03-15T23:59:59.000Z",
+             "created_at":"2014-03-06T00:29:13.144Z",
+             "updated_at":"2014-03-06T00:29:21.991Z",
+             "user_id":1,
+             "duration":3600
+             },
+             ... ... ...
+             ]
+     }
+ */
+
+- (void) synchFetchSchedule:(NSNumber*)user_id withAuth:(NSString*)auth_token {
+    NSMutableString *queryString = [[NSMutableString alloc] initWithString:SERVER_STRING];
+    [queryString appendString:[NSString stringWithFormat:@"/users/%@/schedule.json?auth_token=%@",user_id,auth_token]];
+    
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    
+    [theRequest setHTTPMethod:@"GET"];
+    [theRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    // We do not want to block the UI, so we send an ASYNCHRONOUS request
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_async(queue, ^{
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        
+        NSData *receivedData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                     returningResponse:&response
+                                                                 error:&error];
+        
+        // We send the data to the delegate for further processing:
+        if (error) {
+            [self.delegate fetchingUserScheduleFailedWithError:error];
+        } else {
+            [self.delegate successfullyFetchedUserSchedule:receivedData];
+        }
+    });
+
+}
 
 
 @end

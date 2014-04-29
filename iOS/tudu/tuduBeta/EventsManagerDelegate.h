@@ -13,4 +13,6 @@
 - (void)didReceiveEventsArray:(NSArray *)eventsArray;
 - (void)didCreateEvent:(EventJSON*)eventJSON;
 - (void)didDeleteEvent;
+- (void)didReceiveScheduledEvents:(NSArray *)eventsArray andScheduledTasks:(NSArray*)tasksArray;
+
 @end

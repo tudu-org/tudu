@@ -176,17 +176,62 @@
 }
 
 
+
 - (void)successfullyScheduledTasks:(NSData *)objectNotation {
+    NSError *error = nil;
     
+    /* TODO: For now, we are hard coding data because the back-end is not sending responses! 
+       Change this once its working. */
+    /*        NSDictionary *taskDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            [NSNumber numberWithInt:1], @"id",
+                                            @"2014-04-19T22:00:00.000Z",@"start_time",
+                                            @"2014-04-19T23:00:00.000Z",@"end_time",
+                                            @"STATIC TASK", @"name",
+                                            @"doesnt matter", @"description",
+                                            2, @"priority",
+                                            @"2014-04-19T23:45:00.000Z", @"deadline", // Is it necessary to cast to a string?
+                                            3600,@"duration",
+                                            nil];
+
+            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:taskDictionary
+                                                               options:NSJSONWritingPrettyPrinted error:&error];
+    
+
+    
+    NSArray *tasks = [TasksBuilder tasksFromJSON:jsonData error:&error];
+    
+    // These methods call into the BackEndManagerDelegate, which
+    // is implemented in the various ViewControllers of this app
+    if (error != nil) {
+        //[self.tmDelegate userLoginFailedWithError:error];
+    } else {
+        [self.tmDelegate didReceiveTasksArray:tasks];
+    }*/
+}
+
+
+- (void)successfullyFetchedUserSchedule:(NSData *)objectNotation {
+    NSError *error = nil;
+    NSArray *events = [ScheduleBuilder scheduledEventsFromScheduleJSON:objectNotation error:&error];
+    NSArray *tasks = [ScheduleBuilder scheduledTasksFromScheduleJSON:objectNotation error:&error];
+
+    // These methods call into the BackEndManagerDelegate, which
+    // is implemented in the various ViewControllers of this app
+    if (error != nil) {
+        /* TODO: implement later. */
+        //[self.emDelegate userLoginFailedWithError:error];
+    } else {
+        [self.emDelegate didReceiveScheduledEvents:events andScheduledTasks:tasks];
+    }
+}
+
+- (void)fetchingUserScheduleFailedWithError:(NSError *)error {
+    /* TODO: implement error handling. */
 }
 
 
 
 @end
-
-
-
-
 
 
 
