@@ -30,12 +30,13 @@
     // the new task into the tableview instead of RELOADING it entirely
     // e.g. tableView beginUpdates, tableView insertRowsAtIndexPaths, tableView endUpdates
     [HUD hideUIBlockingIndicator];
+    [self performSelectorOnMainThread:@selector(performSegueWithIdentifier:sender:) withObject:@"AddTaskSegue" waitUntilDone:YES];
 }
 
 - (void) didUpdateTask {
     // Perform the segue back to the TaskDetailViewController
-    //[self performSegueWithIdentifier:@"UnwindToTaskDetailSegue" sender:self];
-    //[HUD hideUIBlockingIndicator];
+    [HUD hideUIBlockingIndicator];
+    [self performSelectorOnMainThread:@selector(performSegueWithIdentifier:sender:) withObject:@"AddTaskSegue" waitUntilDone:YES];
 }
 
 
@@ -206,9 +207,10 @@
             [HUD showUIBlockingIndicatorWithText:@"Updating Task"];
             [manager updateUserTask:self.task];
         }
-        
-        // Perform the segue to the TasksViewController
-        [self performSegueWithIdentifier:@"AddTaskSegue" sender:self];
+
+        // Moved this to manager callbacks:
+//        // Perform the segue to the TasksViewController
+//        [self performSegueWithIdentifier:@"AddTaskSegue" sender:self];
     }
 //    
 //    if (!SERVER_MODE) {
