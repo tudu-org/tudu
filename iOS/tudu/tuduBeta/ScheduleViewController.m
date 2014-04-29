@@ -22,7 +22,7 @@
 @property (strong, nonatomic) NSArray *sortedArrayByDate;
 @property (strong, nonatomic) EventJSON *eventJSON;
 @property (strong, nonatomic) NSMutableArray *calendarEvents;
-
+@property int runOnce;
 @end
 
 @implementation ScheduleViewController
@@ -87,6 +87,7 @@
     [dateformatter setDateFormat:@"MM/dd/yyyy HH:mm"];
     
     _eventsDict = [[NSMutableDictionary alloc] init];
+    _runOnce = 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -118,60 +119,37 @@
 #pragma mark - EventsManagerDelegate methods
 
 -(void) didReceiveEventsArray:(NSArray *)eventsArray {
-    NSLog(@"------RECEIVED EVENTS-------");
-    BOOL dateExists;
-    NSMutableArray* eventsArray2 = [[NSMutableArray alloc] init];
-    CKCalendarEvent* aCKCalendarEvent = [[CKCalendarEvent alloc] init];
     
-    for (int i=0;i<[eventsArray count]; i++) {
-        self.eventJSON = [eventsArray objectAtIndex:i];
+    if(_runOnce == 0){
+        _runOnce=1;
+        NSLog(@"------RECEIVED EVENTS-------");
+        NSMutableArray* tempEventsArray = [[NSMutableArray alloc] init];
+        CKCalendarEvent* aCKCalendarEvent = [[CKCalendarEvent alloc] init];
+    
+        for (int i=0;i<[eventsArray count]; i++) {
+            self.eventJSON = [eventsArray objectAtIndex:i];
 
-        for (int i = 0; i < [eventsArray count]; i++)
-        {
-            if ([[[eventsArray objectAtIndex:i] start_time]isEqualToDate:aCKCalendarEvent.date])
-            {
-                // Array already contains object with this date
-                dateExists = YES;
-                [eventsArray2 addObject:aCKCalendarEvent];
-                [_eventsDict setObject:eventsArray2 forKey:aCKCalendarEvent.date];
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.eventJSON.start_time];
+
+            //define the calendar event
+            aCKCalendarEvent.date = [NSDate dateWithDay:[components day] month:[components month] year:[components year]];
+        
+            if(aCKCalendarEvent.date!=nil){
+                    tempEventsArray = [[NSMutableArray alloc]init];
+                    [tempEventsArray addObjectsFromArray:[_eventsDict objectForKey:aCKCalendarEvent.date]];
+                    aCKCalendarEvent = [[CKCalendarEvent alloc]init];
+                    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.eventJSON.start_time];
+                
+                    //define the calendar event
+                    aCKCalendarEvent.date = [NSDate dateWithDay:[components day] month:[components month] year:[components year]];
+                    aCKCalendarEvent.title = self.eventJSON.name;
+                    [tempEventsArray addObject:aCKCalendarEvent];
+                    [_eventsDict setObject:tempEventsArray forKey:aCKCalendarEvent.date];
+                }
             }
-            else
-            {
-                dateExists = NO;
-                aCKCalendarEvent = [[CKCalendarEvent alloc] init];
-                eventsArray2 = [[NSMutableArray alloc]init];
-                //[eventsArray2 addObject:aCKCalendarEvent];
-                if(aCKCalendarEvent.date!=nil){
-                    [_eventsDict setObject:eventsArray2 forKey:aCKCalendarEvent.date];}
-            }
-            
-            NSLog(@"%c", dateExists);
+            [self.eventJSON printEvent];
+            NSLog(@"Calendar Events Array: %@", _eventsDict);
         }
-        
-
-        
-        
-        //clear temporary eventsArray2/CalendarEvent/dateformatter
-        //NSMutableArray* eventsArray2 = [[NSMutableArray alloc] init];
-        //CKCalendarEvent* aCKCalendarEvent = [[CKCalendarEvent alloc] init];
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.eventJSON.start_time];
-        
-        
-        
-        
-        //define the calendar event and place into the temp array
-        //aCKCalendarEvent.date = self.eventJSON.start_time;
-        aCKCalendarEvent.date = [NSDate dateWithDay:[components day] month:[components month] year:[components year]];
-        aCKCalendarEvent.title = self.eventJSON.name;
-        [eventsArray2 addObject: aCKCalendarEvent];
-        
-        //add temp array to the self.eventsDict
-        [_eventsDict setObject:eventsArray2 forKey:aCKCalendarEvent.date];
-        [self.eventJSON printEvent];
-    }
-    
-    NSLog(@"Calendar Events Array: %@", self.calendarEvents);
-    [self sortEventsArrayByDate];
 }
 
 
