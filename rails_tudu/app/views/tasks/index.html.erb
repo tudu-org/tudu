@@ -17,11 +17,17 @@
   <tbody>
     <% @tasks.each_with_index do |task, index| %>
       <tr>
-        <td><%= index %></td>
+        <td><%= index + 1 %></td>
         <td><%= task.start_time.to_s(:custom_time) %></td>
         <td><%= task.end_time.to_s(:custom_time) %></td>
         <td class="taskName"><%= task.name %></td>
-        <td><%= task.priority %></td>
+        <% if task.priority == 2 %>
+          <td class="taskPriority"><span class="label label-danger">HIGH</span></td>
+        <% elsif task.priority == 1 %>
+          <td class="taskPriority"><span class="label label-warning">MED</span></td>
+        <% elsif task.priority == 0 %>
+          <td class="taskPriority"><span class="label label-success">LOW</span></td>
+        <% end %>
         <td><%= task.deadline.to_s(:custom_time) %></td>
         <td><%= link_to 'Details', [@user, task], class: "btn btn-default" %></td>
         <td><%= link_to 'Edit', edit_user_task_path(@user, task), class: "btn btn-default" %></td>
