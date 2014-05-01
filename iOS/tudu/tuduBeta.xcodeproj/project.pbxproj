@@ -11,6 +11,7 @@
 		5B056312189D9F1700BEA3AE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B056311189D9F1700BEA3AE /* CoreData.framework */; };
 		5B056315189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B056313189D9F5B00BEA3AE /* tuduBeta.xcdatamodeld */; };
 		5B5AA3B519104D0C0028F9CD /* ScheduleBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA3B419104D0C0028F9CD /* ScheduleBuilder.m */; };
+		5B5AA3B81912A4060028F9CD /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5AA3B71912A4060028F9CD /* EventDetailViewController.m */; };
 		5B68991018C7B4780095C8FE /* RNTaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B68990F18C7B4780095C8FE /* RNTaskDetailViewController.m */; };
 		5B8439E018B298820082F088 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8439DF18B298820082F088 /* EventKit.framework */; };
 		5B9ECDCB18A2DD85001A324E /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9ECDCA18A2DD85001A324E /* Event.m */; };
@@ -90,6 +91,8 @@
 		5B056314189D9F5B00BEA3AE /* tuduBeta.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tuduBeta.xcdatamodel; sourceTree = "<group>"; };
 		5B5AA3B319104D0C0028F9CD /* ScheduleBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleBuilder.h; sourceTree = "<group>"; };
 		5B5AA3B419104D0C0028F9CD /* ScheduleBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleBuilder.m; sourceTree = "<group>"; };
+		5B5AA3B61912A4060028F9CD /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		5B5AA3B71912A4060028F9CD /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		5B68990E18C7B4780095C8FE /* RNTaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTaskDetailViewController.h; sourceTree = "<group>"; };
 		5B68990F18C7B4780095C8FE /* RNTaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTaskDetailViewController.m; sourceTree = "<group>"; };
 		5B8439DF18B298820082F088 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -457,6 +460,8 @@
 				E27A85FD189D749E00EE1B56 /* CreateEventViewController.m */,
 				E29C2B3D1896D1FE00F986EC /* TaskDetailViewController.h */,
 				E29C2B3E1896D1FE00F986EC /* TaskDetailViewController.m */,
+				5B5AA3B61912A4060028F9CD /* EventDetailViewController.h */,
+				5B5AA3B71912A4060028F9CD /* EventDetailViewController.m */,
 				E29C2B3718944EEC00F986EC /* CreateTaskViewController.h */,
 				E29C2B3818944EEC00F986EC /* CreateTaskViewController.m */,
 				E29C2B3118944BDF00F986EC /* CreateViewController.h */,
@@ -654,6 +659,7 @@
 				5BF3916018BE686B00159970 /* LoginViewController.m in Sources */,
 				E239C5A618A2C10200A51CA9 /* NSCalendar+Ranges.m in Sources */,
 				5B9ECDCE18A2DD91001A324E /* Task.m in Sources */,
+				5B5AA3B81912A4060028F9CD /* EventDetailViewController.m in Sources */,
 				5B056310189D810200BEA3AE /* RootTabBarController.m in Sources */,
 				E239C5A918A2C10200A51CA9 /* NSDateComponents+AllComponents.m in Sources */,
 				E239C5AA18A2C10200A51CA9 /* NSString+Color.m in Sources */,

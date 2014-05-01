@@ -287,13 +287,8 @@
 //  A row is selected in the events table. (Use to push a detail view or whatever.)
 - (void)calendarView:(CKCalendarView *)calendarView didSelectEvent:(CKCalendarEvent *)event
 {
-    if ([self isEqual:[self delegate]]) {
-        return;
-    }
-    
-    if ([[self delegate] respondsToSelector:@selector(calendarView:didSelectEvent:)]) {
-        [[self delegate] calendarView:calendarView didSelectEvent:event];
-    }
+    // Push the detail view controller here
+    [self performSegueWithIdentifier:@"ExamineEventSegue" sender:self];
 }
 
 #pragma mark - Calendar View
@@ -302,6 +297,21 @@
 //{
 //    return self.calendar;
 //}
+
+
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ExamineEventSegue"]) {
+//        TaskDetailViewController *tdvc = segue.destinationViewController;
+//        // Get the Task information from the stored Tasks array based on the index of the selected row
+//        Task * task = [self.fetchedTasksArray objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+//        NSLog(@"Current Table View: %@", self.tableView);
+//        
+//        [tdvc setTask:task];
+    }
+}
 
 
 

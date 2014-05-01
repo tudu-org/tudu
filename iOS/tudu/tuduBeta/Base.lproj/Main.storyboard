@@ -282,6 +282,7 @@
                         <outlet property="dayView" destination="fOy-Y2-n86" id="vLK-zV-V0e"/>
                         <outlet property="monthView" destination="0pe-Mk-APH" id="1VQ-Nc-Ywf"/>
                         <outlet property="weekView" destination="9bZ-91-iZi" id="J2g-9W-toJ"/>
+                        <segue destination="HI7-nV-ROb" kind="push" identifier="ExamineEventSegue" id="x1G-Um-yRK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7g0-vc-I2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1083,6 +1084,24 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-2653" y="-153"/>
         </scene>
+        <!--Event Detail View Controller-->
+        <scene sceneID="puc-13-wp8">
+            <objects>
+                <viewController id="HI7-nV-ROb" customClass="EventDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aBO-lX-9wR"/>
+                        <viewControllerLayoutGuide type="bottom" id="x2f-ej-BtI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vOZ-a8-g5T">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qgc-eZ-bRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2297" y="141"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Image" width="23" height="24"/>
@@ -1097,7 +1116,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <inferredMetricsTieBreakers>
         <segue reference="mdX-V6-qJM"/>
         <segue reference="rbB-IQ-sBF"/>
-        <segue reference="hLO-sz-u4z"/>
-        <segue reference="mdC-yB-zoV"/>
+        <segue reference="icz-X9-RSy"/>
+        <segue reference="dgl-Jh-U1s"/>
     </inferredMetricsTieBreakers>
 </document>
