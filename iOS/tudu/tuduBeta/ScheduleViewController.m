@@ -216,6 +216,13 @@
     [[tasksArray objectAtIndex:0] setStart_time:date];
     
     
+    for (int i = 0; i < [tasksArray count]; i++)
+    {
+        TaskJSON *task = [tasksArray objectAtIndex:i];
+        NSLog(@"S_TASK NAME = %@",task.name);
+        NSLog(@"S_TASK START_TIME = %@",task.start_time);
+        NSLog(@"S_TASK END_TIME = %@",task.end_time);
+    }
     if(_runOnce == 0){
         _runOnce=1;
         NSLog(@"------RECEIVED EVENTS AND TASKS-------");
