@@ -207,6 +207,7 @@
                                      task.priority, @"priority",
                                      [dateFormatter stringFromDate:task.deadline], @"deadline", // Is it necessary to cast to a string?
                                      task.duration,@"duration",
+                                     false,@"finished",
                                      nil];
      NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                      auth_token, @"auth_token",
@@ -308,6 +309,7 @@
                                     task.priority, @"priority",
                                     [dateFormatter stringFromDate:task.deadline], @"deadline", // Is it necessary to cast to a string?
                                     task.duration,@"duration",
+                                    false,@"finished",
                                     nil];
     NSDictionary *jsonDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                     auth_token, @"auth_token",

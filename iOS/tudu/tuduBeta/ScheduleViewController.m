@@ -208,12 +208,12 @@
     
     NSLog(@"All Tasks and Events: %@", allTasksAndEvents);
     
-    NSString *dateString = @"01-May-14";
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"dd-MMM-yy";
-    NSDate *date = [dateFormatter dateFromString:dateString];
-
-    [[tasksArray objectAtIndex:0] setStart_time:date];
+//    NSString *dateString = @"01-May-14";
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"dd-MMM-yy";
+//    NSDate *date = [dateFormatter dateFromString:dateString];
+//
+//    [[tasksArray objectAtIndex:0] setStart_time:date];
     
     
     for (int i = 0; i < [tasksArray count]; i++)
@@ -335,6 +335,7 @@
         EventJSON *event = [[EventJSON alloc] init];
         [event setName:ckEvent.title];
         [event setStart_time:ckEvent.date]; // START TIME
+        
         [edvc setEvent:event];
     }
 }

@@ -9,6 +9,7 @@
 #import "EventDetailViewController.h"
 
 @interface EventDetailViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *startTimeLabel;
 
 @end
 
@@ -29,6 +30,14 @@
     // Do any additional setup after loading the view.
     
     self.title = event.name;
+    
+    // Start Time:
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"MMM d, h:mm a"]; // e.g. Feb 17, 7:59 PM
+    NSString *startTimeStr = [NSString stringWithFormat:@"Start Time: %@",[dateFormatter stringFromDate:self.event.start_time]];
+    [self.startTimeLabel setText:startTimeStr];
+
 }
 
 - (void)didReceiveMemoryWarning
