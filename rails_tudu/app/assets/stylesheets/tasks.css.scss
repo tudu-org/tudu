@@ -14,3 +14,13 @@
 #duration_slider {
 	
 }
+
+#tasksTable {
+	margin-left: 40px;
+	th, tr, td {
+		padding: 10px;
+	}
+	.taskName {
+		width: 250px;
+	}
+}

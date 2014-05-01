@@ -1,33 +1,28 @@
-<h1>Listing events</h1>
-
-<table>
+<table id="eventsTable" class="table table-striped">
+  <caption><h2>Events</h2></caption>
   <thead>
     <tr>
+      <th>#</th>
       <th>Start time</th>
       <th>End time</th>
       <th>Name</th>
-      <th>Description</th>
-      <th></th>
+      <th>Options</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+    <% @events.each_with_index do |event, index| %>
       <tr>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= link_to 'Show', [@user, event] %></td>
-        <td><%= link_to 'Edit', edit_event_path(@user, event) %></td>
-        <td><%= link_to 'Destroy', [@user, event], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= index %></td>
+        <td><%= event.start_time.to_s(:custom_time) %></td>
+        <td><%= event.end_time.to_s(:custom_time) %></td>
+        <td class="eventName"><%= event.name %></td>
+        <td><%= link_to 'Details', [@user, event], class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_event_path(@user, event), class: "btn btn-default" %></td>
+        <td><%= link_to 'Delete', [@user, event], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>

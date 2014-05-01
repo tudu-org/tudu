@@ -1,10 +1,10 @@
-<aside id="sidebar" data-controller="sidebar" data-action>
+<aside id="sidebar" class="well" data-controller="sidebar" data-action>
 	<%
 		@user = current_user
 		@event = @user.events.new
 		@task = @user.tasks.new
 	%>
-	<button type="button" id="switchForm" class="btn btn-default btn-sm">Switch</button>
+	<button type="button" id="switchForm" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>
 	<%= render "events/form" %>
 	<%= render "tasks/form" %>
 </aside>

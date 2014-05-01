@@ -19,3 +19,13 @@
 		}
 	}
 }
+
+#eventsTable {
+	margin-left: 40px;
+	th, tr, td {
+		padding: 10px;
+	}
+	.eventName {
+		width: 250px;
+	}
+}

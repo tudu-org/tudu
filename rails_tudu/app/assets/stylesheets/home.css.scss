@@ -10,8 +10,21 @@
 }
 #list_events {
 	float:left;
+    list-style-type: none;
+    li {
+        width: 400px;
+        background-color: #dff0d8;
+        border-color: #A3C993;
+        .time {
+            margin-right: 20px;
+        }
+    }
 }
 #right-sidebar {
-	float: right;
+	float: left;
 	width: 400px;
+}
+div[data-controller="home"] {
+    float: left;
+    margin-left: 40px;
 }

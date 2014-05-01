@@ -1,16 +1,25 @@
 #sidebar {
-	background-color: #DDD;
+	// background-color: #DDD;
 	width: 300px;
 	height: 700px;
 	float: left;
+    position: relative;
+    margin-left: 20px;
 }
 #switchForm {
 	margin-left:5%;
 	margin-top:5%;
+    position: absolute;
+    top: 0;
+    right: 15px;
 }
 
 #duration_slider {
 	width: 87%;
 	margin: 10px;
 	display: inline-block;
+}
+
+#new_event, #new_task {
+    margin-top: -5px;
 }

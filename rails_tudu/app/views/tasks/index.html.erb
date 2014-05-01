@@ -1,39 +1,32 @@
-<h1>Listing tasks</h1>
-
-<table>
+<table id="tasksTable" class="table table-striped">
+  <caption><h2>Tasks</h2></caption>
   <thead>
     <tr>
+      <th>#</th>
       <th>Start time</th>
       <th>End time</th>
       <th>Name</th>
-      <th>Description</th>
       <th>Priority</th>
-      <th>Duration</th>
       <th>Deadline</th>
-      <th></th>
+      <th>Options</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @tasks.each_with_index do |task, index| %>
       <tr>
+        <td><%= index %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
-        <td><%= task.name %></td>
-        <td><%= task.description %></td>
+        <td class="taskName"><%= task.name %></td>
         <td><%= task.priority %></td>
-        <td><%= task.duration %></td>
-        <td><%= task.deadline %></td>
-        <td><%= link_to 'Show', [@user, task] %></td>
-        <td><%= link_to 'Edit', edit_user_task_path(@user, task) %></td>
-        <td><%= link_to 'Destroy', [@user, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= task.deadline.to_s(:custom_time) %></td>
+        <td><%= link_to 'Details', [@user, task], class: "btn btn-default" %></td>
+        <td><%= link_to 'Edit', edit_user_task_path(@user, task), class: "btn btn-default" %></td>
+        <td><%= link_to 'Delete', [@user, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>

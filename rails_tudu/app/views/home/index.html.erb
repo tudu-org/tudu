@@ -3,8 +3,9 @@
 
 </div>
 <script type="template" id="schedule-template">
-	<li>
-		{{startFormatted}} | {{title}}
+	<li class="well">
+		<span class="time">{{startFormatted}} - {{endFormatted}}</span>
+        <span class="title"><b>{{title}}</b></span>
 	</li>
 </script>
 <div id="right-sidebar"><ul id="list_events"></ul></div>
