@@ -388,13 +388,25 @@
             
             if([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)])
             {
-                BOOL showDot = ([[[self dataSource] calendarView:self eventsForDate:workingDate] count] > 0);
-                [cell setShowDot:showDot];
+                int numEvents = [[[self dataSource] calendarView:self eventsForDate:workingDate] count];
+                if (numEvents > 0 && numEvents <= 3) {
+                    [cell setShowDotNum:0];
+                    [cell setShowDot:true];
+                } else if (numEvents > 3 && numEvents <= 6) {
+                    [cell setShowDotNum:1];
+                    [cell setShowMedDot:true];
+
+                } else if (numEvents > 6) {
+                    [cell setShowDotNum:2];
+                    [cell setShowHevDot:true];
+
+                }
+                else
+                {
+                    [cell setShowDot:NO];
+                }
             }
-            else
-            {
-                [cell setShowDot:NO];
-            }
+
             
             /* STEP 6: Set the index */
             [cell setIndex:cellIndex];

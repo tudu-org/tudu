@@ -18,6 +18,9 @@
 @property (nonatomic, strong) UILabel *label;
 
 @property (nonatomic, strong) UIView *dot;
+@property (nonatomic, strong) UIView *medDot;
+@property (nonatomic, strong) UIView *hevDot;
+
 
 @end
 
@@ -58,7 +61,11 @@
         
         //  Dot
         _dot = [UIView new];
+        _medDot = [UIView new];
+        _hevDot = [UIView new];
         [_dot setHidden:YES];
+        [_medDot setHidden:YES];
+        [_hevDot setHidden:YES];
         _showDot = NO;
     }
     return self;
@@ -89,9 +96,15 @@
 {
     [self configureLabel];
     [self configureDot];
+    [self configureMedDot];
+    [self configureHevDot];
+
     
     [self addSubview:[self label]];
     [self addSubview:[self dot]];
+    [self addSubview:[self medDot]];
+    [self addSubview:[self hevDot]];
+
 }
 
 #pragma mark - Setters
@@ -120,6 +133,48 @@
 {
     _showDot = showDot;
     [[self dot] setHidden:!showDot];
+}
+
+- (void)setShowMedDot:(BOOL)showDot
+{
+    //_showDot = showDot;
+    [[self medDot] setHidden:!showDot];
+}
+
+- (void)setShowHevDot:(BOOL)showDot
+{
+    //_showDot = showDot;
+    [[self hevDot] setHidden:!showDot];
+}
+
+
+- (void)setShowDotNum:(int)dotNum
+{
+    switch (dotNum) {
+        case 0:
+            //light
+            [[self dot] setHidden:false];
+            [[self medDot] setHidden:true];
+            [[self hevDot] setHidden:true];
+            break;
+
+        case 1:
+            //medium
+            [[self dot] setHidden:true];
+            [[self medDot] setHidden:false];
+            [[self hevDot] setHidden:true];
+            break;
+        case 2:
+            //heavy
+            [[self dot] setHidden:true];
+            [[self medDot] setHidden:true];
+            [[self hevDot] setHidden:false];
+            break;
+
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - Recycling Behavior
@@ -153,7 +208,7 @@
 {
     UIView *dot = [self dot];
     
-    CGFloat dotRadius = 3;
+    CGFloat dotRadius = 5;
     CGFloat selfHeight = [self frame].size.height;
     CGFloat selfWidth = [self frame].size.width;
     
@@ -163,6 +218,39 @@
     [[self dot] setFrame:dotFrame];
     
 }
+
+- (void)configureMedDot
+{
+    UIView *medDot = [self medDot];
+    
+    CGFloat dotRadius = 5;
+    CGFloat selfHeight = [self frame].size.height;
+    CGFloat selfWidth = [self frame].size.width;
+    
+    [[medDot layer] setCornerRadius:dotRadius/2];
+    
+    CGRect dotFrame = CGRectMake(selfWidth/2 - dotRadius/2, (selfHeight - (selfHeight/5)) - dotRadius/2, dotRadius, dotRadius);
+    [[self medDot] setFrame:dotFrame];
+    
+    [[self medDot] setBackgroundColor:[UIColor blueColor]];
+}
+
+- (void)configureHevDot
+{
+    UIView *hevDot = [self hevDot];
+    
+    CGFloat dotRadius = 5;
+    CGFloat selfHeight = [self frame].size.height;
+    CGFloat selfWidth = [self frame].size.width;
+    
+    [[hevDot layer] setCornerRadius:dotRadius/2];
+    
+    CGRect dotFrame = CGRectMake(selfWidth/2 - dotRadius/2, (selfHeight - (selfHeight/5)) - dotRadius/2, dotRadius, dotRadius);
+    [[self hevDot] setFrame:dotFrame];
+    
+    [[self hevDot] setBackgroundColor:[UIColor redColor]];
+}
+
 
 #pragma mark - UI Coloring
 

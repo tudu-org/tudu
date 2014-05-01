@@ -55,5 +55,8 @@
 - (void)setSelected;    //  Select a given cell
 - (void)setDeselected;  //  Deselect the cell
 - (void)setOutOfRange;  //  Deselect and style to show that the cell isn't selectable
+- (void)setShowDotNum:(int)dotNum;
+- (void)setShowHevDot:(BOOL)showDot;
+- (void)setShowMedDot:(BOOL)showDot;
 
 @end
