@@ -27,7 +27,6 @@
 
 @property (nonatomic, strong) CKCalendarHeaderView *headerView;
 
-@property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSArray *events;
 
 //  The index of the highlighted cell
@@ -43,7 +42,7 @@
 @end
 
 @implementation CKCalendarView
-
+@synthesize table;
 #pragma mark - Initializers
 
 // Designated Initializer
@@ -65,12 +64,12 @@
         
         
         //  Accessory Table
-        _table = [UITableView new];
-        [_table setDelegate:self];
-        [_table setDataSource:self];
+        table = [UITableView new];
+        [table setDelegate:self];
+        [table setDataSource:self];
         
-        [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        [_table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];
+        [table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"noDataCell"];
         
         //  Events for selected date
         _events = [NSMutableArray new];

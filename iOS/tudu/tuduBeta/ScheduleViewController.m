@@ -8,6 +8,7 @@
 
 #import "ScheduleViewController.h"
 #import "CalendarKit/CalendarKit.h"
+#import "EventDetailViewController.h"
 #import "NSDate+Description.h"
 #import "NSDate+Components.h"
 
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) EventJSON *eventJSON;
 @property (strong, nonatomic) EventJSON *taskJSON;
 @property (strong, nonatomic) NSMutableArray *calendarEvents;
+@property (strong, nonatomic) NSDate *selectedDate;
 @property int runOnce;
 @property int runOnceTasks;
 @end
@@ -111,6 +113,7 @@
 -(void)helpMePullEvents {
     [manager getUserEvents];
     [manager getUserTasks];
+    [manager scheduleTasks];
     [manager getUserSchedule];
 }
 
@@ -197,7 +200,13 @@
             the tasks into the mix. And we are still waiting on the back-end guys to make it so we can 
             actually test it though.  The code that Mike wrote cannot be uploaded to the Heroku server
             without breaking the front-end code. */
-    
+    for (int i = 0; i < [tasksArray count]; i++)
+    {
+        TaskJSON *task = [tasksArray objectAtIndex:i];
+        NSLog(@"S_TASK NAME = %@",task.name);
+        NSLog(@"S_TASK START_TIME = %@",task.start_time);
+        NSLog(@"S_TASK END_TIME = %@",task.end_time);
+    }
     if(_runOnce == 0){
         _runOnce=1;
         NSLog(@"------RECEIVED EVENTS AND TASKS-------");
@@ -274,6 +283,7 @@
 
 - (void)calendarView:(CKCalendarView *)calendarView didSelectDate:(NSDate *)date
 {
+    self.selectedDate = date;
     if ([self isEqual:[self delegate]]) {
         return;
     }
@@ -303,12 +313,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"ExamineEventSegue"]) {
-//        TaskDetailViewController *tdvc = segue.destinationViewController;
-//        // Get the Task information from the stored Tasks array based on the index of the selected row
-//        Task * task = [self.fetchedTasksArray objectAtIndex:[self.tableView indexPathForSelectedRow].row];
-//        NSLog(@"Current Table View: %@", self.tableView);
-//        
-//        [tdvc setTask:task];
+        EventDetailViewController *edvc = segue.destinationViewController;
+        NSArray *dailyScheduledEvents = [_eventsDict objectForKey:self.selectedDate];
+       CKCalendarEvent *event = [dailyScheduledEvents objectAtIndex:[self.calendar.table indexPathForSelectedRow].row];
+        [edvc setTitle:event.title];
     }
 }
 
