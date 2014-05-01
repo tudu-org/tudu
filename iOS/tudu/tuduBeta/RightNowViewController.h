@@ -23,6 +23,9 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeToTheRight;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeToTheLeft;
 @property (strong, nonatomic) IBOutlet UIView *shadowView;
+@property (strong, nonatomic) IBOutlet UILabel *swipeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *swipeRightLabel;
+@property (strong, nonatomic) IBOutlet UILabel *swipeLeftLabel;
 
 - (IBAction)swipeRightRecognized:(id)sender;
 - (IBAction)swipeLeftRecognized:(id)sender;
