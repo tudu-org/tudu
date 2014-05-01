@@ -240,14 +240,15 @@
             if(aCKCalendarEvent.date!=nil){
                 tempEventsArray = [[NSMutableArray alloc]init];
                 [tempEventsArray addObjectsFromArray:[_eventsDict objectForKey:aCKCalendarEvent.date]];
-                aCKCalendarEvent = [[CKCalendarEvent alloc]init];
-                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.eventJSON.start_time];
-                
+                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay |NSCalendarUnitMonth | NSCalendarUnitYear fromDate:aCKCalendarEvent.date];
+
                 //define the calendar event
                 aCKCalendarEvent.date = [NSDate dateWithDay:[components day] month:[components month] year:[components year]];
                 aCKCalendarEvent.title = self.eventJSON.name;
                 [tempEventsArray addObject:aCKCalendarEvent];
                 [_eventsDict setObject:tempEventsArray forKey:aCKCalendarEvent.date];
+                aCKCalendarEvent = [[CKCalendarEvent alloc]init];
+
             }
         }
         //[self.eventJSON printEvent];
