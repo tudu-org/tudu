@@ -149,6 +149,9 @@ class User < ActiveRecord::Base
 	def schedule_tasks
 		# load our task and events arrays
 		t_a = tasks.where(:finished => [false, nil])
+		t_a = t_a.select{|e|
+			e.duration != nil
+		}
 		e_a = events.to_a
 
 		timed_events = e_a
