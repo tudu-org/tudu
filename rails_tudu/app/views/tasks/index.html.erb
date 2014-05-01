@@ -18,8 +18,8 @@
     <% @tasks.each_with_index do |task, index| %>
       <tr>
         <td><%= index %></td>
-        <td><%= task.start_time %></td>
-        <td><%= task.end_time %></td>
+        <td><%= task.start_time.to_s(:custom_time) %></td>
+        <td><%= task.end_time.to_s(:custom_time) %></td>
         <td class="taskName"><%= task.name %></td>
         <td><%= task.priority %></td>
         <td><%= task.deadline.to_s(:custom_time) %></td>

@@ -39,6 +39,7 @@
         <%= label_tag 'Description' %>
         <%= f.text_area :description, :class=>"form-control" %>
     </div>
+    <%= f.hidden_field :finished, :value => false %>
     <div class="form-group">
         <%= f.submit "Create Task", :class=>"form-control" %>
     </div>
