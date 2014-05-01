@@ -32,6 +32,11 @@
 	background-color: #A3B15A;
 }
 .fc-event-inner {
-	background-color: #3A87AD;
-	color: white;
+	background-color: #87CEEB;
+	color: #00688B;
+	border-radius: 2px;
+
+}
+.fc-event {
+	border-color: #33A1DE;
 }

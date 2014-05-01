@@ -13,8 +13,8 @@
     list-style-type: none;
     li {
         width: 400px;
-        background-color: #dff0d8;
-        border-color: #A3C993;
+        // background-color: #dff0d8;
+        // border-color: #A3C993;
         .time {
             margin-right: 20px;
         }
@@ -27,4 +27,49 @@
 div[data-controller="home"] {
     float: left;
     margin-left: 40px;
+}
+
+.navbar {
+    .navbar_brand {
+        margin-left: -45px;
+    }
+    background-color: #FFB347;
+    
+    &.navbar-default {
+        border: none;
+    }
+
+    &.navbar-default nav li {
+        &.active {
+            background-color: transparent;
+
+            a, a:hover {
+                background-color: transparent;
+                color: #C35817;
+            }
+
+            &:after {
+                z-index: 1;
+                position: absolute;
+                bottom: 0px;
+                left: 50%;
+                margin-left: -10px;
+                content:'';
+                width: 0;
+                height: 0;
+                border-bottom: solid 10px #FFFFFF;
+                border-left: solid 10px transparent;
+                border-right: solid 10px transparent;
+            }
+        }
+        a {
+            color: #FCF8E3;
+            font-size: 14px;
+
+            &:hover {
+                color: #C35817;
+                background-color: transparent;
+            }
+        } 
+    }
 }
