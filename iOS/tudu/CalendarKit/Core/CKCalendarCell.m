@@ -11,6 +11,12 @@
 
 #import "UIView+Border.h"
 
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
 @interface CKCalendarCell (){
     CGSize _size;
 }
@@ -217,6 +223,7 @@
     CGRect dotFrame = CGRectMake(selfWidth/2 - dotRadius/2, (selfHeight - (selfHeight/5)) - dotRadius/2, dotRadius, dotRadius);
     [[self dot] setFrame:dotFrame];
     
+    [[self dot] setBackgroundColor:UIColorFromRGB(0x3BDA00)];
 }
 
 - (void)configureMedDot
@@ -231,8 +238,8 @@
     
     CGRect dotFrame = CGRectMake(selfWidth/2 - dotRadius/2, (selfHeight - (selfHeight/5)) - dotRadius/2, dotRadius, dotRadius);
     [[self medDot] setFrame:dotFrame];
-    
-    [[self medDot] setBackgroundColor:[UIColor blueColor]];
+
+    [[self medDot] setBackgroundColor:UIColorFromRGB(0xFFCA00)];
 }
 
 - (void)configureHevDot
@@ -248,7 +255,7 @@
     CGRect dotFrame = CGRectMake(selfWidth/2 - dotRadius/2, (selfHeight - (selfHeight/5)) - dotRadius/2, dotRadius, dotRadius);
     [[self hevDot] setFrame:dotFrame];
     
-    [[self hevDot] setBackgroundColor:[UIColor redColor]];
+    [[self hevDot] setBackgroundColor:UIColorFromRGB(0xF10026)];
 }
 
 
