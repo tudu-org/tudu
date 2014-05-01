@@ -496,7 +496,7 @@
         
         if (error) {
             /* TODO: CHANGE THIS, only like this because back-end isn't working */
-            [self.delegate successfullyScheduledTasks:receivedData];
+            //[self.delegate successfullyScheduledTasks:receivedData];
         } else {
             [self.delegate successfullyScheduledTasks:receivedData];
         }

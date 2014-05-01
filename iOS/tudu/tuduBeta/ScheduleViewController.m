@@ -8,6 +8,7 @@
 
 #import "ScheduleViewController.h"
 #import "CalendarKit/CalendarKit.h"
+#import "EventDetailViewController.h"
 #import "NSDate+Description.h"
 #import "NSDate+Components.h"
 #import "EventsBuilder.h"
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) NSArray *sortedArrayByDate;
 @property (strong, nonatomic) EventJSON *eventJSON;
 @property (strong, nonatomic) NSMutableArray *calendarEvents;
+@property (strong, nonatomic) NSDate *selectedDate;
 @property int runOnce;
 @property int runOnceTasks;
 @end
@@ -111,6 +113,7 @@
 -(void)helpMePullEvents {
     [manager getUserEvents];
     [manager getUserTasks];
+    [manager scheduleTasks];
     [manager getUserSchedule];
 }
 
@@ -289,6 +292,7 @@
 
 - (void)calendarView:(CKCalendarView *)calendarView didSelectDate:(NSDate *)date
 {
+    self.selectedDate = date;
     if ([self isEqual:[self delegate]]) {
         return;
     }
@@ -301,13 +305,8 @@
 //  A row is selected in the events table. (Use to push a detail view or whatever.)
 - (void)calendarView:(CKCalendarView *)calendarView didSelectEvent:(CKCalendarEvent *)event
 {
-    if ([self isEqual:[self delegate]]) {
-        return;
-    }
-    
-    if ([[self delegate] respondsToSelector:@selector(calendarView:didSelectEvent:)]) {
-        [[self delegate] calendarView:calendarView didSelectEvent:event];
-    }
+    // Push the detail view controller here
+    [self performSegueWithIdentifier:@"ExamineEventSegue" sender:self];
 }
 
 #pragma mark - Calendar View
@@ -316,6 +315,19 @@
 //{
 //    return self.calendar;
 //}
+
+
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ExamineEventSegue"]) {
+        EventDetailViewController *edvc = segue.destinationViewController;
+        NSArray *dailyScheduledEvents = [_eventsDict objectForKey:self.selectedDate];
+       CKCalendarEvent *event = [dailyScheduledEvents objectAtIndex:[self.calendar.table indexPathForSelectedRow].row];
+        [edvc setTitle:event.title];
+    }
+}
 
 
 

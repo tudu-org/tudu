@@ -23,6 +23,9 @@
 @property(nonatomic, copy)   NSCalendar     *calendar;          // default is [NSCalendar currentCalendar]. setting nil returns to default
 @property(nonatomic, strong) NSTimeZone     *timeZone;          // default is nil. use current time zone or time zone from calendar
 
+// CLEARY CHANGE: Moved table here
+@property (nonatomic, strong) UITableView *table;
+
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSDate *minimumDate;
 @property (nonatomic, strong) NSDate *maximumDate;
