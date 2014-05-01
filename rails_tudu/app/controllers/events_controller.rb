@@ -25,14 +25,15 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    session[:return_to] ||= request.referer
+
     @event = @user.events.create(event_params)
 
     Rails.logger.debug("event is #{@event}")
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to [@user, @event], notice: 'Event was successfully created.' }
-        format.json { render action: 'show', status: :created, location: [@user, @event] }
+        format.html { redirect_to :back, notice: 'Event was successfully created.' }
       else
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
