@@ -45,7 +45,6 @@ int amountFreeTime;
     }];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
