@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EventJSON.h"
 
 @interface EventDetailViewController : UIViewController
-
+@property (nonatomic, strong) EventJSON *event;
 @end

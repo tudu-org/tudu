@@ -315,8 +315,11 @@
     if ([segue.identifier isEqualToString:@"ExamineEventSegue"]) {
         EventDetailViewController *edvc = segue.destinationViewController;
         NSArray *dailyScheduledEvents = [_eventsDict objectForKey:self.selectedDate];
-       CKCalendarEvent *event = [dailyScheduledEvents objectAtIndex:[self.calendar.table indexPathForSelectedRow].row];
-        [edvc setTitle:event.title];
+        CKCalendarEvent *ckEvent = [dailyScheduledEvents objectAtIndex:[self.calendar.table indexPathForSelectedRow].row];
+        EventJSON *event = [[EventJSON alloc] init];
+        [event setName:ckEvent.title];
+        [event setStart_time:ckEvent.date]; // START TIME
+        [edvc setEvent:event];
     }
 }
 
