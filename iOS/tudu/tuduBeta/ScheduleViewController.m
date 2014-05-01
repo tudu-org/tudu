@@ -111,6 +111,7 @@
 -(void)helpMePullEvents {
     [manager getUserEvents];
     [manager getUserTasks];
+    [manager getUserSchedule];
 }
 
 #pragma mark TasksManagerDelegate methods

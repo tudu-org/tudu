@@ -80,7 +80,10 @@
     [self.communicator synchScheduleTasks:userID withAuth:userAuthToken];
 }
 
-
+- (void)getUserSchedule
+{
+    [self.communicator synchFetchSchedule:userID withAuth:userAuthToken];
+}
 
 
 #pragma mark - BackEndCommunicatorDelegate

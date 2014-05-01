@@ -16,14 +16,15 @@
 + (NSArray *) scheduledEventsFromScheduleJSON:(NSData *)objectNotation error:(NSError  **)error {
     NSError *localError = nil;
     NSMutableArray *eventsToReturn = [[NSMutableArray alloc] init];
-    NSArray *parsedObjectArray = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
+    NSDictionary *parsedObjectDictionary = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
+    
+    
     if (localError != nil) {
         *error = localError;
         return nil;
     }
     
-    // The Get Entire Schedule JSON call returns nested arrays, and the first one holds the Events
-    NSArray *arrayOfEvents = [parsedObjectArray objectAtIndex:0];
+    NSArray *arrayOfEvents = [parsedObjectDictionary objectForKey:@"events"];
     
     for (int i = 0; i < [arrayOfEvents count]; i++) {
         NSDictionary *eventDictionary = [arrayOfEvents objectAtIndex:i];
@@ -36,14 +37,15 @@
 + (NSArray *) scheduledTasksFromScheduleJSON:(NSData *)objectNotation error:(NSError  **)error {
     NSError *localError = nil;
     NSMutableArray *tasksToReturn = [[NSMutableArray alloc] init];
-    NSArray *parsedObjectArray = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
+    NSDictionary *parsedObjectDictionary = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
+    
+    
     if (localError != nil) {
         *error = localError;
         return nil;
     }
     
-    // The Get Entire Schedule JSON call returns nested arrays, and the second one holds the Tasks
-    NSArray *arrayOfTasks = [parsedObjectArray objectAtIndex:0];
+    NSArray *arrayOfTasks = [parsedObjectDictionary objectForKey:@"tasks"];
     
     for (int i = 0; i < [arrayOfTasks count]; i++) {
         NSDictionary *taskDictionary = [arrayOfTasks objectAtIndex:i];
