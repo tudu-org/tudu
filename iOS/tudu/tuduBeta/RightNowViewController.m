@@ -14,7 +14,7 @@
 @implementation RightNowViewController
 int currentTaskIndex;
 int amountFreeTime;
-@synthesize rntdViewController, swipeToTheRight, swipeToTheLeft;
+@synthesize rntdViewController, swipeToTheRight, swipeToTheLeft, swipeLabel, swipeLeftLabel, swipeRightLabel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,6 +24,25 @@ int amountFreeTime;
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    swipeLabel.alpha = 0;
+    swipeLeftLabel.alpha = 0;
+    swipeRightLabel.alpha = 0;
+    
+    [UIView animateWithDuration:0.9 delay:2.f options:UIViewAnimationOptionCurveEaseIn animations:^{
+        swipeLabel.alpha = 1;
+        swipeLeftLabel.alpha = 1;
+        swipeRightLabel.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.9 delay:4.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            swipeLabel.alpha = 0;
+            swipeLeftLabel.alpha = 0;
+            swipeRightLabel.alpha = 0;
+        } completion:nil];
+    }];
 }
 
 

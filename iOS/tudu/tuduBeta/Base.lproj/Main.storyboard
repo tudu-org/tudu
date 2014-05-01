@@ -121,66 +121,65 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="0.0" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="bZa-2d-Vre">
-                                <rect key="frame" x="18" y="430" width="284" height="31"/>
+                                <rect key="frame" x="18" y="448" width="284" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much free time do you have?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OY-xA-hCA">
-                                <rect key="frame" x="20" y="371" width="263" height="21"/>
+                                <rect key="frame" x="20" y="389" width="263" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15 min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xla-fk-7rQ">
-                                <rect key="frame" x="14" y="463" width="52" height="21"/>
+                                <rect key="frame" x="14" y="481" width="52" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4 hrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFD-ba-ebM">
-                                <rect key="frame" x="261" y="462" width="39" height="21"/>
+                                <rect key="frame" x="261" y="480" width="39" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXe-1O-rWB">
-                                <rect key="frame" x="292" y="178" width="24" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title=">">
-                                    <color key="titleColor" red="0.73707812500000003" green="0.73707812500000003" blue="0.73707812500000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="showNextTask:" destination="CgD-cL-b7g" eventType="touchUpInside" id="IDK-8r-Laa"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpV-GU-cgF">
-                                <rect key="frame" x="2" y="178" width="28" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleColor" red="0.73707812500000003" green="0.73707812500000003" blue="0.73707812500000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="showPreviousTask:" destination="CgD-cL-b7g" eventType="touchUpInside" id="fE6-kZ-Wnq"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Free_Time_Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-3a-LQF">
-                                <rect key="frame" x="35" y="400" width="250" height="21"/>
+                                <rect key="frame" x="35" y="418" width="250" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-aa-KE2">
-                                <rect key="frame" x="31" y="81" width="258" height="264"/>
+                                <rect key="frame" x="31" y="78" width="258" height="264"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="s05-SZ-5vE" kind="embed" identifier="embedContainer" id="poi-Eh-TlL"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swipe to see more tasks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBl-zW-5Y3">
+                                <rect key="frame" x="66" y="350" width="189" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.66371875000000002" green="0.66371875000000002" blue="0.66371875000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=">" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH1-hn-NYJ">
+                                <rect key="frame" x="262" y="335" width="37" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.66371875000000002" green="0.66371875000000002" blue="0.66371875000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKu-9y-vIb">
+                                <rect key="frame" x="42" y="334" width="48" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="0.66371875000000002" green="0.66371875000000002" blue="0.66371875000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -203,8 +202,9 @@
                     <connections>
                         <outlet property="freeTimeSlider" destination="bZa-2d-Vre" id="B4F-BS-HYt"/>
                         <outlet property="freeTimeValueLabel" destination="LbE-3a-LQF" id="kUq-Wx-Tyw"/>
-                        <outlet property="leftArrowBtn" destination="HpV-GU-cgF" id="trk-JT-fbH"/>
-                        <outlet property="rightArrowBtn" destination="dXe-1O-rWB" id="Zuq-CK-aFA"/>
+                        <outlet property="swipeLabel" destination="zBl-zW-5Y3" id="Yuh-6W-b8d"/>
+                        <outlet property="swipeLeftLabel" destination="kKu-9y-vIb" id="gAY-8O-fyw"/>
+                        <outlet property="swipeRightLabel" destination="BH1-hn-NYJ" id="gd0-NV-pz8"/>
                         <outlet property="swipeToTheLeft" destination="yhy-jj-eXP" id="UGc-eg-eln"/>
                         <outlet property="swipeToTheRight" destination="M4p-WR-FTT" id="rS2-wv-aCc"/>
                         <outlet property="taskContainer" destination="eoT-aa-KE2" id="7tl-0I-Ww8"/>
@@ -1136,7 +1136,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <inferredMetricsTieBreakers>
         <segue reference="mdX-V6-qJM"/>
         <segue reference="rbB-IQ-sBF"/>
-        <segue reference="icz-X9-RSy"/>
-        <segue reference="dgl-Jh-U1s"/>
+        <segue reference="hhi-Bp-657"/>
+        <segue reference="lZZ-3n-zd5"/>
     </inferredMetricsTieBreakers>
 </document>
