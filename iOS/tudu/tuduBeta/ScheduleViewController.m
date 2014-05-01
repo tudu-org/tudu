@@ -77,13 +77,13 @@
     [self.calendar setDataSource:self];
     
     // 3. Set as Day View
-    self.calendar.displayMode = 2;//2 = Day View 0 = Month View 1 = Week View
+    self.calendar.displayMode = 1;//2 = Day View 0 = Month View 1 = Week View
 
     // 4. Present the calendar
     [[self calendarView] addSubview:self.calendar];
     
     [[self calendar] setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] animated:NO];
-    [[self calendar] setDisplayMode:CKCalendarViewModeMonth animated:NO];
+    [[self calendar] setDisplayMode:CKCalendarViewModeWeek animated:NO];
     
     //sample events
     NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
@@ -119,7 +119,7 @@
     /*TODO: Johnny, this is where you should implement code similar to didReceiveEventsArray: */
     /*TODO: I guess it would be best if you got them all at once... I will work on implementing that call now. */
     NSLog(@"TASKS HERE!!: %@", tasksArray);
-    [HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
+    //[HUD performSelectorOnMainThread:@selector(hideUIBlockingIndicator) withObject:nil waitUntilDone:NO];
     if(_runOnceTasks == 0){
         _runOnceTasks=1;
         NSLog(@"------RECEIVED TASKS-------");
@@ -147,7 +147,6 @@
                 [_eventsDict setObject:tempTasksArray forKey:aCKCalendarTask.date];
             }
         }
-        //[self.eventJSON printEvent];
         NSLog(@"Calendar Task/Events Array: %@", _eventsDict);
     }
 
