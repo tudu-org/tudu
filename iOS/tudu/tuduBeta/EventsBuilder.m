@@ -22,6 +22,7 @@
     NSArray *parsedObjectArray = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
     
     if (localError != nil) {
+        NSLog(@"ERROR!!! ----- %@", localError);
         *error = localError;
         return nil;
     }
