@@ -164,8 +164,9 @@ class User < ActiveRecord::Base
 
 		# sort the task list by priority
 		t_a = t_a.sort_by do |t|
-			t.priority
-		end.reverse
+			t.start_time
+			#t.priority
+		end
 
 		# start scheduling five minutes from now
 		start_time = Time.now + 5.minutes
