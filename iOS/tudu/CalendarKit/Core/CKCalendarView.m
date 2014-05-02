@@ -388,22 +388,21 @@
             
             if([[self dataSource] respondsToSelector:@selector(calendarView:eventsForDate:)])
             {
-                int numEvents = [[[self dataSource] calendarView:self eventsForDate:workingDate] count];
-                if (numEvents > 0 && numEvents <= 3) {
-                    [cell setShowDotNum:0];
-                    [cell setShowDot:true];
-                } else if (numEvents > 3 && numEvents <= 6) {
-                    [cell setShowDotNum:1];
-                    [cell setShowMedDot:true];
-
-                } else if (numEvents > 6) {
-                    [cell setShowDotNum:2];
-                    [cell setShowHevDot:true];
-
-                }
-                else
-                {
+                BOOL showDot = ([[[self dataSource] calendarView:self eventsForDate:workingDate] count] > 0 &&  [[[self dataSource] calendarView:self eventsForDate:workingDate] count] < 3 );
+                BOOL showMedDot = ([[[self dataSource] calendarView:self eventsForDate:workingDate] count] > 2 &&  [[[self dataSource] calendarView:self eventsForDate:workingDate] count] < 5 );
+                BOOL showHevDot = ([[[self dataSource] calendarView:self eventsForDate:workingDate] count] > 4);
+                
+                if(showDot){
+                    [cell setShowDot:showDot];
+                }else if(showMedDot){
+                    [cell setShowMedDot:showMedDot];
+                }else if (showHevDot){
+                    [cell setShowHevDot:showHevDot];
+                }else{
                     [cell setShowDot:NO];
+                    [cell setShowMedDot:NO];
+                    [cell setShowHevDot:NO];
+
                 }
             }
 

@@ -67,6 +67,9 @@
         [_medDot setHidden:YES];
         [_hevDot setHidden:YES];
         _showDot = NO;
+        _showMedDot = NO;
+        _showHevDot = NO;
+
     }
     return self;
 }
@@ -137,13 +140,13 @@
 
 - (void)setShowMedDot:(BOOL)showDot
 {
-    //_showDot = showDot;
+    _showMedDot = showDot;
     [[self medDot] setHidden:!showDot];
 }
 
 - (void)setShowHevDot:(BOOL)showDot
 {
-    //_showDot = showDot;
+    _showHevDot = showDot;
     [[self hevDot] setHidden:!showDot];
 }
 
